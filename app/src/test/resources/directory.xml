@@ -1,0 +1,18 @@
+<d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:oc="http://owncloud.org/ns"
+    xmlns:nc="http://nextcloud.org/ns">
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Documents/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:16:46 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>1108865</d:quota-used-bytes>
+                <d:quota-available-bytes>1047576805</d:quota-available-bytes>
+                <d:getetag>&quot;647853ef0e5ec&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>

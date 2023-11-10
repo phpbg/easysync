@@ -1,0 +1,16 @@
+<d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:oc="http://owncloud.org/ns"
+    xmlns:nc="http://nextcloud.org/ns">
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/%231234%20(1).pdf</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sat, 10 Jun 2023 21:06:18 GMT</d:getlastmodified>
+                <d:getcontentlength>425623</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;bacfa6f123dee073dc9e20774470681a&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>

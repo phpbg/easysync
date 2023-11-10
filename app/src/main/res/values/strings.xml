@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Easy Sync</string>
+    <string name="notification_channel_id" translatable="false">1001</string>
+    <string name="notification_missing_permissions_text">Please grant permissions to allow synchronization</string>
+    <string name="notification_missing_permissions_title">Synchronization failed</string>
+    <string name="dav_settings_activity_title">Settings</string>
+    <string name="dav_settings_hide_password">Hide password</string>
+    <string name="dav_settings_password">Password</string>
+    <string name="dav_settings_title">DAV Settings</string>
+    <string name="dav_settings_username">Username</string>
+    <string name="dav_settings_remote_not_empty">Remote folder is not empty. All files will be downloaded and synced with your device. Save anyway?</string>
+    <string name="dav_settings_save">Save</string>
+    <string name="dav_settings_save_anyway">Save anyway</string>
+    <string name="dav_settings_show_password">Show password</string>
+    <string name="permissions_activity_title">Permissions</string>
+    <string name="permissions_files_text">In order to synchronize your files we need full access to your files. Go to settings to enable the permission</string>
+    <string name="permissions_files_button">File settings</string>
+    <string name="permissions_hibernation_text_11">As we run in the background, we need to tell android not to remove permissions. Go to settings and disable \"Remove permissions if app isn\'t used\"</string>
+    <string name="permissions_hibernation_text_12">As we run in the background, we need to tell android not to remove permissions. Go to settings and disable \"Remove permissions and free up space\"</string>
+    <string name="permissions_hibernation_text_13">As we run in the background, we need to tell android not to remove permissions. Go to settings and disable \"Pause app activity if unused\"</string>
+    <string name="permissions_hibernation_button">Suspend settings</string>
+    <string name="permissions_doze_text">In order to synchronize faster we need to disable battery optimization. If you deny this permission synchronization will still happen but only when charging, less than once a day. Press "Next" to proceed</string>
+    <string name="permissions_doze_button">Next</string>
+    <string name="permissions_notifications_text">We will send you notifications if anything goes wrong (such as DAV server unreacheable). Press "Next" to proceed</string>
+    <string name="permissions_notifications_button">Next</string>
+    <string name="permissions_old_files_text">In order to synchronize your files we need full access to your files. Press "Next" to proceed</string>
+    <string name="permissions_old_files_button">Next</string>
+    <string name="permissions_welcome">Easy sync will keep your files synchronized with your DAV server</string>
+    <string name="permissions_next">Next</string>
+    <string name="sync_settings_title">Synchronization settings</string>
+    <string name="sync_settings_activity_title">Synchronization settings</string>
+    <string name="about">About, help</string>
+</resources>

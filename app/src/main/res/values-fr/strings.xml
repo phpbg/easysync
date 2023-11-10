@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="notification_missing_permissions_text">Veuillez accorder les permissions pour permettre la synchronisation</string>
+    <string name="notification_missing_permissions_title">Synchronisation KO</string>
+    <string name="dav_settings_activity_title">Paramètres</string>
+    <string name="dav_settings_username">Nom d\'utilisateur</string>
+    <string name="dav_settings_password">Mot de passe</string>
+    <string name="dav_settings_save">Sauvegarder</string>
+    <string name="dav_settings_hide_password">Masquer le mot de passe</string>
+    <string name="dav_settings_show_password">Afficher le mot de passe</string>
+    <string name="dav_settings_title">Paramètres DAV</string>
+    <string name="permissions_activity_title">Permissions</string>
+</resources>

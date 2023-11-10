@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:oc="http://owncloud.org/ns"
+    xmlns:nc="http://nextcloud.org/ns">
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:17:16 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>26165019</d:quota-used-bytes>
+                <d:quota-available-bytes>1047576805</d:quota-available-bytes>
+                <d:getetag>&quot;6478540cefd98&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Documents/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:16:46 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>1108865</d:quota-used-bytes>
+                <d:quota-available-bytes>1047576805</d:quota-available-bytes>
+                <d:getetag>&quot;647853ef0e5ec&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Nextcloud%20Manual.pdf</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:17:15 GMT</d:getlastmodified>
+                <d:getcontentlength>14171163</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;c1c12ed16554bae20b9ba1d1b4dfce76&quot;</d:getetag>
+                <d:getcontenttype>application/pdf</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Nextcloud%20intro.mp4</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:16:43 GMT</d:getlastmodified>
+                <d:getcontentlength>3963036</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;617c5b43806fd7fe4ef98ee7573a28fb&quot;</d:getetag>
+                <d:getcontenttype>video/mp4</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Nextcloud.png</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:17:16 GMT</d:getlastmodified>
+                <d:getcontentlength>50598</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;7740b82bae77a908ba6dd3b3543d3566&quot;</d:getetag>
+                <d:getcontenttype>image/png</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Photos/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:17:14 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>5656463</d:quota-used-bytes>
+                <d:quota-available-bytes>1047576805</d:quota-available-bytes>
+                <d:getetag>&quot;6478540a78ab8&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Reasons%20to%20use%20Nextcloud.pdf</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:17:02 GMT</d:getlastmodified>
+                <d:getcontentlength>976625</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;39c5e8b3ffff3299d5a0d9401b0b5cee&quot;</d:getetag>
+                <d:getcontenttype>application/pdf</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/foouser/Templates/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Thu, 01 Jun 2023 08:17:02 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>238269</d:quota-used-bytes>
+                <d:quota-available-bytes>1047576805</d:quota-available-bytes>
+                <d:getetag>&quot;647853fe4575c&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>

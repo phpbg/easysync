@@ -1,0 +1,80 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "001eec97aeb79e8fb4b997857cfdb2d4",
+    "entities": [
+      {
+        "tableName": "File",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pathname` TEXT NOT NULL, `local_pathname` TEXT NOT NULL, `id` INTEGER NOT NULL, `remote_date_changed` INTEGER, `local_date_changed` INTEGER, `etag` TEXT, `is_collection` INTEGER NOT NULL, PRIMARY KEY(`pathname`))",
+        "fields": [
+          {
+            "fieldPath": "pathname",
+            "columnName": "pathname",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localPathname",
+            "columnName": "local_pathname",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remoteDateChanged",
+            "columnName": "remote_date_changed",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "localDateChanged",
+            "columnName": "local_date_changed",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "etag",
+            "columnName": "etag",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isCollection",
+            "columnName": "is_collection",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "pathname"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_File_id",
+            "unique": true,
+            "columnNames": [
+              "id"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_File_id` ON `${TABLE_NAME}` (`id`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '001eec97aeb79e8fb4b997857cfdb2d4')"
+    ]
+  }
+}
