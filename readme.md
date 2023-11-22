@@ -9,6 +9,7 @@ Synchronize your phone with your DAV server, the easy way.
   * Files touched on your server will be uploaded / deleted on your phone
 * Basic auth (login with password)
 * Secure storage of your credentials
+* Preserve timestamps if you use Nextcloud as DAV server
 
 ## Supported Android phones
 * From Android 8 to latest releases
