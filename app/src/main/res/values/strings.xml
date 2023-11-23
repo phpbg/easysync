@@ -15,7 +15,7 @@
     <string name="permissions_activity_title">Permissions</string>
     <string name="permissions_files_text">In order to synchronize your files we need full access to your files. Go to settings to enable the permission</string>
     <string name="permissions_files_button">File settings</string>
-    <string name="permissions_hibernation_text_11">As we run in the background, we need to tell android not to remove permissions. Go to settings and disable \"Remove permissions if app isn\'t used\"</string>
+    <string name="permissions_hibernation_text_11">As we run in the background, we need to tell android not to remove permissions. Go to Settings>Permissions and disable \"Remove permissions if app isn\'t used\"</string>
     <string name="permissions_hibernation_text_12">As we run in the background, we need to tell android not to remove permissions. Go to settings and disable \"Remove permissions and free up space\"</string>
     <string name="permissions_hibernation_text_13">As we run in the background, we need to tell android not to remove permissions. Go to settings and disable \"Pause app activity if unused\"</string>
     <string name="permissions_hibernation_button">Suspend settings</string>
