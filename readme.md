@@ -30,6 +30,9 @@ You can get drastic speedup (almost 10x) when using a device password instead of
 2. Go to DAV Settings in easysync, use your own login, but put the device password instead of your usual user password
 3. Enjoy 10x speedup
 
+## Donate
+If you like this app consider making [a donation](https://github.com/sponsors/phpbg)
+
 ## License
 MIT
 
