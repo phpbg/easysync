@@ -40,7 +40,10 @@ No
 ### I am a nextcloud user. Does this replace nextcloud app?
 When you configure EasySync you select a specific folder on your DAV server. This folder will be fully synced with your phone.
 
-If you want to access files on your DAV server that are outside that specific folder, then you still need nextcloud app. Otherwise it is probably not necessary.
+* If you want to access files on your DAV server that are **outside** that specific folder, then you still need nextcloud app.
+* If you need **per folder synchronization**, then you still need nextcloud app.
+* If you want to use all nextcloud features (such as sharing), then you still need nextcloud app.
+* Otherwise it is probably not necessary.
 
 ### Changes on android device side are not immediately reflected
 1. Please be sure to disable battery optimization permission (it will be shown on home screen if required). Disabling battery optimization will not drain your battery. It will just enable immediate sync of file changes.
