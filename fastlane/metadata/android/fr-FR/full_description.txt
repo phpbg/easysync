@@ -1,0 +1,21 @@
+Synchronisez les images, vidéos, musique et téléchargements avec votre serveur DAV.
+Synchronisation dans les deux sens.
+Sécurisé et open source.
+
+Éléments synchronisés :
+* Les images, vidéos et copies d'écrans visibles dans la galerie seront synchronisées. Cela inclue les répertoires `DCIM/`, `Pictures/`, `Movies/` et `Download/`
+* Si les fichiers ne sont pas dans la galerie, mais uniquement dans une application, alors ils ne seront pas synchronisés
+* A noter que les applications de messagerie (messages, whatsapp, signal, etc.) offrent généralement le choix de stocker les images dans la gallerie ou non
+* Les fichiers audios et la musique présents dans les répertoires `Alarms/`, `Audiobooks/`, `Music/`, `Notifications/`, `Podcasts/`, `Ringtones/` et `Recordings/` seront synchronisés
+* A noter que l'enregistreur vocal de google stocke ses enregistrements de manière privée, et donc ceux-ci ne seront pas synchronisés
+* Tous les téléchargements présents dans le répertoire `Download/` seront synchronisés, que ce soient des pdf, des epubs, des documents, des images, etc.
+
+Éléments non synchronisés :
+Tout ce qui n'est pas explicitement mentionné ci-dessus ne sera pas synchronisé. Notamment :
+* Applications
+* Données des applications
+* Messages
+* Contacts
+* Sauvegardes de progression dans les jeux
+* Paramètres Wifi et réseau
+* Paramètres Android

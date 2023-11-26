@@ -1,0 +1,2 @@
+json_key_file("~/Desktop/easysync/easysync-406307-020c711b15cb.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.phpbg.easysync") # e.g. com.krausefx.app
