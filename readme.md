@@ -11,7 +11,19 @@ Synchronize your phone with your DAV server, the easy way.
 * Secure storage of your credentials
 * Preserve timestamps if you use Nextcloud as DAV server
 
-<a href='https://play.google.com/store/apps/details?id=com.phpbg.easysync&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width='240' alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/><img width='90' alt='Get it on Google Play' src='./playstore-qr.png'/></a>
+## Get it
+
+### On Google Play
+<a href='https://play.google.com/store/apps/details?id=com.phpbg.easysync&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+    <img width='240' alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+    <img width='90' alt='Get it on Google Play' src='./qr-playstore.png'/>
+</a>
+
+### On F-Droid
+<a href='https://f-droid.org/packages/com.phpbg.easysync'>
+    <img width='240' alt="Get it on F-Droid" src='https://fdroid.gitlab.io/artwork/badge/get-it-on.png'>
+    <img width='90' alt='Get it on F-Droid' src='./qr-fdroid.png'/>
+</a>
 
 ## FAQ
 
