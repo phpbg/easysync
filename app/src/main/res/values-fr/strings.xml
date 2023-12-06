@@ -28,5 +28,5 @@
     <string name="permissions_next">Suivant</string>
     <string name="sync_settings_title">Paramètres de synchronisation</string>
     <string name="sync_settings_activity_title">Paramètres de synchronisation</string>
-    <string name="about">A propose, aide</string>
+    <string name="about">A propos, aide</string>
 </resources>
