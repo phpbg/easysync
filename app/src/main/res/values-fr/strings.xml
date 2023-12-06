@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Easy Sync</string>
     <string name="notification_missing_permissions_text">Veuillez accorder les permissions pour permettre la synchronisation</string>
     <string name="notification_missing_permissions_title">Synchronisation KO</string>
     <string name="dav_settings_activity_title">Paramètres</string>
