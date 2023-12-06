@@ -1,0 +1,22 @@
+Synchronisiere Bilder, Videos, Audio und Downloads mit deinem DAV-Server.
+In beide Richtungen synchronisieren.
+Sicher und Open Source.
+
+Was wird synchronisiert:
+* Bilder, Videos und Screenshots, die in deiner Galerie angezeigt werden, werden synchronisiert. Dazu gehören Bilder und Videos in „DCIM/“, „Bilder/“, „Filme/“ und „Download/“.
+* Wenn sie nur in einer bestimmten App, aber nicht in der Galerie verfügbar sind, werden sie nicht synchronisiert
+* Bitte beachte, dass Messaging-Apps (Nachrichten, WhatsApp, Signal usw.) dir im Allgemeinen die Wahl bieten, Dateien in deiner Galerie zu speichern (in diesem Fall werden sie synchronisiert) oder nicht
+* Alle Audio- und Musikdateien, die in „Alarme/“, „Hörbücher/“, „Musik/“, „Benachrichtigungen/“, „Podcasts/“, „Klingeltöne/“ und „Aufnahmen/“ sichtbar sind, werden synchronisiert
+* Beachte, dass Googles eigener Sprachrekorder seine Dateien privat speichert und eine eigene Cloud-Synchronisierung bietet. Sie werden nicht von EasySync synchronisiert
+* Alle heruntergeladenen Dateien in „Download/“ werden synchronisiert, unabhängig davon, ob es sich um PDFs, Epubs, Dokumente, Bilder usw. handelt.
+
+Was ist nicht synchronisiert:
+Alles, was oben nicht explizit erwähnt wurde, ist nicht synchronisiert. Genauer:
+
+* Apps
+* Anwendungsdaten/-status
+* Mitteilungen
+* Kontakte
+* Spielfortschritt
+* WLAN- oder Netzwerkparameter
+* Android-Einstellungen und Telefonanpassung
