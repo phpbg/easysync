@@ -98,3 +98,7 @@ By using this application, you agree to be bound by [these terms and conditions 
  * Feature: check for low free space on dav or on device
  * Feature: show a notification if too many sync jobs fail (e.g. when remote dav is not reacheable)
  * Optimization: when new remote files are locally added during FullSync, a FileSync is trigged which is useless. See if we can avoid this
+
+## See also
+
+* [Awesome WebDAV: Android Apps](https://github.com/WebDAVDevs/awesome-webdav/tree/main?tab=readme-ov-file#android)
