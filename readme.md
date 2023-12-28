@@ -1,6 +1,6 @@
 # EasySync
 
-Synchronize your phone with your DAV server, the easy way. 
+Synchronize your phone with your WebDAV server, the easy way. 
 
 ## Features
 * Synchronize images, videos, audio and downloads

@@ -1,1 +1,1 @@
-Synchronisez votre téléphone avec votre serveur DAV, facilement.
+Synchronisez votre téléphone avec votre serveur WebDAV, facilement.
