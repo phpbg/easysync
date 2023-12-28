@@ -101,4 +101,6 @@ By using this application, you agree to be bound by [these terms and conditions 
 
 ## See also
 
+* [NextCloud Android App](https://github.com/nextcloud/android)
+* [Round-Sync Android App](https://github.com/newhinton/Round-Sync)
 * [Awesome WebDAV: Android Apps](https://github.com/WebDAVDevs/awesome-webdav/tree/main?tab=readme-ov-file#android)
