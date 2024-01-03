@@ -1,1 +1,1 @@
-Synchronisiere dein Smartphone ganz einfach mit Deinem DAV-Server
+Synchronisiere dein Smartphone ganz einfach mit Deinem WebDAV-Server

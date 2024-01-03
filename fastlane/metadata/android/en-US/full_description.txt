@@ -1,4 +1,4 @@
-Synchronize images, videos, audio and downloads with your DAV server.
+Synchronize images, videos, audio and downloads with your WebDAV server.
 Synchronize in both directions.
 Secure and open source.
 
