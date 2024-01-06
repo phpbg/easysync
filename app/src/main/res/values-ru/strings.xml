@@ -1,0 +1,31 @@
+<resources>
+    <string name="notification_missing_permissions_text">Пожалуйста предоставьте разрешения для синхронизации.</string>
+    <string name="notification_missing_permissions_title">Синхронизация неуспешна</string>
+    <string name="dav_settings_activity_title">Настройки</string>
+    <string name="dav_settings_hide_password">Скрыть пароль</string>
+    <string name="dav_settings_password">Пароль</string>
+    <string name="dav_settings_title">Настройки DAV</string>
+    <string name="dav_settings_username">Имя пользователя</string>
+    <string name="dav_settings_remote_not_empty">Удалённая папка не пуста. Все файлы будут загружены и синхронизированы с вашим устройством. Все равно сохранить?</string>
+    <string name="dav_settings_save">Сохранить</string>
+    <string name="dav_settings_save_anyway">Сохранить всё равно</string>
+    <string name="dav_settings_show_password">Отобразить пароль</string>
+    <string name="permissions_activity_title">Разрешения</string>
+    <string name="permissions_files_text">Для синхронизации ваших файлов нам необходим полный доступ к вашим файлам. Зайдите в настройки, чтобы включить разрешение</string>
+    <string name="permissions_files_button">Настройки файлов</string>
+    <string name="permissions_hibernation_text_11">Поскольку мы работаем в фоновом режиме, нам нужно указать Android чтобы он не удалял разрешения. Перейдите в «Настройки» > «Разрешения» и отключите «Удалять разрешения, если не используется».</string>
+    <string name="permissions_hibernation_text_12">Поскольку мы работаем в фоновом режиме, нам нужно указать Android чтобы он не удалял разрешения. Перейдите в «Настройки» и отключите «Удалять разрешения и освободить место»</string>
+    <string name="permissions_hibernation_text_13">Поскольку мы работаем в фоновом режиме, нам нужно указать Android чтобы он не удалял разрешения. Перейдите в «Настройки» и отключите «Приостановить активность приложения, если не используется»</string>
+    <string name="permissions_hibernation_button">Настройки батареи</string>
+    <string name="permissions_doze_text">Чтобы синхронизироваться быстрее, нам нужно отключить оптимизацию батареи. Если вы откажете в этом разрешении, синхронизация все равно будет происходить, но только во время зарядки, реже одного раза в день. Нажмите «Далее», чтобы продолжить</string>
+    <string name="permissions_doze_button">Далее</string>
+    <string name="permissions_notifications_text">Мы отправим вам уведомления, если что-то пойдет не так (например, DAV сервер недоступен). Нажмите «Далее», чтобы продолжить</string>
+    <string name="permissions_notifications_button">Далее</string>
+    <string name="permissions_old_files_text">Для синхронизации ваших файлов нам необходим полный доступ к вашим файлам. Нажмите «Далее», чтобы продолжить</string>
+    <string name="permissions_old_files_button">Далее</string>
+    <string name="permissions_welcome">EasySync позволит синхронизировать ваши файлы с вашим DAV сервером.</string>
+    <string name="permissions_next">Далее</string>
+    <string name="sync_settings_title">Настройки синхронизации</string>
+    <string name="sync_settings_activity_title">Настройки синхронизации</string>
+    <string name="about">О приложении, помощь</string>
+</resources>

@@ -21,7 +21,7 @@
     <string name="permissions_hibernation_button">Suspend settings</string>
     <string name="permissions_doze_text">In order to synchronize faster we need to disable battery optimization. If you deny this permission synchronization will still happen but only when charging, less than once a day. Press "Next" to proceed</string>
     <string name="permissions_doze_button">Next</string>
-    <string name="permissions_notifications_text">We will send you notifications if anything goes wrong (such as DAV server unreacheable). Press "Next" to proceed</string>
+    <string name="permissions_notifications_text">We will send you notifications if anything goes wrong (such as DAV server unreachable). Press "Next" to proceed</string>
     <string name="permissions_notifications_button">Next</string>
     <string name="permissions_old_files_text">In order to synchronize your files we need full access to your files. Press "Next" to proceed</string>
     <string name="permissions_old_files_button">Next</string>
