@@ -66,6 +66,9 @@ When you configure EasySync you select a specific folder on your DAV server. Thi
 ### Changes on DAV side are not immediately reflected
 In order to preserve battery we cannot detect quickly DAV changes. If you need immediate sync use "Sync now" button on home screen.
 
+### Use a self-signed or a custom certificate
+You can add your own trusted certificate in android `Settings` > `Encryption and Credentials`
+
 ## Supported Android phones
 * From Android 8 to latest releases
 * Huawei phones may kill the app in background, be warned. These tips will help you:
