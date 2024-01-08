@@ -77,7 +77,9 @@ You can add your own trusted certificate in android `Settings` > `Encryption and
 
 ## Supported DAV servers
 It should work with any DAV compliant server.
-* Nextcloud / owncloud
+* Nextcloud / owncloud (full support: preserves file creation timestamps)
+* nginx (basic support: does not preserve file creation timestamps, no etag support)
+* apache (basic support: does not preserve file creation timestamps)
 * *add your server here*
 
 ## Sync is slow on Nextcloud
