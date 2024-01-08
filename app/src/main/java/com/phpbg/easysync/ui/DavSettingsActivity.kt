@@ -134,6 +134,10 @@ private fun Preferences(
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
+        if (uiState.settings.url.startsWith("http://", true)) {
+            Text(text = stringResource(R.string.dav_settings_url_insecure), color = MaterialTheme.colorScheme.error)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
         TextField(value = uiState.settings.username,
             onValueChange = { stateChangeHandler(uiState.settings.copy(username = it)) },
             modifier = Modifier.fillMaxWidth(),

@@ -101,24 +101,24 @@ private fun Main(
         Title(text = stringResource(R.string.sync_settings_title))
         Spacer(modifier = Modifier.height(16.dp))
         SwitchSetting(
-            title = "Sync on cellular",
-            description = "Allow scheduled synchronization on cellular network",
+            title = stringResource(R.string.sync_settings_on_cellular_title),
+            description = stringResource(R.string.sync_settings_on_cellular_desc),
             checked = syncOnCellular,
             onCheckedChange = syncOnCellularHandler
         )
         SwitchSetting(
-            title = "Sync on battery",
-            description = "Allow scheduled synchronization on battery",
+            title = stringResource(R.string.sync_settings_on_battery_title),
+            description = stringResource(R.string.sync_settings_on_battery_desc),
             checked = syncOnBattery,
             onCheckedChange = syncOnBatteryHandler
         )
         Spacer(modifier = Modifier.height(16.dp))
-        StdText("Conflicts handling")
-        Description("If a file is modified on both side:")
+        StdText(stringResource(R.string.sync_settings_conflicts_title))
+        Description(stringResource(R.string.sync_settings_conflicts_desc))
         val options = mapOf(
-            ConflictStrategy.KEEP_LOCAL.name to "Keep local copy (overwrite remote copy)",
-            ConflictStrategy.IGNORE.name to "Ignore file",
-            ConflictStrategy.KEEP_REMOTE.name to "Keep remote copy (overwrite local copy)"
+            ConflictStrategy.KEEP_LOCAL.name to stringResource(R.string.sync_settings_conflicts_strategy_keep_local),
+            ConflictStrategy.IGNORE.name to stringResource(R.string.sync_settings_conflicts_strategy_ignore),
+            ConflictStrategy.KEEP_REMOTE.name to stringResource(R.string.sync_settings_conflicts_strategy_keep_remote)
         )
         RadioGroup(options, selected = conflictStrategy.name, onClick = conflictStrategyHandler)
     }
