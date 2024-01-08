@@ -335,7 +335,7 @@ class WebDavService(
                         "creationdate" -> resource = resource.copy(
                             creationdate = ZonedDateTime.parse(
                                 text,
-                                ISO_DATE_TIME // encoded in rfc3339 according to webdav spec)
+                                ISO_DATE_TIME // encoded in rfc3339 according to webdav spec
                             ).toInstant()
                         )
 
