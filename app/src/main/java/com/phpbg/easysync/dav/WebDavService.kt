@@ -58,6 +58,7 @@ import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.nio.file.attribute.FileTime
 import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter.ISO_DATE_TIME
 import java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME
 import java.util.concurrent.TimeUnit
 
@@ -334,7 +335,7 @@ class WebDavService(
                         "creationdate" -> resource = resource.copy(
                             creationdate = ZonedDateTime.parse(
                                 text,
-                                RFC_1123_DATE_TIME
+                                ISO_DATE_TIME // encoded in rfc3339 according to webdav spec
                             ).toInstant()
                         )
 

@@ -57,6 +57,24 @@ class ParseTest {
     }
 
     @Test
+    fun propfind_apache_file_works() {
+        val stream = this.javaClass.classLoader.getResourceAsStream("file_apache.xml")
+        val rootPath = RootPath("https://foo")
+        val res = WebDavService.parsePropfind(stream.reader(), rootPath)
+        val expected = Resource(
+            rootPath = rootPath,
+            href = "/remote.php/dav/files/foouser/DCIM/bar.jpg",
+            creationdate = ZonedDateTime.parse("2024-01-08T19:14:11Z", DateTimeFormatter.ISO_DATE_TIME).toInstant(),
+            getlastmodified = ZonedDateTime.parse("Mon, 08 Jan 2024 19:14:11 GMT", DateTimeFormatter.RFC_1123_DATE_TIME).toInstant(),
+            isCollection = false,
+            getetag = "\"bacfa6f123dee073dc9e20774470681a\"",
+            getcontentlength = "425623",
+            getcontenttype = "image/jpeg"
+        )
+        assert(expected == res.first())
+    }
+
+    @Test
     fun propfind_uri_decode_works() {
         val stream = this.javaClass.classLoader.getResourceAsStream("file_uri_encoded.xml")
         val rootPath = RootPath("https://foo")
