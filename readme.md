@@ -102,6 +102,17 @@ By using this application, you agree to be bound by [these terms and conditions 
  * Feature: show a notification if too many sync jobs fail (e.g. when remote dav is not reacheable)
  * Optimization: when new remote files are locally added during FullSync, a FileSync is trigged which is useless. See if we can avoid this
 
+## Update / add translations
+* Create/update `app/src/main/res/values-xx/strings.xml`
+* Create/update `fastlane/metadata/android/xx/full_description.txt`
+* Create/update `fastlane/metadata/android/xx/short_description.txt`
+
+Replace `xx` with your [ISO 639-1 language code](https://www.loc.gov/standards/iso639-2/php/code_list.php). E.g. `en` for english, `fr` for french, etc.
+
+For new languages:
+* Add a new locale entry to `app/src/main/res/xml/locales_config.xml`
+* Add a new locale entry to `app/build.gradle` in `resourceConfigurations` key
+
 ## See also
 
 * [NextCloud Android App](https://github.com/nextcloud/android)
