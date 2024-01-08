@@ -172,7 +172,7 @@ private fun Main(
         val davSettingsTitle = stringResource(R.string.dav_settings_title)
         if (!showDavStatus.value) {
             StatusTitleClickable(
-                title = "DAV not configured.",
+                title = stringResource(R.string.home_dav_status_not_configured),
                 actionTitle = davSettingsTitle,
                 statusColor = Color.Gray,
                 statusIcon = Icons.Default.Settings,
@@ -180,7 +180,7 @@ private fun Main(
             )
         } else if (isDavLoading.value) {
             StatusTitleClickable(
-                title = "DAV loading.",
+                title = stringResource(R.string.home_dav_status_loading),
                 actionTitle = davSettingsTitle,
                 statusColor = Color.Gray,
                 statusIcon = Icons.Default.Schedule,
@@ -188,7 +188,7 @@ private fun Main(
             )
         } else if (isDavConnected.value) {
             StatusTitleClickable(
-                title = "DAV Connected.",
+                title = stringResource(R.string.home_dav_status_connected),
                 actionTitle = davSettingsTitle,
                 statusColor = Color.Green,
                 statusIcon = Icons.Default.CheckCircle,
@@ -196,7 +196,7 @@ private fun Main(
             )
         } else {
             StatusTitleClickable(
-                title = "DAV not connected.",
+                title = stringResource(R.string.home_dav_status_not_connected),
                 actionTitle = davSettingsTitle,
                 statusColor = Color.Red,
                 statusIcon = Icons.Default.Cancel,
@@ -207,14 +207,14 @@ private fun Main(
 
         if (hasOptionalPermissions.value) {
             StatusTitle(
-                title = "Permissions granted",
+                title = stringResource(R.string.home_permissions_granted),
                 statusColor = Color.Green,
                 statusIcon = Icons.Default.CheckCircle
             )
         } else {
             StatusTitleClickable(
-                title = "Optional permissions missing. ",
-                actionTitle = "Fix...",
+                title = stringResource(R.string.home_permissions_missing),
+                actionTitle = stringResource(R.string.home_permissions_action_fix),
                 statusColor = Color.Yellow,
                 statusIcon = Icons.Default.Warning,
                 clickHandler = {
@@ -263,12 +263,12 @@ private fun Main(
                 .fillMaxWidth()
                 .background(color = MaterialTheme.colorScheme.surfaceVariant),
             verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
             val modifier = Modifier.height(32.dp)
             Column(
                 modifier = Modifier
                     .padding(1.dp)
-                    .fillMaxWidth(0.5f)
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.End
@@ -281,7 +281,7 @@ private fun Main(
                 }
                 Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
                     if (jobCount == 0) {
-                        PrimaryTextLarge(text = "Not")
+                        PrimaryTextLarge(text = stringResource(R.string.home_files_not_running_prefix))
                     } else {
                         PrimaryTextLarge(text = formatCounter(jobCountPercent) + "%")
                     }
@@ -290,22 +290,21 @@ private fun Main(
             Column(
                 modifier = Modifier
                     .padding(1.dp)
-                    .fillMaxWidth(0.5f)
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-                    StdText(text = "local files")
+                    StdText(text = stringResource(R.string.home_files_local))
                 }
                 Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-                    StdText(text = "synced")
+                    StdText(text = stringResource(R.string.home_files_synced))
                 }
                 Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
                     if (jobCount == 0) {
-                        StdText(text = "running")
+                        StdText(text = stringResource(R.string.home_sync_running))
                     } else {
-                        StdText(text = "syncing")
+                        StdText(text = stringResource(R.string.home_sync_syncing))
                     }
                 }
             }
@@ -325,11 +324,9 @@ private fun Main(
                 }
                 fullSyncNowHandler()
             }, enabled = syncEnabled) {
-                Text(text = "Sync now", style = MaterialTheme.typography.labelLarge)
+                Text(text = stringResource(R.string.home_action_sync_now), style = MaterialTheme.typography.labelLarge)
             }
         }
-
-        // TODO translations
     }
 
     // Floating bottom

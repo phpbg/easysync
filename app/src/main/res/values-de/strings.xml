@@ -12,6 +12,19 @@
     <string name="dav_settings_save">Speichern</string>
     <string name="dav_settings_save_anyway">Trotzdem speichern</string>
     <string name="dav_settings_show_password">Passwort anzeigen</string>
+    <string name="home_action_sync_now">Jetzt synchronisieren</string>
+    <string name="home_dav_status_connected">DAV verbunden.</string>
+    <string name="home_dav_status_loading">DAV wird geladen.</string>
+    <string name="home_dav_status_not_configured">DAV nicht konfiguriert.</string>
+    <string name="home_dav_status_not_connected">DAV nicht verbunden.</string>
+    <string name="home_files_local">lokale Dateien</string>
+    <string name="home_files_not_running_prefix">Nicht</string>
+    <string name="home_files_synced">synchronisiert</string>
+    <string name="home_permissions_granted">Berechtigungen erteilt</string>
+    <string name="home_permissions_missing">Optionale Berechtigungen fehlen.</string>
+    <string name="home_permissions_action_fix">Beheben…</string>
+    <string name="home_sync_running">läuft</string>
+    <string name="home_sync_syncing">synchronisiert</string>
     <string name="permissions_activity_title">Berechtigungen</string>
     <string name="permissions_files_text">Um Ihre Dateien zu synchronisieren, benötigen wir vollen Zugriff auf Ihre Dateien. Gehen Sie zu den Einstellungen, um die Berechtigung zu aktivieren</string>
     <string name="permissions_files_button">Dateieinstellungen</string>
@@ -29,5 +42,14 @@
     <string name="permissions_next">Weiter</string>
     <string name="sync_settings_title">Synchronisationseinstellungen</string>
     <string name="sync_settings_activity_title">Synchronisationseinstellungen</string>
+    <string name="sync_settings_conflicts_title">Konfliktbehandlung</string>
+    <string name="sync_settings_conflicts_desc">Wenn eine Datei auf beiden Seiten geändert wurde:</string>
+    <string name="sync_settings_conflicts_strategy_keep_local">Lokale Kopie behalten (Überschreibe die entfernte Kopie)</string>
+    <string name="sync_settings_conflicts_strategy_ignore">Datei ignorieren</string>
+    <string name="sync_settings_conflicts_strategy_keep_remote">Entfernte Kopie behalten (Überschreibe die lokale Kopie)</string>
+    <string name="sync_settings_on_battery_title">Synchronisieren bei Batteriebetrieb</string>
+    <string name="sync_settings_on_battery_desc">Geplante Synchronisierung bei Batteriebetrieb erlauben</string>
+    <string name="sync_settings_on_cellular_title">Synchronisieren über Mobilfunknetz</string>
+    <string name="sync_settings_on_cellular_desc">Geplante Synchronisierung über das Mobilfunknetz erlauben</string>
     <string name="about">Über, Hilfe</string>
 </resources>

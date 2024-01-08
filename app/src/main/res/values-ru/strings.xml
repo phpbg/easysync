@@ -11,6 +11,19 @@
     <string name="dav_settings_save">Сохранить</string>
     <string name="dav_settings_save_anyway">Сохранить всё равно</string>
     <string name="dav_settings_show_password">Отобразить пароль</string>
+    <string name="home_action_sync_now">Синхронизировать сейчас</string>
+    <string name="home_dav_status_connected">DAV подключено.</string>
+    <string name="home_dav_status_loading">DAV загружается.</string>
+    <string name="home_dav_status_not_configured">DAV не настроено.</string>
+    <string name="home_dav_status_not_connected">DAV не подключено.</string>
+    <string name="home_files_local">локальные файлы</string>
+    <string name="home_files_not_running_prefix">Не</string>
+    <string name="home_files_synced">синхронизированы</string>
+    <string name="home_permissions_granted">Разрешения предоставлены</string>
+    <string name="home_permissions_missing">Отсутствуют необязательные разрешения.</string>
+    <string name="home_permissions_action_fix">Исправить…</string>
+    <string name="home_sync_running">в работе</string>
+    <string name="home_sync_syncing">синхронизация</string>
     <string name="permissions_activity_title">Разрешения</string>
     <string name="permissions_files_text">Для синхронизации ваших файлов нам необходим полный доступ к вашим файлам. Зайдите в настройки, чтобы включить разрешение</string>
     <string name="permissions_files_button">Настройки файлов</string>
@@ -28,5 +41,14 @@
     <string name="permissions_next">Далее</string>
     <string name="sync_settings_title">Настройки синхронизации</string>
     <string name="sync_settings_activity_title">Настройки синхронизации</string>
+    <string name="sync_settings_conflicts_title">Обработка конфликтов</string>
+    <string name="sync_settings_conflicts_desc">Если файл изменен с обеих сторон:</string>
+    <string name="sync_settings_conflicts_strategy_keep_local">Сохранить локальную копию (перезаписать удаленную копию)</string>
+    <string name="sync_settings_conflicts_strategy_ignore">Игнорировать файл</string>
+    <string name="sync_settings_conflicts_strategy_keep_remote">Сохранить удаленную копию (перезаписать локальную копию)</string>
+    <string name="sync_settings_on_battery_title">Синхронизация при работе от батареи</string>
+    <string name="sync_settings_on_battery_desc">Разрешить запланированную синхронизацию при работе от батареи</string>
+    <string name="sync_settings_on_cellular_title">Синхронизация по сотовой связи</string>
+    <string name="sync_settings_on_cellular_desc">Разрешить запланированную синхронизацию по сотовой связи</string>
     <string name="about">О приложении, помощь</string>
 </resources>
