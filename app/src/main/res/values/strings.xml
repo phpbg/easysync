@@ -7,6 +7,7 @@
     <string name="dav_settings_hide_password">Hide password</string>
     <string name="dav_settings_password">Password</string>
     <string name="dav_settings_title">DAV Settings</string>
+    <string name="dav_settings_url_insecure">This URL is insecure. All your data will be readable by anyone. Consider switching to HTTPS.</string>
     <string name="dav_settings_username">Username</string>
     <string name="dav_settings_remote_not_empty">Remote folder is not empty. All files will be downloaded and synced with your device. Save anyway?</string>
     <string name="dav_settings_save">Save</string>

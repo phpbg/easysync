@@ -6,6 +6,7 @@
     <string name="dav_settings_hide_password">Passwort ausblenden</string>
     <string name="dav_settings_password">Passwort</string>
     <string name="dav_settings_title">DAV-Einstellungen</string>
+    <string name="dav_settings_url_insecure">Diese URL ist unsicher. Alle Ihre Daten werden von jedem lesbar sein. Erwägen Sie einen Wechsel zu HTTPS.</string>
     <string name="dav_settings_username">Benutzername</string>
     <string name="dav_settings_remote_not_empty">Der Remote-Ordner ist nicht leer. Alle Dateien werden heruntergeladen und mit Ihrem Gerät synchronisiert. Trotzdem speichern?</string>
     <string name="dav_settings_save">Speichern</string>

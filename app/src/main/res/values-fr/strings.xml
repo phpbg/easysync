@@ -11,6 +11,7 @@
     <string name="dav_settings_save_anyway">Sauvegarder quand même ?</string>
     <string name="dav_settings_show_password">Afficher le mot de passe</string>
     <string name="dav_settings_title">Paramètres DAV</string>
+    <string name="dav_settings_url_insecure">Cette URL n\'est pas sécurisée. Vos données pourront être interceptées. Vous devriez utiliser HTTPS.</string>
     <string name="permissions_activity_title">Permissions</string>
     <string name="permissions_files_text">Pour fonctionner l\'application doit accéder à tous vos fichiers. Cliquez sur \"Suivant\" pour autoriser l\'accès.</string>
     <string name="permissions_files_button">Suivant</string>

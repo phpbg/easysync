@@ -5,6 +5,7 @@
     <string name="dav_settings_hide_password">Скрыть пароль</string>
     <string name="dav_settings_password">Пароль</string>
     <string name="dav_settings_title">Настройки DAV</string>
+    <string name="dav_settings_url_insecure">Этот URL-адрес небезопасен. Все ваши данные будут доступны для чтения любым лицом. Подумайте о переходе на HTTPS.</string>
     <string name="dav_settings_username">Имя пользователя</string>
     <string name="dav_settings_remote_not_empty">Удалённая папка не пуста. Все файлы будут загружены и синхронизированы с вашим устройством. Все равно сохранить?</string>
     <string name="dav_settings_save">Сохранить</string>
