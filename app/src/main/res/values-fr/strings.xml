@@ -10,7 +10,21 @@
     <string name="dav_settings_hide_password">Masquer le mot de passe</string>
     <string name="dav_settings_save_anyway">Sauvegarder quand même ?</string>
     <string name="dav_settings_show_password">Afficher le mot de passe</string>
+    <string name="home_action_sync_now">Synchroniser</string>
+    <string name="home_dav_status_connected">DAV Connecté.</string>
+    <string name="home_dav_status_loading">Connexion DAV en cours.</string>
+    <string name="home_dav_status_not_configured">DAV non configuré.</string>
+    <string name="home_dav_status_not_connected">DAV non connecté.</string>
+    <string name="home_files_local">fichiers locaux</string>
+    <string name="home_files_not_running_prefix">En</string>
+    <string name="home_files_synced">synchronisé</string>
+    <string name="home_permissions_granted">Permissions accordées</string>
+    <string name="home_permissions_missing">Permissions optionnelles manquantes.</string>
+    <string name="home_permissions_action_fix">Corriger…</string>
+    <string name="home_sync_running">attente</string>
+    <string name="home_sync_syncing">en cours</string>
     <string name="dav_settings_title">Paramètres DAV</string>
+    <string name="dav_settings_url_insecure">Cette URL n\'est pas sécurisée. Vos données pourront être interceptées. Vous devriez utiliser HTTPS.</string>
     <string name="permissions_activity_title">Permissions</string>
     <string name="permissions_files_text">Pour fonctionner l\'application doit accéder à tous vos fichiers. Cliquez sur \"Suivant\" pour autoriser l\'accès.</string>
     <string name="permissions_files_button">Suivant</string>
@@ -28,5 +42,14 @@
     <string name="permissions_next">Suivant</string>
     <string name="sync_settings_title">Paramètres de synchronisation</string>
     <string name="sync_settings_activity_title">Paramètres de synchronisation</string>
+    <string name="sync_settings_conflicts_title">Conflits</string>
+    <string name="sync_settings_conflicts_desc">Si un fichier est modifié des deux côtés:</string>
+    <string name="sync_settings_conflicts_strategy_keep_local">Garder la copie locale (écraser la distante)</string>
+    <string name="sync_settings_conflicts_strategy_ignore">Ignorer</string>
+    <string name="sync_settings_conflicts_strategy_keep_remote">Garder la copie distante (écraser la locale)</string>
+    <string name="sync_settings_on_battery_title">Sur batterie</string>
+    <string name="sync_settings_on_battery_desc">Autoriser la synchronisation quand le téléphone est sur batterie</string>
+    <string name="sync_settings_on_cellular_title">Sur réseau mobile</string>
+    <string name="sync_settings_on_cellular_desc">Autoriser la synchronisation quand le téléphone est sur le réseau mobile</string>
     <string name="about">A propos, aide</string>
 </resources>
