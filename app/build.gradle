@@ -87,4 +87,5 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     implementation 'com.google.guava:guava:32.1.2-android'
     implementation 'ru.gildor.coroutines:kotlin-coroutines-okhttp:1.0'
+    implementation 'io.github.rburgst:okhttp-digest:3.1.0'
 }

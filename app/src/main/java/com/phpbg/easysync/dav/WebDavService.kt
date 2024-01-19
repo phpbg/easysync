@@ -25,18 +25,25 @@
 package com.phpbg.easysync.dav
 
 import android.util.Log
+import com.burgstaller.okhttp.AuthenticationCacheInterceptor
+import com.burgstaller.okhttp.CachingAuthenticatorDecorator
+import com.burgstaller.okhttp.DefaultRequestCacheKeyProvider
+import com.burgstaller.okhttp.DispatchingAuthenticator
+import com.burgstaller.okhttp.basic.BasicAuthenticator
+import com.burgstaller.okhttp.digest.CachingAuthenticator
+import com.burgstaller.okhttp.digest.Credentials
+import com.burgstaller.okhttp.digest.DigestAuthenticator
+import com.google.common.cache.Cache
+import com.google.common.cache.CacheBuilder
+import com.google.common.net.UrlEscapers
 import com.phpbg.easysync.BuildConfig
 import com.phpbg.easysync.settings.Settings
 import com.phpbg.easysync.util.ParametrizedMutex
 import com.phpbg.easysync.util.TTLHashSet
-import com.google.common.cache.Cache
-import com.google.common.cache.CacheBuilder
-import com.google.common.net.UrlEscapers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -60,14 +67,15 @@ import java.nio.file.attribute.FileTime
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter.ISO_DATE_TIME
 import java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
+
 
 private const val TAG = "WebDavService"
 
 class WebDavService(
     private var rootUrl: RootPath,
-    private val httpClient: OkHttpClient,
-    private val optionalBasicAuthInterceptor: OptionalBasicAuthInterceptor
+    private var httpClient: OkHttpClient,
 ) {
     // Mutex to avoid concurrent creation of same directories
     private val mkcolPMutex = ParametrizedMutex<String>()
@@ -83,7 +91,7 @@ class WebDavService(
 
     fun updateFromSettings(settings: Settings) {
         rootUrl = RootPath(settings.url).concat(CollectionPath(settings.davPath))
-        optionalBasicAuthInterceptor.updateCredentials(settings.username, settings.password)
+        httpClient = createHttpClient(settings)
     }
 
     //https://learn.microsoft.com/en-us/previous-versions/office/developer/exchange-server-2003/aa142923(v=exchg.65)
@@ -369,7 +377,7 @@ class WebDavService(
                         instance = create(settings)
                         coroutineScope {
                             launch {
-                                settingsFlow.onEach { newSettings ->
+                                settingsFlow.collect() { newSettings ->
                                     instance!!.updateFromSettings(newSettings)
                                 }
                             }
@@ -380,41 +388,52 @@ class WebDavService(
             return instance!!
         }
 
-        fun create(settings: Settings): WebDavService {
-            Log.d(TAG, "Creating DAVService with URL: " + settings.url)
-            if (settings.url.isEmpty()) {
-                throw MisconfigurationException()
-            }
-            val basicAuthInterceptor = OptionalBasicAuthInterceptor(
-                settings.username,
-                settings.password
-            )
+        private fun createHttpClient(settings: Settings): OkHttpClient {
+            val authCache: Map<String, CachingAuthenticator> = ConcurrentHashMap()
+            val credentials = Credentials(settings.username, settings.password)
+            val basicAuthenticator = BasicAuthenticator(credentials)
+            val digestAuthenticator = DigestAuthenticator(credentials)
+
+            // note that all auth schemes should be registered as lowercase!
+            val authenticator = DispatchingAuthenticator.Builder()
+                .with("digest", digestAuthenticator)
+                .with("basic", basicAuthenticator)
+                .build()
 
             val dispatcher = Dispatcher()
             dispatcher.maxRequestsPerHost = 6
             val okHttpClientBuilder = OkHttpClient.Builder()
+                .authenticator(CachingAuthenticatorDecorator(authenticator, authCache))
+                .addInterceptor(AuthenticationCacheInterceptor(authCache, DefaultRequestCacheKeyProvider()))
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .callTimeout(3600, TimeUnit.SECONDS)
                 .dispatcher(dispatcher)
                 .addInterceptor(TrafficStatsInterceptor())
-                .addInterceptor(basicAuthInterceptor)
                 .retryOnConnectionFailure(false)
 
             if (BuildConfig.DEBUG) {
                 // Warning: logging at Level.BODY seems to load whole bodies in memory and may lead to out of memory
                 val loggingInterceptor =
-                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
                 okHttpClientBuilder.addInterceptor(loggingInterceptor)
             }
 
-            val okHttpClient = okHttpClientBuilder.build()
+            return okHttpClientBuilder.build()
+        }
+
+        fun create(settings: Settings): WebDavService {
+            Log.d(TAG, "Creating DAVService with URL: " + settings.url)
+            if (settings.url.isEmpty()) {
+                throw MisconfigurationException()
+            }
+
+            val okHttpClient = createHttpClient(settings)
 
             return WebDavService(
                 RootPath(settings.url).concat(CollectionPath(settings.davPath)),
-                okHttpClient,
-                basicAuthInterceptor
+                okHttpClient
             )
         }
     }
