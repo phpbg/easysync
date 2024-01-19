@@ -40,11 +40,12 @@ import com.phpbg.easysync.BuildConfig
 import com.phpbg.easysync.settings.Settings
 import com.phpbg.easysync.util.ParametrizedMutex
 import com.phpbg.easysync.util.TTLHashSet
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -375,13 +376,9 @@ class WebDavService(
                 mutex.withLock {
                     if (instance == null) {
                         instance = create(settings)
-                        coroutineScope {
-                            launch {
-                                settingsFlow.collect() { newSettings ->
-                                    instance!!.updateFromSettings(newSettings)
-                                }
-                            }
-                        }
+                        settingsFlow
+                            .onEach { instance!!.updateFromSettings(it) }
+                            .launchIn(CoroutineScope(Dispatchers.Default))
                     }
                 }
             }
