@@ -413,7 +413,7 @@ class WebDavService(
             if (BuildConfig.DEBUG) {
                 // Warning: logging at Level.BODY seems to load whole bodies in memory and may lead to out of memory
                 val loggingInterceptor =
-                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
                 okHttpClientBuilder.addInterceptor(loggingInterceptor)
             }
 
