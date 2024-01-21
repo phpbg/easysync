@@ -7,7 +7,7 @@ Synchronize your phone with your WebDAV server, the easy way.
 * Synchronize in both directions :
   * Files touched on your phone will be uploaded / deleted on your server
   * Files touched on your server will be uploaded / deleted on your phone
-* Basic auth (login with password)
+* Basic auth (login with password) or Digest auth
 * Secure storage of your credentials
 * Preserve timestamps if you use Nextcloud as DAV server
 
