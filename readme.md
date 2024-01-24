@@ -51,6 +51,13 @@ Everything not explicitly stated above is not synchronized. More specifically:
 ### Can I choose what is synchronized
 No
 
+### Will it eat all my cellular data plan?
+No, you can choose if you allow sync on cellular or only on wifi.
+
+### Will it eat all my storage?
+No, you can select a subfolder on your NAS that will be synced.
+For example if you own 2 devices in your family, you can have one folder per device so they are synced independantly.
+
 ### I am a nextcloud user. Does this replace nextcloud app?
 When you configure EasySync you select a specific folder on your DAV server. This folder will be fully synced with your phone.
 
