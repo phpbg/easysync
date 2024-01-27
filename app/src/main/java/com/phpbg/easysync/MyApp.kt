@@ -28,6 +28,7 @@ import android.app.Application
 import android.content.Context
 import android.os.StrictMode
 import java.lang.System.currentTimeMillis
+import kotlin.math.floor
 import kotlin.math.max
 
 const val TRIAL_DURATION_DAYS = 30
@@ -45,11 +46,11 @@ class MyApp : Application() {
         }
 
         fun getTrialRemainingDays(context: Context): Int {
-            val installed: Long = context
+            val installed = context
                 .packageManager
                 .getPackageInfo(context.packageName, 0).firstInstallTime
             val now = currentTimeMillis()
-            return max(0, (TRIAL_DURATION_DAYS-((now-installed)/(24*3600*1000))).toInt())
+            return max(0, TRIAL_DURATION_DAYS- floor((now-installed)/(24*3600*1000).toFloat()).toInt())
         }
 
         fun isTrialExpired(context: Context): Boolean {
