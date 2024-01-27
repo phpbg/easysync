@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Easy Sync</string>
     <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">Please grant permissions to allow synchronization</string>
     <string name="notification_missing_permissions_title">Synchronization failed</string>

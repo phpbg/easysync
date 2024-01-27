@@ -32,6 +32,7 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import com.phpbg.easysync.MyApp
 import com.phpbg.easysync.mediastore.MediaStoreService
 import com.phpbg.easysync.mediastore.URIS
 
@@ -45,6 +46,9 @@ private const val TAG = "FileDetectWorker"
 class FileDetectWorker(appContext: Context, workerParams: WorkerParameters) :
     CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
+        if (MyApp.isTrialExpired(this.applicationContext)) {
+            Result.success()
+        }
         try {
             _doWork()
         } catch (e: Exception) {

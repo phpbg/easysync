@@ -32,6 +32,7 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -39,6 +40,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
+import com.phpbg.easysync.MyApp
 import com.phpbg.easysync.dav.CollectionPath
 import com.phpbg.easysync.dav.MisconfigurationException
 import com.phpbg.easysync.dav.WebDavService
@@ -85,6 +87,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val isDavConnected = mutableStateOf(false)
     val isDavLoading = mutableStateOf(false)
 
+    val isTrial = mutableStateOf(false)
+    val trialRemainingDays = mutableIntStateOf(0)
+
     val workInfosList = FullSyncWorker.getLiveData(this.getApplication()).map { x ->
         if (x.isEmpty()) {
             return@map null
@@ -120,6 +125,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             loadDav()
         }
+
+        isTrial.value = MyApp.isTrial()
+        trialRemainingDays.intValue = MyApp.getTrialRemainingDays(getApplication())
     }
 
     private fun loadImages() {

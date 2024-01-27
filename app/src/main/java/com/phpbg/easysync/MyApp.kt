@@ -25,11 +25,35 @@
 package com.phpbg.easysync
 
 import android.app.Application
+import android.content.Context
 import android.os.StrictMode
+import java.lang.System.currentTimeMillis
+import kotlin.math.max
+
+const val TRIAL_DURATION_DAYS = 30
 
 class MyApp : Application() {
     init {
         if (BuildConfig.DEBUG)
             StrictMode.enableDefaults()
+    }
+
+    companion object {
+        fun isTrial(): Boolean {
+            @Suppress("KotlinConstantConditions")
+            return (BuildConfig.FLAVOR == "freeVersion")
+        }
+
+        fun getTrialRemainingDays(context: Context): Int {
+            val installed: Long = context
+                .packageManager
+                .getPackageInfo(context.packageName, 0).firstInstallTime
+            val now = currentTimeMillis()
+            return max(0, (TRIAL_DURATION_DAYS-((now-installed)/(24*3600*1000))).toInt())
+        }
+
+        fun isTrialExpired(context: Context): Boolean {
+            return isTrial() && getTrialRemainingDays(context) == 0
+        }
     }
 }
