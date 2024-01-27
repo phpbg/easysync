@@ -60,7 +60,7 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
     override suspend fun doWork(): Result {
         if (isTrialExpired(this.applicationContext)) {
             showTrialExpiredNotification()
-            Result.success()
+            return Result.success()
         }
         val immediate = inputData.getBoolean(IMMEDIATE_KEY, false)
         return try {
