@@ -47,7 +47,7 @@ class FileDetectWorker(appContext: Context, workerParams: WorkerParameters) :
     CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
         if (MyApp.isTrialExpired(this.applicationContext)) {
-            Result.success()
+            return Result.success()
         }
         try {
             _doWork()
