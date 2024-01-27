@@ -256,9 +256,10 @@ private fun Main(
         )
 
         if (isTrial.value) {
+            val msg = if (trialRemainingDays.intValue == 0) "Trial is over, please buy the full version" else  "Trial: ${trialRemainingDays.intValue} day(s) remaining" // TODO translate
             StatusTitleClickable(
                 title = null,
-                actionTitle = "Trial: ${trialRemainingDays.intValue} days remaining", // TODO translate
+                actionTitle = msg,
                 statusColor = Color.Gray,
                 statusIcon = Icons.Default.Info,
                 clickHandler = {
