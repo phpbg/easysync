@@ -89,8 +89,8 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
     }
 
     private fun showTrialExpiredNotification() {
-        val title = "Synchronization failed" // TODO translations
-        val text = "Please buy the full version to allow synchronization" // TODO translation
+        val title = applicationContext.getString(R.string.notification_trial_over_title)
+        val text = applicationContext.getString(R.string.notification_trial_over_text)
         val notificationId = Notifications.TRIAL_EXPIRED
         showNotification(title, text, notificationId)
     }

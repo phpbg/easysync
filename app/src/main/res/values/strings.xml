@@ -2,6 +2,8 @@
     <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">Please grant permissions to allow synchronization</string>
     <string name="notification_missing_permissions_title">Synchronization failed</string>
+    <string name="notification_trial_over_title">Synchronization stopped</string>
+    <string name="notification_trial_over_text">Please buy the full version to allow synchronization</string>
     <string name="dav_settings_activity_title">Settings</string>
     <string name="dav_settings_hide_password">Hide password</string>
     <string name="dav_settings_password">Password</string>
@@ -25,6 +27,11 @@
     <string name="home_permissions_action_fix">Fix…</string>
     <string name="home_sync_running">running</string>
     <string name="home_sync_syncing">syncing</string>
+    <string name="home_trial_over">Trial is over, please buy the full version</string>
+    <plurals name="home_trial_days_left">
+        <item quantity="one">Trial: %d day remaining</item>
+        <item quantity="other">Trial: %d days remaining</item>
+    </plurals>
     <string name="permissions_activity_title">Permissions</string>
     <string name="permissions_files_text">In order to synchronize your files we need full access to your files. Go to settings to enable the permission</string>
     <string name="permissions_files_button">File settings</string>

@@ -2,6 +2,8 @@
 <resources>
     <string name="notification_missing_permissions_text">Bitte erteilen Sie Berechtigungen, um die Synchronisation zu ermöglichen</string>
     <string name="notification_missing_permissions_title">Synchronisation fehlgeschlagen</string>
+    <string name="notification_trial_over_title">Synchronisation gestoppt</string>
+    <string name="notification_trial_over_text">Bitte kaufen Sie die Vollversion</string>
     <string name="dav_settings_activity_title">Einstellungen</string>
     <string name="dav_settings_hide_password">Passwort ausblenden</string>
     <string name="dav_settings_password">Passwort</string>
@@ -25,6 +27,11 @@
     <string name="home_permissions_action_fix">Beheben…</string>
     <string name="home_sync_running">läuft</string>
     <string name="home_sync_syncing">synchronisiert</string>
+    <string name="home_trial_over">Die Testversion ist abgelaufen, bitte kaufen Sie die Vollversion</string>
+    <plurals name="home_trial_days_left">
+        <item quantity="one">Testversion: %d Tag verbleibend</item>
+        <item quantity="other">Testversion: %d Tage verbleibend</item>
+    </plurals>
     <string name="permissions_activity_title">Berechtigungen</string>
     <string name="permissions_files_text">Um Ihre Dateien zu synchronisieren, benötigen wir vollen Zugriff auf Ihre Dateien. Gehen Sie zu den Einstellungen, um die Berechtigung zu aktivieren</string>
     <string name="permissions_files_button">Dateieinstellungen</string>

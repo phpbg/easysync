@@ -71,6 +71,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -256,7 +257,7 @@ private fun Main(
         )
 
         if (isTrial.value) {
-            val msg = if (trialRemainingDays.intValue == 0) "Trial is over, please buy the full version" else  "Trial: ${trialRemainingDays.intValue} day(s) remaining" // TODO translate
+            val msg = if (trialRemainingDays.intValue == 0) stringResource(R.string.home_trial_over) else pluralStringResource(R.plurals.home_trial_days_left, trialRemainingDays.intValue, trialRemainingDays.intValue)
             StatusTitleClickable(
                 title = null,
                 actionTitle = msg,
