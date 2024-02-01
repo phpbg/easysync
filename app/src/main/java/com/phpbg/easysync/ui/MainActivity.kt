@@ -24,6 +24,7 @@
 
 package com.phpbg.easysync.ui
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -47,6 +48,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Help
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
@@ -58,8 +60,10 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.IntState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -67,6 +71,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -126,7 +131,9 @@ class MainActivity : ComponentActivity() {
                         showDavStatus = viewModel.showDavStatus,
                         isDavLoading = viewModel.isDavLoading,
                         isDavConnected = viewModel.isDavConnected,
-                        hasOptionalPermissions = hasOptionalPermissions
+                        isTrial = viewModel.isTrial,
+                        hasOptionalPermissions = hasOptionalPermissions,
+                        trialRemainingDays = viewModel.trialRemainingDays
                     )
                 }
             }
@@ -148,7 +155,9 @@ private fun Main(
     showDavStatus: State<Boolean>,
     isDavLoading: State<Boolean>,
     isDavConnected: State<Boolean>,
+    isTrial: State<Boolean>,
     hasOptionalPermissions: State<Boolean>,
+    trialRemainingDays: IntState,
 ) {
     val mContext = LocalContext.current
     val syncEnabled = workerState == null || workerState != WorkInfo.State.RUNNING
@@ -163,7 +172,7 @@ private fun Main(
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        Title(text = stringResource(R.string.app_name))
+        Title(text = stringResource(R.string.flavored_app_name))
 
         val davSettingsHandler = fun(_: Int) {
             val myIntent = Intent(mContext, DavSettingsActivity::class.java)
@@ -246,6 +255,23 @@ private fun Main(
                 mContext.startActivity(i)
             },
         )
+
+        if (isTrial.value) {
+            val msg = if (trialRemainingDays.intValue == 0) stringResource(R.string.home_trial_over) else pluralStringResource(R.plurals.home_trial_days_left, trialRemainingDays.intValue, trialRemainingDays.intValue)
+            StatusTitleClickable(
+                title = null,
+                actionTitle = msg,
+                statusColor = Color.Gray,
+                statusIcon = Icons.Default.Info,
+                clickHandler = {
+                    try {
+                        mContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.phpbg.easysync")))
+                    } catch (e: ActivityNotFoundException) {
+                        mContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.phpbg.easysync")))
+                    }
+                },
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -354,7 +380,29 @@ private fun MainPreview() {
             showDavStatus = remember { mutableStateOf(true) },
             isDavLoading = remember { mutableStateOf(false) },
             isDavConnected = remember { mutableStateOf(true) },
+            isTrial = remember { mutableStateOf(false) },
             hasOptionalPermissions = remember { mutableStateOf(false) },
+            trialRemainingDays = remember { mutableIntStateOf(0) }
+        )
+    }
+}
+
+@Preview(name = "Trial Mode", showBackground = false)
+@Composable
+private fun MainPreviewTrial() {
+    MyApplicationTheme {
+        Main(
+            fullSyncNowHandler = {},
+            workerState = WorkInfo.State.RUNNING,
+            syncedCount = 10000,
+            localCount = 100,
+            jobCount = -1,
+            showDavStatus = remember { mutableStateOf(true) },
+            isDavLoading = remember { mutableStateOf(false) },
+            isDavConnected = remember { mutableStateOf(true) },
+            isTrial = remember { mutableStateOf(true) },
+            hasOptionalPermissions = remember { mutableStateOf(false) },
+            trialRemainingDays = remember { mutableIntStateOf(28) }
         )
     }
 }

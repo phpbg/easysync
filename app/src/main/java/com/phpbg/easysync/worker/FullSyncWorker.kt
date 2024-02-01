@@ -39,6 +39,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import com.phpbg.easysync.MyApp.Companion.isTrialExpired
 import com.phpbg.easysync.Notifications
 import com.phpbg.easysync.R
 import com.phpbg.easysync.dav.MisconfigurationException
@@ -57,6 +58,10 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
                 NotificationManager
 
     override suspend fun doWork(): Result {
+        if (isTrialExpired(this.applicationContext)) {
+            showTrialExpiredNotification()
+            return Result.success()
+        }
         val immediate = inputData.getBoolean(IMMEDIATE_KEY, false)
         return try {
             val syncService = SyncService.getInstance(this.applicationContext)
@@ -83,16 +88,27 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
         }
     }
 
+    private fun showTrialExpiredNotification() {
+        val title = applicationContext.getString(R.string.notification_trial_over_title)
+        val text = applicationContext.getString(R.string.notification_trial_over_text)
+        val notificationId = Notifications.TRIAL_EXPIRED
+        showNotification(title, text, notificationId)
+    }
+
     private fun showMissingPermissionsNotification() {
-        val id = applicationContext.getString(R.string.notification_channel_id)
         val title = applicationContext.getString(R.string.notification_missing_permissions_title)
         val text = applicationContext.getString(R.string.notification_missing_permissions_text)
+        val notificationId = Notifications.MISSING_PERMISSIONS
+        showNotification(title, text, notificationId)
+    }
+
+    private fun showNotification(title: String, text: String, notificationId: Notifications) {
+        val id = applicationContext.getString(R.string.notification_channel_id)
 
         val intent = Intent(this.applicationContext, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(this.applicationContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-
 
         createChannel(id)
         val notification = Notification.Builder(applicationContext, id)
@@ -105,7 +121,7 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
             .setContentIntent(pendingIntent)
             .build()
 
-        notificationManager.notify(Notifications.MISSING_PERMISSIONS.id, notification)
+        notificationManager.notify(notificationId.id, notification)
     }
 
     private fun createChannel(channelId: String) {

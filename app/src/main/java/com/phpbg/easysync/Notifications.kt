@@ -25,5 +25,6 @@
 package com.phpbg.easysync
 
 enum class Notifications(val id: Int) {
-    MISSING_PERMISSIONS(1)
+    MISSING_PERMISSIONS(1),
+    TRIAL_EXPIRED(2)
 }

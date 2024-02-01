@@ -2,6 +2,8 @@
 <resources>
     <string name="notification_missing_permissions_text">Veuillez accorder les permissions pour permettre la synchronisation</string>
     <string name="notification_missing_permissions_title">Synchronisation KO</string>
+    <string name="notification_trial_over_title">Synchronisation interrompue</string>
+    <string name="notification_trial_over_text">Veuillez acheter la version complète</string>
     <string name="dav_settings_activity_title">Paramètres</string>
     <string name="dav_settings_username">Nom d\'utilisateur</string>
     <string name="dav_settings_password">Mot de passe</string>
@@ -23,6 +25,11 @@
     <string name="home_permissions_action_fix">Corriger…</string>
     <string name="home_sync_running">attente</string>
     <string name="home_sync_syncing">en cours</string>
+    <string name="home_trial_over">La période d\'essai est terminée, veuillez acheter la version complète</string>
+    <plurals name="home_trial_days_left">
+        <item quantity="one">Essai gratuit : %d jour restant</item>
+        <item quantity="other">Essai gratuit : %d jours restants</item>
+    </plurals>
     <string name="dav_settings_title">Paramètres DAV</string>
     <string name="dav_settings_url_insecure">Cette URL n\'est pas sécurisée. Vos données pourront être interceptées. Vous devriez utiliser HTTPS.</string>
     <string name="permissions_activity_title">Permissions</string>

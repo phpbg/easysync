@@ -32,6 +32,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions += "version"
+    productFlavors {
+        freeVersion {
+            dimension "version"
+            applicationId "com.phpbg.easysync.trial"
+            resValue "string", "flavored_app_name", "Easy Sync Trial"
+
+        }
+        paidVersion {
+            dimension "version"
+            resValue "string", "flavored_app_name", "Easy Sync"
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
