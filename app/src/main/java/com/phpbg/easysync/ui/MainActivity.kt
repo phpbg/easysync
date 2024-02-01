@@ -45,9 +45,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Help
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Settings
@@ -248,7 +248,7 @@ private fun Main(
             title = null,
             actionTitle = stringResource(R.string.about),
             statusColor = Color.Gray,
-            statusIcon = Icons.Default.Help,
+            statusIcon = Icons.AutoMirrored.Filled.Help,
             clickHandler = {
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse("https://github.com/phpbg/easysync#easysync")
