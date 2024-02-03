@@ -6,6 +6,7 @@
     <string name="dav_settings_activity_title">Настройки</string>
     <string name="dav_settings_hide_password">Скрыть пароль</string>
     <string name="dav_settings_password">Пароль</string>
+    <string name="dav_settings_remote_path">Удаленный путь DAV для синхронизации</string>
     <string name="dav_settings_title">Настройки DAV</string>
     <string name="dav_settings_url_insecure">Этот URL-адрес небезопасен. Все ваши данные будут доступны для чтения кем либо. Подумайте о переходе на HTTPS.</string>
     <string name="dav_settings_username">Имя пользователя</string>

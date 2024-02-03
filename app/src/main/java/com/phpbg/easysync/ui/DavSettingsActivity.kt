@@ -169,8 +169,8 @@ private fun Preferences(
             value = uiState.settings.davPath,
             onValueChange = { stateChangeHandler(uiState.settings.copy(davPath = it)) },
             modifier = Modifier.fillMaxWidth(),
-            placeholder = { Text(text = "DAV Path") },
-            label = { Text(text = "DAV Path") },
+            placeholder = { Text(text = stringResource(R.string.dav_settings_remote_path)) },
+            label = { Text(text = stringResource(R.string.dav_settings_remote_path)) },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.None,
                 autoCorrect = false,
