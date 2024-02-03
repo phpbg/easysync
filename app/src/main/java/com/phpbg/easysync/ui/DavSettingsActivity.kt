@@ -207,3 +207,11 @@ private fun PreferencesPreview() {
         Preferences(uiState = DavSettingsUiState(), stateChangeHandler = { }, saveHandler = { })
     }
 }
+
+@Preview(name = "Light Mode", showBackground = true)
+@Composable
+private fun PreferencesPreviewWithCircularIndicator() {
+    MyApplicationTheme {
+        Preferences(uiState = DavSettingsUiState(ongoingIO = true), stateChangeHandler = { }, saveHandler = { })
+    }
+}

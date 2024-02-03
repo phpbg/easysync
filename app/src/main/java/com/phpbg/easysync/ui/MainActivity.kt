@@ -45,7 +45,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Help
+import androidx.compose.material.icons.filled.Help
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
@@ -248,7 +248,7 @@ private fun Main(
             title = null,
             actionTitle = stringResource(R.string.about),
             statusColor = Color.Gray,
-            statusIcon = Icons.AutoMirrored.Filled.Help,
+            statusIcon = Icons.Default.Help,
             clickHandler = {
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse("https://github.com/phpbg/easysync#easysync")
@@ -257,7 +257,12 @@ private fun Main(
         )
 
         if (isTrial.value) {
-            val msg = if (trialRemainingDays.intValue == 0) stringResource(R.string.home_trial_over) else pluralStringResource(R.plurals.home_trial_days_left, trialRemainingDays.intValue, trialRemainingDays.intValue)
+            val msg =
+                if (trialRemainingDays.intValue == 0) stringResource(R.string.home_trial_over) else pluralStringResource(
+                    R.plurals.home_trial_days_left,
+                    trialRemainingDays.intValue,
+                    trialRemainingDays.intValue
+                )
             StatusTitleClickable(
                 title = null,
                 actionTitle = msg,
@@ -265,9 +270,19 @@ private fun Main(
                 statusIcon = Icons.Default.Info,
                 clickHandler = {
                     try {
-                        mContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.phpbg.easysync")))
+                        mContext.startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("market://details?id=com.phpbg.easysync")
+                            )
+                        )
                     } catch (e: ActivityNotFoundException) {
-                        mContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.phpbg.easysync")))
+                        mContext.startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://play.google.com/store/apps/details?id=com.phpbg.easysync")
+                            )
+                        )
                     }
                 },
             )
@@ -283,7 +298,8 @@ private fun Main(
             -1
         }
         val maxJobs = max(localCount, syncedCount) + 1
-        val jobCountPercent = if (jobCount == -1) -1 else round(100.0 * (maxJobs - jobCount) / maxJobs).toInt()
+        val jobCountPercent =
+            if (jobCount == -1) -1 else round(100.0 * (maxJobs - jobCount) / maxJobs).toInt()
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -346,11 +362,17 @@ private fun Main(
         ) {
             Button(onClick = {
                 scope.launch {
-                    snackbarHostState.showSnackbar(message = "Sync requested", duration = SnackbarDuration.Short)
+                    snackbarHostState.showSnackbar(
+                        message = "Sync requested",
+                        duration = SnackbarDuration.Short
+                    )
                 }
                 fullSyncNowHandler()
             }, enabled = syncEnabled) {
-                Text(text = stringResource(R.string.home_action_sync_now), style = MaterialTheme.typography.labelLarge)
+                Text(
+                    text = stringResource(R.string.home_action_sync_now),
+                    style = MaterialTheme.typography.labelLarge
+                )
             }
         }
     }
