@@ -86,7 +86,6 @@ import com.phpbg.easysync.ui.components.StdText
 import com.phpbg.easysync.ui.components.Title
 import com.phpbg.easysync.ui.theme.MyApplicationTheme
 import kotlinx.coroutines.launch
-import kotlin.math.max
 import kotlin.math.round
 
 
@@ -297,7 +296,7 @@ private fun Main(
         } else {
             -1
         }
-        val maxJobs = max(localCount, syncedCount) + 1
+        val maxJobs = maxOf(localCount, syncedCount, jobCount)
         val jobCountPercent =
             if (jobCount == -1) -1 else round(100.0 * (maxJobs - jobCount) / maxJobs).toInt()
         Row(
