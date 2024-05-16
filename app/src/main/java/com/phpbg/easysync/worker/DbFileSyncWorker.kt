@@ -71,6 +71,7 @@ class DbFileSyncWorker(appContext: Context, workerParams: WorkerParameters) :
                 // We don't mind too many errors: file will be synced anyway with periodic full sync worker
                 Result.retry()
             } else {
+                syncService.handleWorkerException(applicationContext, e, path)
                 Result.failure()
             }
         }

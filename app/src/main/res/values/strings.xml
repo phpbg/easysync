@@ -2,6 +2,8 @@
     <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">Please grant permissions to allow synchronization</string>
     <string name="notification_missing_permissions_title">Synchronization failed</string>
+    <string name="notification_sync_error_text">Some files failed to sync properly</string>
+    <string name="notification_sync_error_title">Synchronization failed</string>
     <string name="notification_trial_over_title">Synchronization stopped</string>
     <string name="notification_trial_over_text">Please buy the full version to allow synchronization</string>
     <string name="dav_settings_activity_title">Settings</string>

@@ -27,18 +27,22 @@ package com.phpbg.easysync.worker
 import android.content.Context
 import android.os.Environment
 import android.util.Log
+import com.phpbg.easysync.Notifications
 import com.phpbg.easysync.Permissions
+import com.phpbg.easysync.R
 import com.phpbg.easysync.dav.CollectionPath
 import com.phpbg.easysync.dav.NotFoundExeption
 import com.phpbg.easysync.dav.Resource
 import com.phpbg.easysync.dav.WebDavService
 import com.phpbg.easysync.db.AppDatabaseFactory
+import com.phpbg.easysync.db.ErrorDao
 import com.phpbg.easysync.db.File
 import com.phpbg.easysync.db.FileDao
 import com.phpbg.easysync.mediastore.MediaStoreFile
 import com.phpbg.easysync.mediastore.MediaStoreService
 import com.phpbg.easysync.settings.ConflictStrategy
 import com.phpbg.easysync.settings.SettingsDataStore
+import com.phpbg.easysync.showNotification
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -46,11 +50,13 @@ import kotlinx.coroutines.withContext
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.attribute.FileTime
+import java.time.Instant
 
 private const val TAG = "SyncService"
 
 class SyncService(
     private val fileDao: FileDao,
+    private val errorDao: ErrorDao,
     private val mediaStoreService: MediaStoreService,
     private val permissions: Permissions,
     private val settingsDatastore: SettingsDataStore,
@@ -84,6 +90,9 @@ class SyncService(
             throw MissingPermissionException()
         }
         withContext(Dispatchers.IO) {
+            // Remove previous errors
+            errorDao.deleteAll()
+
             // Resync already synced files
             fileDao.getAllPathnames().forEach {
                 DbFileSyncWorker.enqueue(context, it, immediate)
@@ -429,6 +438,24 @@ class SyncService(
         }
     }
 
+    suspend fun handleWorkerException(context: Context, e: Exception, path: String) {
+        errorDao.insertAll(
+            com.phpbg.easysync.db.Error(
+                createdDate = Instant.now(),
+                path = path,
+                message = e.message ?: e.stackTraceToString()
+            )
+        )
+        showErrorNotification(context)
+    }
+
+    private fun showErrorNotification(context: Context) {
+        val title = context.getString(R.string.notification_sync_error_title)
+        val text = context.getString(R.string.notification_sync_error_text)
+        val notificationId = Notifications.MISSING_PERMISSIONS
+        showNotification(context, title, text, notificationId)
+    }
+
     companion object {
         @Volatile
         private var instance: SyncService? = null
@@ -449,11 +476,13 @@ class SyncService(
             val mediaStoreService = MediaStoreService(context)
             val db = AppDatabaseFactory.create(context)
             val fileDao = db.fileDao()
+            val errorDao = db.errorDao()
             val permissions = Permissions
             val settingsDatastore = SettingsDataStore(context)
             val webDavService = WebDavService.getInstance(settingsDatastore.getSettingsAsFlow())
             return SyncService(
                 fileDao,
+                errorDao,
                 mediaStoreService,
                 permissions,
                 settingsDatastore,

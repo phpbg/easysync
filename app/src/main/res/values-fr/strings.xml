@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="notification_missing_permissions_text">Veuillez accorder les permissions pour permettre la synchronisation</string>
-    <string name="notification_missing_permissions_title">Synchronisation KO</string>
+    <string name="notification_missing_permissions_title">Échec de la synchronisation</string>
+    <string name="notification_sync_error_text">Certains fichiers n\'ont pas été synchronisés correctement</string>
+    <string name="notification_sync_error_title">Échec de la synchronisation</string>
     <string name="notification_trial_over_title">Synchronisation interrompue</string>
     <string name="notification_trial_over_text">Veuillez acheter la version complète</string>
     <string name="dav_settings_activity_title">Paramètres</string>

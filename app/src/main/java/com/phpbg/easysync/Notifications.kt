@@ -24,7 +24,38 @@
 
 package com.phpbg.easysync
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import com.phpbg.easysync.ui.MainActivity
+
 enum class Notifications(val id: Int) {
-    MISSING_PERMISSIONS(1),
-    TRIAL_EXPIRED(2)
+    MISSING_PERMISSIONS(1), TRIAL_EXPIRED(2)
+}
+
+fun showNotification(
+    context: Context, title: String, text: String, notificationId: Notifications
+) {
+    val notificationManager =
+        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+    val intent = Intent(context, MainActivity::class.java).apply {
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+    }
+    val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+    val id = context.getString(R.string.notification_channel_id)
+    val channel = NotificationChannel(
+        id, "Synchronization status", NotificationManager.IMPORTANCE_LOW
+    )
+    notificationManager.createNotificationChannel(channel)
+
+    val notification = Notification.Builder(context, id).setContentTitle(title).setContentText(text)
+        .setTicker(title).setSmallIcon(R.drawable.ic_launcher_background).setOnlyAlertOnce(true)
+        .setAutoCancel(true).setContentIntent(pendingIntent).build()
+
+    notificationManager.notify(notificationId.id, notification)
 }
