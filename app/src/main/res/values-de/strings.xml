@@ -2,6 +2,8 @@
 <resources>
     <string name="notification_missing_permissions_text">Bitte erteilen Sie Berechtigungen, um die Synchronisation zu ermöglichen</string>
     <string name="notification_missing_permissions_title">Synchronisation fehlgeschlagen</string>
+    <string name="notification_sync_error_text">Einige Dateien konnten nicht ordnungsgemäß synchronisiert werden</string>
+    <string name="notification_sync_error_title">Synchronisierung fehlgeschlagen</string>
     <string name="notification_trial_over_title">Synchronisation gestoppt</string>
     <string name="notification_trial_over_text">Bitte kaufen Sie die Vollversion</string>
     <string name="dav_settings_activity_title">Einstellungen</string>
@@ -48,6 +50,8 @@
     <string name="permissions_old_files_button">Weiter</string>
     <string name="permissions_welcome">Easy Sync wird Ihre Dateien mit Ihrem DAV-Server synchron halten</string>
     <string name="permissions_next">Weiter</string>
+    <string name="sync_errors_activity_no_error">Kein Synchronisierungsfehler</string>
+    <string name="sync_errors_activity_title">Synchronisierungsfehler</string>
     <string name="sync_settings_title">Synchronisationseinstellungen</string>
     <string name="sync_settings_activity_title">Synchronisationseinstellungen</string>
     <string name="sync_settings_conflicts_title">Konfliktbehandlung</string>

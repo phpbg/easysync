@@ -2,6 +2,8 @@
     <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">Please grant permissions to allow synchronization</string>
     <string name="notification_missing_permissions_title">Synchronization failed</string>
+    <string name="notification_sync_error_text">Some files failed to sync properly</string>
+    <string name="notification_sync_error_title">Synchronization failed</string>
     <string name="notification_trial_over_title">Synchronization stopped</string>
     <string name="notification_trial_over_text">Please buy the full version to allow synchronization</string>
     <string name="dav_settings_activity_title">Settings</string>
@@ -48,6 +50,8 @@
     <string name="permissions_old_files_button">Next</string>
     <string name="permissions_welcome">Easy sync will keep your files synchronized with your DAV server</string>
     <string name="permissions_next">Next</string>
+    <string name="sync_errors_activity_no_error">No synchronization error</string>
+    <string name="sync_errors_activity_title">Synchronization errors</string>
     <string name="sync_settings_title">Synchronization settings</string>
     <string name="sync_settings_activity_title">Synchronization settings</string>
     <string name="sync_settings_conflicts_title">Conflicts handling</string>

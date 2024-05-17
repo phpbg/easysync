@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2023 Samuel CHEMLA
+ * Copyright (c) 2024 Samuel CHEMLA
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,18 @@
 
 package com.phpbg.easysync.db
 
-import androidx.room.AutoMigration
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.time.Instant
 
-@Database(
-    entities = [File::class, Error::class],
-    version = 2,
-    autoMigrations = [AutoMigration(from = 1, to = 2)],
+@Entity
+data class Error(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+
+    @ColumnInfo(name = "created_date") val createdDate: Instant?,
+
+    val path: String,
+
+    val message: String,
 )
-@TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun fileDao(): FileDao
-
-    abstract fun errorDao(): ErrorDao
-}

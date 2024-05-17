@@ -49,7 +49,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.phpbg.easysync.ui.theme.MyApplicationTheme
+import com.phpbg.easysync.ui.theme.EasySyncTheme
 
 
 @Composable
@@ -103,7 +103,7 @@ fun IconTextButtonScreen(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun IconTextButtonScreenPreview() {
-    MyApplicationTheme {
+    EasySyncTheme {
         IconTextButtonScreen(
             icon = Icons.Outlined.Vaccines,
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",

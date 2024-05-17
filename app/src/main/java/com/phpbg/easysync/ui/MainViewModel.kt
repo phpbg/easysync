@@ -83,6 +83,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val fileDao = db.fileDao()
     val syncedFileCount get() = fileDao.count()
 
+    private val errorDao = db.errorDao()
+    val synchronizationErrorCount get() = errorDao.count()
+
     val showDavStatus = mutableStateOf(false)
     val isDavConnected = mutableStateOf(false)
     val isDavLoading = mutableStateOf(false)

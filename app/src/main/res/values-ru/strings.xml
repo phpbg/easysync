@@ -1,6 +1,8 @@
 <resources>
     <string name="notification_missing_permissions_text">Пожалуйста предоставьте разрешения для синхронизации.</string>
     <string name="notification_missing_permissions_title">Синхронизация неуспешна</string>
+    <string name="notification_sync_error_text">Некоторые файлы не удалось синхронизировать должным образом</string>
+    <string name="notification_sync_error_title">Синхронизация не удалась</string>
     <string name="notification_trial_over_title">Синхронизация остановлена</string>
     <string name="notification_trial_over_text">Пожалуйста, купите полную версию, чтобы разрешить синхронизацию</string>
     <string name="dav_settings_activity_title">Настройки</string>
@@ -49,6 +51,8 @@
     <string name="permissions_old_files_button">Далее</string>
     <string name="permissions_welcome">EasySync позволит синхронизировать ваши файлы с вашим DAV сервером.</string>
     <string name="permissions_next">Далее</string>
+    <string name="sync_errors_activity_no_error">Нет ошибки синхронизации</string>
+    <string name="sync_errors_activity_title">Ошибки синхронизации</string>
     <string name="sync_settings_title">Настройки синхронизации</string>
     <string name="sync_settings_activity_title">Настройки синхронизации</string>
     <string name="sync_settings_conflicts_title">Разрешение конфликтов</string>

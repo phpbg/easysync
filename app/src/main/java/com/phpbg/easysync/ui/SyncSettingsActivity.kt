@@ -51,7 +51,7 @@ import com.phpbg.easysync.ui.components.RadioGroup
 import com.phpbg.easysync.ui.components.StdText
 import com.phpbg.easysync.ui.components.SwitchSetting
 import com.phpbg.easysync.ui.components.Title
-import com.phpbg.easysync.ui.theme.MyApplicationTheme
+import com.phpbg.easysync.ui.theme.EasySyncTheme
 
 class SyncSettingsActivity : ComponentActivity() {
 
@@ -61,7 +61,7 @@ class SyncSettingsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MyApplicationTheme {
+            EasySyncTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -128,7 +128,7 @@ private fun Main(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun MainPreview() {
-    MyApplicationTheme {
+    EasySyncTheme {
         Main(
             syncOnBattery = false,
             syncOnBatteryHandler = {},

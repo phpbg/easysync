@@ -63,21 +63,21 @@ class MediastoreIdSyncWorker(appContext: Context, workerParams: WorkerParameters
         }
 
         Log.d(TAG, "Syncing $file")
-        try {
+        return try {
             syncService.syncOne(file, skipIfInDb)
+            Result.success()
         } catch (e: Exception) {
             Log.i(TAG, "Error while syncing: $file attempt:$runAttemptCount")
             Log.e(TAG, e.toString())
             Log.d(TAG, e.stackTraceToString())
             if (runAttemptCount < WorkersConstants.MAX_RUN_ATTEMPTS) {
                 // We don't mind too many errors: file will be synced anyway with periodic full sync worker
-                return Result.retry()
+                Result.retry()
             } else {
-                return Result.failure()
+                syncService.handleWorkerException(applicationContext, e, file.relativePath)
+                Result.failure()
             }
         }
-
-        return Result.success()
     }
 
     companion object {

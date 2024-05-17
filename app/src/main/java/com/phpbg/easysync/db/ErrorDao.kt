@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2023 Samuel CHEMLA
+ * Copyright (c) 2024 Samuel CHEMLA
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,22 @@
 
 package com.phpbg.easysync.db
 
-import androidx.room.AutoMigration
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 
-@Database(
-    entities = [File::class, Error::class],
-    version = 2,
-    autoMigrations = [AutoMigration(from = 1, to = 2)],
-)
-@TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun fileDao(): FileDao
+@Dao
+interface ErrorDao {
+    @Query("SELECT * FROM error")
+    fun getAll(): LiveData<List<Error>>
 
-    abstract fun errorDao(): ErrorDao
+    @Query("SELECT COUNT(id) FROM error")
+    fun count(): LiveData<Int>
+
+    @Query("DELETE FROM error")
+    suspend fun deleteAll(): Int
+
+    @Insert
+    suspend fun insertAll(vararg errors: Error)
 }

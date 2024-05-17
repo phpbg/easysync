@@ -39,7 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.phpbg.easysync.ui.theme.MyApplicationTheme
+import com.phpbg.easysync.ui.theme.EasySyncTheme
 
 @Composable
 fun Title(text: String) {
@@ -124,7 +124,7 @@ fun SwitchSetting(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun SwitchSettingPreview() {
-    MyApplicationTheme {
+    EasySyncTheme {
         SwitchSetting(
             title = "Foo",
             description = "Foo bar baz",

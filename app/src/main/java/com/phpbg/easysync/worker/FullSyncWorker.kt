@@ -24,12 +24,7 @@
 
 package com.phpbg.easysync.worker
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.work.CoroutineWorker
@@ -44,7 +39,7 @@ import com.phpbg.easysync.Notifications
 import com.phpbg.easysync.R
 import com.phpbg.easysync.dav.MisconfigurationException
 import com.phpbg.easysync.settings.SettingsDataStore
-import com.phpbg.easysync.ui.MainActivity
+import com.phpbg.easysync.showNotification
 import java.util.concurrent.TimeUnit
 
 private const val TAG = "FullSyncWorker"
@@ -52,10 +47,6 @@ private const val IMMEDIATE_KEY = "immediate"
 
 class FullSyncWorker(context: Context, parameters: WorkerParameters) :
     CoroutineWorker(context, parameters) {
-
-    private val notificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as
-                NotificationManager
 
     override suspend fun doWork(): Result {
         if (isTrialExpired(this.applicationContext)) {
@@ -92,45 +83,14 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
         val title = applicationContext.getString(R.string.notification_trial_over_title)
         val text = applicationContext.getString(R.string.notification_trial_over_text)
         val notificationId = Notifications.TRIAL_EXPIRED
-        showNotification(title, text, notificationId)
+        showNotification(applicationContext, title, text, notificationId)
     }
 
     private fun showMissingPermissionsNotification() {
         val title = applicationContext.getString(R.string.notification_missing_permissions_title)
         val text = applicationContext.getString(R.string.notification_missing_permissions_text)
         val notificationId = Notifications.MISSING_PERMISSIONS
-        showNotification(title, text, notificationId)
-    }
-
-    private fun showNotification(title: String, text: String, notificationId: Notifications) {
-        val id = applicationContext.getString(R.string.notification_channel_id)
-
-        val intent = Intent(this.applicationContext, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent = PendingIntent.getActivity(this.applicationContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-
-        createChannel(id)
-        val notification = Notification.Builder(applicationContext, id)
-            .setContentTitle(title)
-            .setContentText(text)
-            .setTicker(title)
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .setOnlyAlertOnce(true)
-            .setAutoCancel(true)
-            .setContentIntent(pendingIntent)
-            .build()
-
-        notificationManager.notify(notificationId.id, notification)
-    }
-
-    private fun createChannel(channelId: String) {
-        val channel = NotificationChannel(
-            channelId,
-            "Synchronization status",
-            NotificationManager.IMPORTANCE_LOW
-        )
-        notificationManager.createNotificationChannel(channel)
+        showNotification(applicationContext, title, text, notificationId)
     }
 
     companion object {

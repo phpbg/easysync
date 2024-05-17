@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2023 Samuel CHEMLA
+ * Copyright (c) 2024 Samuel CHEMLA
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,21 +22,15 @@
  * SOFTWARE.
  */
 
-package com.phpbg.easysync.db
+package com.phpbg.easysync.ui
 
-import androidx.room.AutoMigration
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.phpbg.easysync.db.AppDatabaseFactory
 
-@Database(
-    entities = [File::class, Error::class],
-    version = 2,
-    autoMigrations = [AutoMigration(from = 1, to = 2)],
-)
-@TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun fileDao(): FileDao
+class SyncErrorsViewModel(application: Application) : AndroidViewModel(application) {
+    private val db = AppDatabaseFactory.create(getApplication())
+    private val errorDao = db.errorDao()
+    val errors get() = errorDao.getAll()
 
-    abstract fun errorDao(): ErrorDao
 }
