@@ -50,6 +50,8 @@
     <string name="permissions_old_files_button">Next</string>
     <string name="permissions_welcome">Easy sync will keep your files synchronized with your DAV server</string>
     <string name="permissions_next">Next</string>
+    <string name="sync_errors_activity_no_error">No synchronization error</string>
+    <string name="sync_errors_activity_title">Synchronization errors</string>
     <string name="sync_settings_title">Synchronization settings</string>
     <string name="sync_settings_activity_title">Synchronization settings</string>
     <string name="sync_settings_conflicts_title">Conflicts handling</string>

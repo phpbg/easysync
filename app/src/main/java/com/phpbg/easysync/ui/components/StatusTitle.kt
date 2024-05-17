@@ -46,7 +46,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.phpbg.easysync.ui.theme.MyApplicationTheme
+import com.phpbg.easysync.ui.theme.EasySyncTheme
 
 @Composable
 fun StatusTitle(title: String, statusIcon: ImageVector, statusColor: Color) {
@@ -72,7 +72,7 @@ fun StatusTitle(title: String, statusIcon: ImageVector, statusColor: Color) {
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun StatusTitlePreview() {
-    MyApplicationTheme {
+    EasySyncTheme {
         StatusTitle(
             title = "DAV Connected",
             statusColor = Color.Green,
@@ -119,7 +119,7 @@ fun StatusTitleClickable(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun StatusTitleClickablePreview() {
-    MyApplicationTheme {
+    EasySyncTheme {
         StatusTitleClickable(
             title = "Invalid settings. ",
             actionTitle = "Fix...",

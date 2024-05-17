@@ -67,7 +67,7 @@ import androidx.compose.ui.unit.dp
 import com.phpbg.easysync.R
 import com.phpbg.easysync.settings.Settings
 import com.phpbg.easysync.ui.components.Title
-import com.phpbg.easysync.ui.theme.MyApplicationTheme
+import com.phpbg.easysync.ui.theme.EasySyncTheme
 
 class DavSettingsActivity : ComponentActivity() {
 
@@ -78,7 +78,7 @@ class DavSettingsActivity : ComponentActivity() {
         viewModel.load()
 
         setContent {
-            MyApplicationTheme {
+            EasySyncTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
@@ -203,7 +203,7 @@ private fun Preferences(
 @Preview(name = "FR", showBackground = true, locale = "fr")
 @Composable
 private fun PreferencesPreview() {
-    MyApplicationTheme {
+    EasySyncTheme {
         Preferences(uiState = DavSettingsUiState(), stateChangeHandler = { }, saveHandler = { })
     }
 }
@@ -211,7 +211,7 @@ private fun PreferencesPreview() {
 @Preview(name = "Light Mode", showBackground = true)
 @Composable
 private fun PreferencesPreviewWithCircularIndicator() {
-    MyApplicationTheme {
+    EasySyncTheme {
         Preferences(uiState = DavSettingsUiState(ongoingIO = true), stateChangeHandler = { }, saveHandler = { })
     }
 }

@@ -53,7 +53,7 @@ import androidx.lifecycle.lifecycleScope
 import com.phpbg.easysync.Permissions
 import com.phpbg.easysync.R
 import com.phpbg.easysync.ui.components.IconTextButtonScreen
-import com.phpbg.easysync.ui.theme.MyApplicationTheme
+import com.phpbg.easysync.ui.theme.EasySyncTheme
 import kotlinx.coroutines.launch
 
 private const val TAG = "PermissionsActivity"
@@ -94,7 +94,7 @@ class PermissionsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MyApplicationTheme {
+            EasySyncTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

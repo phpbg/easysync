@@ -50,6 +50,8 @@
     <string name="permissions_old_files_button">Suivant</string>
     <string name="permissions_welcome">Easy sync synchronise votre téléphone avec votre serveur DAV.</string>
     <string name="permissions_next">Suivant</string>
+    <string name="sync_errors_activity_no_error">Aucune erreur de synchronisation</string>
+    <string name="sync_errors_activity_title">Erreurs de synchronisation</string>
     <string name="sync_settings_title">Paramètres de synchronisation</string>
     <string name="sync_settings_activity_title">Paramètres de synchronisation</string>
     <string name="sync_settings_conflicts_title">Conflits</string>

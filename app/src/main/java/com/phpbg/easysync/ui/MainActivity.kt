@@ -84,7 +84,7 @@ import com.phpbg.easysync.ui.components.StatusTitle
 import com.phpbg.easysync.ui.components.StatusTitleClickable
 import com.phpbg.easysync.ui.components.StdText
 import com.phpbg.easysync.ui.components.Title
-import com.phpbg.easysync.ui.theme.MyApplicationTheme
+import com.phpbg.easysync.ui.theme.EasySyncTheme
 import kotlinx.coroutines.launch
 import kotlin.math.round
 
@@ -111,7 +111,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MyApplicationTheme {
+            EasySyncTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -121,6 +121,7 @@ class MainActivity : ComponentActivity() {
                     val syncedCount = viewModel.syncedFileCount.observeAsState()
                     val localCount = viewModel.localFilesCount.observeAsState()
                     val jobCount = viewModel.jobCount.observeAsState()
+                    val syncronizationErrorCount = viewModel.synchronizationErrorCount.observeAsState()
                     Main(
                         workerState = workerState.value,
                         fullSyncNowHandler = viewModel::fullSyncNowHandler,
@@ -132,7 +133,8 @@ class MainActivity : ComponentActivity() {
                         isDavConnected = viewModel.isDavConnected,
                         isTrial = viewModel.isTrial,
                         hasOptionalPermissions = hasOptionalPermissions,
-                        trialRemainingDays = viewModel.trialRemainingDays
+                        trialRemainingDays = viewModel.trialRemainingDays,
+                        syncronizationErrorCount = syncronizationErrorCount.value ?: -1,
                     )
                 }
             }
@@ -157,6 +159,7 @@ private fun Main(
     isTrial: State<Boolean>,
     hasOptionalPermissions: State<Boolean>,
     trialRemainingDays: IntState,
+    syncronizationErrorCount: Int,
 ) {
     val mContext = LocalContext.current
     val syncEnabled = workerState == null || workerState != WorkInfo.State.RUNNING
@@ -254,6 +257,19 @@ private fun Main(
                 mContext.startActivity(i)
             },
         )
+
+        if (syncronizationErrorCount > 0) {
+            StatusTitleClickable(
+                title = null,
+                actionTitle = stringResource(R.string.sync_errors_activity_title),
+                statusColor = Color.Red,
+                statusIcon = Icons.Default.Help,
+                clickHandler = {
+                    val myIntent = Intent(mContext, SyncErrorsActivity::class.java)
+                    mContext.startActivity(myIntent)
+                },
+            )
+        }
 
         if (isTrial.value) {
             val msg =
@@ -391,7 +407,7 @@ private fun Main(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun MainPreview() {
-    MyApplicationTheme {
+    EasySyncTheme {
         Main(
             fullSyncNowHandler = {},
             workerState = WorkInfo.State.RUNNING,
@@ -403,7 +419,8 @@ private fun MainPreview() {
             isDavConnected = remember { mutableStateOf(true) },
             isTrial = remember { mutableStateOf(false) },
             hasOptionalPermissions = remember { mutableStateOf(false) },
-            trialRemainingDays = remember { mutableIntStateOf(0) }
+            trialRemainingDays = remember { mutableIntStateOf(0) },
+            syncronizationErrorCount = 0
         )
     }
 }
@@ -411,7 +428,7 @@ private fun MainPreview() {
 @Preview(name = "Trial Mode", showBackground = false)
 @Composable
 private fun MainPreviewTrial() {
-    MyApplicationTheme {
+    EasySyncTheme {
         Main(
             fullSyncNowHandler = {},
             workerState = WorkInfo.State.RUNNING,
@@ -423,7 +440,8 @@ private fun MainPreviewTrial() {
             isDavConnected = remember { mutableStateOf(true) },
             isTrial = remember { mutableStateOf(true) },
             hasOptionalPermissions = remember { mutableStateOf(false) },
-            trialRemainingDays = remember { mutableIntStateOf(28) }
+            trialRemainingDays = remember { mutableIntStateOf(28) },
+            syncronizationErrorCount = 10
         )
     }
 }

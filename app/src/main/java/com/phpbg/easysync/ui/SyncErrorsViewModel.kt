@@ -22,24 +22,15 @@
  * SOFTWARE.
  */
 
-package com.phpbg.easysync.db
+package com.phpbg.easysync.ui
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.phpbg.easysync.db.AppDatabaseFactory
 
-@Dao
-interface ErrorDao {
-    @Query("SELECT * FROM error")
-    fun getAll(): LiveData<List<Error>>
+class SyncErrorsViewModel(application: Application) : AndroidViewModel(application) {
+    private val db = AppDatabaseFactory.create(getApplication())
+    private val errorDao = db.errorDao()
+    val errors get() = errorDao.getAll()
 
-    @Query("SELECT COUNT(id) FROM error")
-    fun count(): LiveData<Int>
-
-    @Query("DELETE FROM error")
-    suspend fun deleteAll(): Int
-
-    @Insert
-    suspend fun insertAll(vararg errors: Error)
 }
