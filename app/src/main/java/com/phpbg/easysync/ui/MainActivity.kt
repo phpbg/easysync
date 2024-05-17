@@ -262,8 +262,8 @@ private fun Main(
             StatusTitleClickable(
                 title = null,
                 actionTitle = stringResource(R.string.sync_errors_activity_title),
-                statusColor = Color.Red,
-                statusIcon = Icons.Default.Help,
+                statusColor = Color.Yellow,
+                statusIcon = Icons.Default.Warning,
                 clickHandler = {
                     val myIntent = Intent(mContext, SyncErrorsActivity::class.java)
                     mContext.startActivity(myIntent)
