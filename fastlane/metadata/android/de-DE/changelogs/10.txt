@@ -1,0 +1,1 @@
+Zeigt eine Benachrichtigung an, wenn die Synchronisierung fehlschlägt
