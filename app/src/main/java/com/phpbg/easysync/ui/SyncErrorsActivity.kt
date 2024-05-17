@@ -28,13 +28,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -73,23 +72,29 @@ class SyncErrorsActivity : ComponentActivity() {
 
 @Composable
 fun SynchronizationErrors(errors: List<Error>?, modifier: Modifier = Modifier) {
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
-            .verticalScroll(rememberScrollState())
     ) {
-        Title(text = stringResource(R.string.sync_errors_activity_title))
-        Spacer(modifier = Modifier.height(8.dp))
         if (errors.isNullOrEmpty()) {
-            Text(
-                text = stringResource(R.string.sync_errors_activity_no_error), modifier = modifier
-            )
+            item {
+                Title(text = stringResource(R.string.sync_errors_activity_title))
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = stringResource(R.string.sync_errors_activity_no_error),
+                    modifier = modifier
+                )
+            }
         } else {
-            errors.forEach {
+            item {
+                Title(text = stringResource(R.string.sync_errors_activity_title))
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+            items(errors) { error ->
                 ListItem(
-                    headlineContent = { Text(it.path) },
-                    supportingContent = { Text(it.message) },
+                    headlineContent = { Text(error.path) },
+                    supportingContent = { Text(error.message) },
                 )
             }
         }
