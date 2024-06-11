@@ -68,9 +68,9 @@ import java.nio.file.attribute.FileTime
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter.ISO_DATE_TIME
 import java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME
+import java.time.format.DateTimeParseException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
-
 
 private const val TAG = "WebDavService"
 
@@ -313,6 +313,20 @@ class WebDavService(
             return splitted.joinToString("/") { UrlEscapers.urlPathSegmentEscaper().escape(it) }
         }
 
+        fun parseIsoOr1123DateTime(dateTimeString: String?): ZonedDateTime {
+            return try {
+                ZonedDateTime.parse(
+                    dateTimeString,
+                    ISO_DATE_TIME
+                )
+            } catch (e: DateTimeParseException) {
+                ZonedDateTime.parse(
+                    dateTimeString,
+                    RFC_1123_DATE_TIME
+                )
+            }
+        }
+
         fun parsePropfind(reader: Reader, rootPath: RootPath): ArrayList<Resource> {
             val parserFactory = XmlPullParserFactory.newInstance()
             parserFactory.isNamespaceAware = true
@@ -341,12 +355,13 @@ class WebDavService(
 
                     XmlPullParser.END_TAG -> when (tag) {
                         "href" -> resource = resource.copy(href = URLDecoder.decode(text, "UTF-8"))
-                        "creationdate" -> resource = resource.copy(
-                            creationdate = ZonedDateTime.parse(
-                                text,
-                                ISO_DATE_TIME // encoded in rfc3339 according to webdav spec
-                            ).toInstant()
-                        )
+                        "creationdate" -> {
+                            resource = resource.copy(
+                                // should be encoded in rfc3339 according to webdav spec
+                                // but mailbox.org uses RFC 1123, so support both
+                                creationdate = parseIsoOr1123DateTime(text).toInstant()
+                            )
+                        }
 
                         "getlastmodified" -> resource = resource.copy(
                             getlastmodified = ZonedDateTime.parse(

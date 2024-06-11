@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<D:multistatus xmlns:D="DAV:">
+<D:response>
+    <D:href>/servlet/webdav.infostore/</D:href>
+    <D:propstat>
+        <D:prop>
+            <D:creationdate xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:creationdate>
+            <D:displayname>infostore</D:displayname>
+            <D:getcontenttype>httpd/unix-directory</D:getcontenttype>
+            <D:getlastmodified xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:getlastmodified>
+            <D:resourcetype>
+                <D:collection />
+            </D:resourcetype>
+            <D:lockdiscovery />
+            <D:supportedlock>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:exclusive />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:shared />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+            </D:supportedlock>
+            <D:source />
+        </D:prop>
+        <D:status>HTTP/1.1 200 OK</D:status>
+    </D:propstat>
+</D:response>
+<D:response>
+    <D:href>/servlet/webdav.infostore/Public%20infostore/</D:href>
+    <D:propstat>
+        <D:prop>
+            <D:creationdate xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:creationdate>
+            <D:displayname>Public infostore</D:displayname>
+            <D:getcontenttype>httpd/unix-directory</D:getcontenttype>
+            <D:getlastmodified xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:getlastmodified>
+            <D:resourcetype>
+                <D:collection />
+            </D:resourcetype>
+            <D:lockdiscovery />
+            <D:supportedlock>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:exclusive />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:shared />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+            </D:supportedlock>
+            <D:source />
+        </D:prop>
+        <D:status>HTTP/1.1 200 OK</D:status>
+    </D:propstat>
+</D:response>
+<D:response>
+    <D:href>/servlet/webdav.infostore/Trash/</D:href>
+    <D:propstat>
+        <D:prop>
+            <D:creationdate xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:creationdate>
+            <D:displayname>Trash</D:displayname>
+            <D:getcontenttype>httpd/unix-directory</D:getcontenttype>
+            <D:getlastmodified xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:getlastmodified>
+            <D:resourcetype>
+                <D:collection />
+            </D:resourcetype>
+            <D:lockdiscovery />
+            <D:supportedlock>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:exclusive />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:shared />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+            </D:supportedlock>
+            <D:source />
+        </D:prop>
+        <D:status>HTTP/1.1 200 OK</D:status>
+    </D:propstat>
+</D:response>
+<D:response>
+    <D:href>/servlet/webdav.infostore/Userstore/</D:href>
+    <D:propstat>
+        <D:prop>
+            <D:creationdate xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:creationdate>
+            <D:displayname>Userstore</D:displayname>
+            <D:getcontenttype>httpd/unix-directory</D:getcontenttype>
+            <D:getlastmodified xmlns:b="urn:uuid:c2f41010-65b3-11d1-a29f-00aa00c14882/" b:dt="dateTime.rfc1123">Tue, 11 Jun 2024 20:35:13 GMT</D:getlastmodified>
+            <D:resourcetype>
+                <D:collection />
+            </D:resourcetype>
+            <D:lockdiscovery />
+            <D:supportedlock>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:exclusive />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+                <D:lockentry>
+                    <D:lockscope>
+                        <D:shared />
+                    </D:lockscope>
+                    <D:locktype>
+                        <D:write />
+                    </D:locktype>
+                </D:lockentry>
+            </D:supportedlock>
+            <D:source />
+        </D:prop>
+        <D:status>HTTP/1.1 200 OK</D:status>
+    </D:propstat>
+</D:response>
+</D:multistatus>

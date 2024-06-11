@@ -89,6 +89,7 @@ It should work with any DAV compliant server.
 * Nextcloud / owncloud (full support: preserves file creation timestamps)
 * nginx (basic support: does not preserve file creation timestamps, no etag support)
 * apache (basic support: does not preserve file creation timestamps)
+* mailbox.org (basic support: does not preserve file creation timestamps, no etag support, use `https://office.mailbox.org/servlet/webdav.infostore` as url and `/Userstore/<firstname lastname>/Documents` as remote folder)
 * *add your server here*
 
 ## Sync is slow on Nextcloud

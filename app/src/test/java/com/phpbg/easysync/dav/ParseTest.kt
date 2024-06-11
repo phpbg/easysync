@@ -39,6 +39,25 @@ class ParseTest {
     }
 
     @Test
+    fun propfind_mailbox_org_works() {
+        val stream = this.javaClass.classLoader.getResourceAsStream("propfind_mailbox_org.xml")
+        val rootPath = RootPath("https://foo")
+        val res = WebDavService.parsePropfind(stream.reader(), rootPath)
+        assert(res.size == 4)
+        val expected = Resource(
+            rootPath = rootPath,
+            href = "/servlet/webdav.infostore/",
+            creationdate = ZonedDateTime.parse("Tue, 11 Jun 2024 20:35:13 GMT", DateTimeFormatter.RFC_1123_DATE_TIME).toInstant(),
+            getlastmodified = ZonedDateTime.parse("Tue, 11 Jun 2024 20:35:13 GMT", DateTimeFormatter.RFC_1123_DATE_TIME).toInstant(),
+            isCollection = true,
+            getetag = null,
+            getcontentlength = null,
+            getcontenttype = "httpd/unix-directory"
+        )
+        assert(expected == res.first())
+    }
+
+    @Test
     fun propfind_file_works() {
         val stream = this.javaClass.classLoader.getResourceAsStream("file.xml")
         val rootPath = RootPath("https://foo")
