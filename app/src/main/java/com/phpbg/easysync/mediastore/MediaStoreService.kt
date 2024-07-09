@@ -98,6 +98,52 @@ class MediaStoreService(private val context: Context) {
         return res ?: setOf()
     }
 
+    suspend fun getAllPaths(): Set<String> {
+        return URIS
+            .map { queryPaths(it) }
+            .reduce { acc, paths -> acc.union(paths) }
+    }
+
+    private suspend fun queryPaths(uri: Uri): Set<String> {
+        val res = withContext(Dispatchers.IO) {
+            val projection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                arrayOf(
+                    MediaStore.Files.FileColumns.RELATIVE_PATH,
+                    MediaStore.Files.FileColumns.DATA,
+                    MediaStore.Files.FileColumns.DISPLAY_NAME,
+                )
+            } else {
+                arrayOf(
+                    MediaStore.Files.FileColumns.DATA,
+                    MediaStore.Files.FileColumns.DISPLAY_NAME,
+                )
+            }
+            context.contentResolver.query(
+                uri,
+                projection,
+                null,
+                null,
+                null
+            )?.use { cursor ->
+                val results = HashSet<String>(cursor.count)
+                while (cursor.moveToNext()) {
+                    val absolutePath =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
+                    val displayName =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME))
+                    val relativePath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.RELATIVE_PATH))
+                    } else {
+                        guessRelativePath(absolutePath, displayName)
+                    }
+                    results.add(relativePath)
+                }
+                return@withContext results
+            }
+        }
+        return res ?: setOf()
+    }
+
     suspend fun deleteFile(file: MediaStoreFile) {
         withContext(Dispatchers.IO) {
             context.contentResolver.delete(idToUri(file.id), null, null)

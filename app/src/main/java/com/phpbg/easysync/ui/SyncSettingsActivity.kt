@@ -24,6 +24,7 @@
 
 package com.phpbg.easysync.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -43,11 +44,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.phpbg.easysync.R
 import com.phpbg.easysync.settings.ConflictStrategy
 import com.phpbg.easysync.ui.components.Description
 import com.phpbg.easysync.ui.components.RadioGroup
+import com.phpbg.easysync.ui.components.StatusTitleClickable
 import com.phpbg.easysync.ui.components.StdText
 import com.phpbg.easysync.ui.components.SwitchSetting
 import com.phpbg.easysync.ui.components.Title
@@ -98,6 +104,7 @@ private fun Main(
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
+        val mContext = LocalContext.current
         Title(text = stringResource(R.string.sync_settings_title))
         Spacer(modifier = Modifier.height(16.dp))
         SwitchSetting(
@@ -121,6 +128,17 @@ private fun Main(
             ConflictStrategy.KEEP_REMOTE.name to stringResource(R.string.sync_settings_conflicts_strategy_keep_remote)
         )
         RadioGroup(options, selected = conflictStrategy.name, onClick = conflictStrategyHandler)
+        Spacer(modifier = Modifier.height(16.dp))
+        StatusTitleClickable(
+            title = null,
+            actionTitle = stringResource(R.string.sync_settings_advanced),
+            statusColor = Color.Gray,
+            statusIcon = Icons.Default.Settings,
+            clickHandler = {
+                val myIntent = Intent(mContext, AdvancedSyncSettingsActivity::class.java)
+                mContext.startActivity(myIntent)
+            },
+        )
     }
 }
 

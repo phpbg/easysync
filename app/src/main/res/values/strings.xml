@@ -1,4 +1,6 @@
 <resources>
+    <string name="advanced_sync_settings_activity_help">Select which folders are synced</string>
+    <string name="advanced_sync_settings_activity_title">Advanced Synchronization settings</string>
     <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">Please grant permissions to allow synchronization</string>
     <string name="notification_missing_permissions_title">Synchronization failed</string>
@@ -52,6 +54,7 @@
     <string name="permissions_next">Next</string>
     <string name="sync_errors_activity_no_error">No synchronization error</string>
     <string name="sync_errors_activity_title">Synchronization errors</string>
+    <string name="sync_settings_advanced">Advanced synchronization settings</string>
     <string name="sync_settings_title">Synchronization settings</string>
     <string name="sync_settings_activity_title">Synchronization settings</string>
     <string name="sync_settings_conflicts_title">Conflicts handling</string>

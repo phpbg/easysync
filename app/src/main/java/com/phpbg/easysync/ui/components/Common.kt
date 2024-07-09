@@ -102,7 +102,16 @@ fun RadioChoice(text: String, selected: Boolean, onClick: () -> Unit) {
 
 @Composable
 fun SwitchSetting(
-    title: String,
+    description: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    SwitchSetting(title = null, description = description, checked = checked, onCheckedChange = onCheckedChange)
+}
+
+@Composable
+fun SwitchSetting(
+    title: String?,
     description: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
@@ -113,7 +122,10 @@ fun SwitchSetting(
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(modifier = Modifier.weight(1F)) {
-            StdText(title)
+            if (title != null) {
+                StdText(title)
+            }
+
             Description(text = description)
         }
         Switch(checked = checked, onCheckedChange = onCheckedChange)
@@ -127,6 +139,17 @@ private fun SwitchSettingPreview() {
     EasySyncTheme {
         SwitchSetting(
             title = "Foo",
+            description = "Foo bar baz",
+            checked = false,
+            onCheckedChange = {})
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Composable
+private fun SwitchSettingPreviewNoTitle() {
+    EasySyncTheme {
+        SwitchSetting(
             description = "Foo bar baz",
             checked = false,
             onCheckedChange = {})
