@@ -70,8 +70,6 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
                 }
                 _advancedSyncSettingsUiState.postValue(AdvancedSyncSettingsUiState(paths = updatedList))
                 settingsDataStore.updateExclusionPath(relativePath, !activated)
-
-                // TODO insert a job that will clean database and restart sync
             }
         }
     }
