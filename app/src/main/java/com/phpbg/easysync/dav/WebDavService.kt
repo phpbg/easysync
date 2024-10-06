@@ -42,6 +42,8 @@ import com.phpbg.easysync.util.ParametrizedMutex
 import com.phpbg.easysync.util.TTLHashSet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
@@ -122,6 +124,21 @@ class WebDavService(
 
     suspend fun getChildren(path: CollectionPath): List<Resource> {
         return list(path).filter { it.relativeHref.getPath() != path.getPath() }
+    }
+
+    suspend fun getAllCollections(path: CollectionPath): Set<String> {
+        val collections = mutableSetOf<String>()
+        val children = getChildren(path)
+        children.filter { it.isCollection }.map { child ->
+            CoroutineScope(Dispatchers.IO).async {
+                listOf(child.relativeHref.getPathNoLeading()) + getAllCollections(
+                    CollectionPath(
+                        child.relativeHref.getPath()
+                    )
+                )
+            }
+        }.awaitAll().flatten().also { collections.addAll(it) }
+        return collections
     }
 
     suspend fun listCached(path: CollectionPath): List<Resource> {

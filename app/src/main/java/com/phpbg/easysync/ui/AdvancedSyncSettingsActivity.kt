@@ -36,6 +36,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -93,12 +94,17 @@ private fun Main(
         Spacer(modifier = Modifier.height(16.dp))
         StdText(text = stringResource(R.string.advanced_sync_settings_activity_help))
         Spacer(modifier = Modifier.height(16.dp))
-        uiState.paths.forEach { syncPath ->
-            SwitchSetting(
-                description = syncPath.relativePath,
-                checked = syncPath.enabled
-            ) { newState ->
-                toggleExclusionHandler(syncPath.relativePath, newState)
+
+        if (uiState.paths.isEmpty()) {
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.outline)
+        } else {
+            uiState.paths.forEach { syncPath ->
+                SwitchSetting(
+                    description = syncPath.relativePath,
+                    checked = syncPath.enabled
+                ) { newState ->
+                    toggleExclusionHandler(syncPath.relativePath, newState)
+                }
             }
         }
     }

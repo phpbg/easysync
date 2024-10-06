@@ -29,6 +29,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.phpbg.easysync.dav.CollectionPath
+import com.phpbg.easysync.dav.WebDavService
 import com.phpbg.easysync.mediastore.MediaStoreService
 import com.phpbg.easysync.settings.Settings
 import com.phpbg.easysync.settings.SettingsDataStore
@@ -45,13 +47,18 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
 
     fun load() {
         viewModelScope.launch {
-            val (_paths, _settings) = awaitAll(
+            val (_paths, _settings, _davPaths) = awaitAll(
                 async { mediaStoreService.getAllPaths() },
                 async { settingsDataStore.getSettings() },
+                async {
+                    val webDavService = WebDavService.create(settingsDataStore.getSettings())
+                    webDavService.getAllCollections(CollectionPath("/"))
+                }
             )
             val paths = _paths as Set<String>
+            val davPaths = _davPaths as Set<String>
             val settings = _settings as Settings
-            val syncPaths = paths.toSortedSet().map {
+            val syncPaths = (paths + davPaths).toSortedSet().map {
                 SyncPath(
                     relativePath = it,
                     enabled = !settings.pathExclusions.contains(it)
