@@ -1,0 +1,1 @@
+Dem Benutzer erlauben, synchronisierte Ordner auszuwählen

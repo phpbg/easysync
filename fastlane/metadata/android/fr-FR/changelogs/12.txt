@@ -1,0 +1,1 @@
+Autorise l'utilisateur à sélectionner les dossiers synchronisés
