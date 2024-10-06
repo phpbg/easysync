@@ -75,6 +75,10 @@ class SyncService(
 
     suspend fun syncOne(mediaStoreFile: MediaStoreFile, skipIfInDb: Boolean) {
         Log.d(TAG, "SyncOne $mediaStoreFile")
+        if (getPathExclusions().contains(mediaStoreFile.relativePath)) {
+            Log.d(TAG, "SyncOne skipped, file is excluded $mediaStoreFile")
+            return
+        }
         val dbFile = fileDao.findById(mediaStoreFile.id)
         if (dbFile != null) {
             if (skipIfInDb) {
@@ -126,6 +130,13 @@ class SyncService(
     private suspend fun resyncFile(dbFile: File) {
         Log.d(TAG, "Resync file $dbFile")
         val davFilePath = com.phpbg.easysync.dav.File(dbFile.pathname)
+
+        if (getPathExclusions().contains(davFilePath.getPathNoLeading())) {
+            Log.d(TAG, "File is excluded, remove from database $dbFile")
+            fileDao.delete(dbFile)
+            return
+        }
+
         val remoteFile = try {
             webDavService.getPropertiesFromParentCache(davFilePath)
         } catch (e: NotFoundExeption) {
@@ -295,6 +306,10 @@ class SyncService(
 
     suspend fun handleSyncResource(path: com.phpbg.easysync.dav.File) {
         val pathStr = path.getPath()
+        if (getPathExclusions().contains(path.getPathNoLeading())) {
+            Log.d(TAG, "DAV file excluded, skipping $pathStr")
+            return
+        }
         val dbFile = fileDao.findByName(pathStr)
         val localPath =
             Environment.getExternalStorageDirectory().canonicalPath + pathStr

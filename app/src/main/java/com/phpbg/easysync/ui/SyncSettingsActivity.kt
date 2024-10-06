@@ -129,6 +129,8 @@ private fun Main(
         )
         RadioGroup(options, selected = conflictStrategy.name, onClick = conflictStrategyHandler)
         Spacer(modifier = Modifier.height(16.dp))
+
+        // TODO disable if no conflict strategy
         StatusTitleClickable(
             title = null,
             actionTitle = stringResource(R.string.sync_settings_advanced),
