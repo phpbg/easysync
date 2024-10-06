@@ -136,7 +136,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private fun loadImages() {
         Log.i(TAG, "load images")
         viewModelScope.launch {
-            _localFilesCount.postValue(mediaStoreService.countAll())
+            _localFilesCount.postValue(mediaStoreService.countAll(settingsDataStore.getSettings().pathExclusions))
 
             if (contentObserver == null) {
                 contentObserver = getApplication<Application>().contentResolver.registerObserver(

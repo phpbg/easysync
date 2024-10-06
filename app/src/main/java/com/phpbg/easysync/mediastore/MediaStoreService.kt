@@ -65,9 +65,10 @@ class MediaStoreService(private val context: Context) {
      * E.g. a donwloaded image will be present both in Downloads and Images
      * For this reasons we merge all IDs in a Set
      */
-    suspend fun getAllIds(): Set<Long> {
+    suspend fun getAllIds(pathExclusions: Set<String>): Set<Long> {
         return URIS
             .flatMap { getByUri(it) }
+            .filter { !pathExclusions.contains(it.relativePath) }
             .map { it.id  }
             .toSet()
     }
@@ -75,8 +76,8 @@ class MediaStoreService(private val context: Context) {
     /**
      * Count all unique files to be synced
      */
-    suspend fun countAll(): Int {
-        return getAllIds().size
+    suspend fun countAll(pathExclusions: Set<String>): Int {
+        return getAllIds(pathExclusions).size
     }
 
     /**

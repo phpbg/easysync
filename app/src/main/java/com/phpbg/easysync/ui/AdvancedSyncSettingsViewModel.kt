@@ -62,6 +62,17 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
     }
 
     fun toggleExclusion(relativePath: String, activated: Boolean) {
-        println("TODO $relativePath $activated")
+        viewModelScope.launch {
+            _advancedSyncSettingsUiState.value?.let { uiState ->
+                val updatedList = uiState.paths.map {
+                    it.takeIf { it.relativePath != relativePath }
+                        ?: SyncPath(relativePath = it.relativePath, enabled = activated)
+                }
+                _advancedSyncSettingsUiState.postValue(AdvancedSyncSettingsUiState(paths = updatedList))
+                settingsDataStore.updateExclusionPath(relativePath, !activated)
+
+                // TODO insert a job that will clean database and restart sync
+            }
+        }
     }
 }

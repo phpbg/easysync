@@ -68,6 +68,11 @@ class SyncService(
         return settings.conflictStrategy
     }
 
+    private suspend fun getPathExclusions(): Set<String> {
+        val settings = settingsDatastore.getSettings()
+        return settings.pathExclusions
+    }
+
     suspend fun syncOne(mediaStoreFile: MediaStoreFile, skipIfInDb: Boolean) {
         Log.d(TAG, "SyncOne $mediaStoreFile")
         val dbFile = fileDao.findById(mediaStoreFile.id)
@@ -99,7 +104,7 @@ class SyncService(
             }
 
             // Sync only new files from local
-            mediaStoreService.getAllIds().subtract(fileDao.getAllids().toSet()).forEach {
+            mediaStoreService.getAllIds(getPathExclusions()).subtract(fileDao.getAllids().toSet()).forEach {
                 MediastoreIdSyncWorker.enqueue(
                     context,
                     it,
