@@ -131,7 +131,10 @@ class SyncService(
         Log.d(TAG, "Resync file $dbFile")
         val davFilePath = com.phpbg.easysync.dav.File(dbFile.pathname)
 
-        if (getPathExclusions().contains(davFilePath.getPathNoLeading())) {
+        if (dbFile.isCollection && getPathExclusions().contains(davFilePath.getPathNoLeading()) || !dbFile.isCollection && getPathExclusions().contains(
+                davFilePath.getParent().getPathNoLeading()
+            )
+        ) {
             Log.d(TAG, "File is excluded, remove from database $dbFile")
             fileDao.delete(dbFile)
             return
@@ -306,7 +309,7 @@ class SyncService(
 
     suspend fun handleSyncResource(path: com.phpbg.easysync.dav.File) {
         val pathStr = path.getPath()
-        if (getPathExclusions().contains(path.getPathNoLeading())) {
+        if (getPathExclusions().contains(path.getParent().getPathNoLeading())) {
             Log.d(TAG, "DAV file excluded, skipping $pathStr")
             return
         }
