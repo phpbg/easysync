@@ -247,6 +247,18 @@ private fun Main(
             },
         )
 
+        if (neverSynced) {
+            StatusTitleClickable(
+                title = null,
+                actionTitle = stringResource(R.string.home_action_sync_now_initial_start_hint),
+                statusColor = Color.Yellow,
+                statusIcon = Icons.Default.Info,
+                clickHandler = {
+                    fullSyncNowHandler()
+                },
+            )
+        }
+
         StatusTitleClickable(
             title = null,
             actionTitle = stringResource(R.string.about),

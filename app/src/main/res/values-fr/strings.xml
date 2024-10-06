@@ -19,6 +19,7 @@
     <string name="dav_settings_show_password">Afficher le mot de passe</string>
     <string name="home_action_sync_now">Synchroniser</string>
     <string name="home_action_sync_now_initial_start">Démarrer la synchronisation</string>
+    <string name="home_action_sync_now_initial_start_hint">La synchronisation n\'est pas encore démarrée. Démarrer…</string>
     <string name="home_dav_status_connected">DAV Connecté.</string>
     <string name="home_dav_status_loading">Connexion DAV en cours.</string>
     <string name="home_dav_status_not_configured">DAV non configuré.</string>
