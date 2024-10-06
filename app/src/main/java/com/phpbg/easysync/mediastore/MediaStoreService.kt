@@ -67,8 +67,9 @@ class MediaStoreService(private val context: Context) {
      */
     suspend fun getAllIds(): Set<Long> {
         return URIS
-            .map { queryIds(it) }
-            .reduce { acc, longs -> acc.union(longs) }
+            .flatMap { getByUri(it) }
+            .map { it.id  }
+            .toSet()
     }
 
     /**
@@ -78,70 +79,14 @@ class MediaStoreService(private val context: Context) {
         return getAllIds().size
     }
 
-    private suspend fun queryIds(uri: Uri): Set<Long> {
-        val res = withContext(Dispatchers.IO) {
-            context.contentResolver.query(
-                uri,
-                arrayOf(MediaStore.Files.FileColumns._ID),
-                null,
-                null,
-                null
-            )?.use { cursor ->
-                val results = HashSet<Long>(cursor.count)
-                val idColumnIndex = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
-                while (cursor.moveToNext()) {
-                    results.add(cursor.getLong(idColumnIndex))
-                }
-                return@withContext results
-            }
-        }
-        return res ?: setOf()
-    }
-
+    /**
+     * Return all unique paths syncable in mediastore
+     */
     suspend fun getAllPaths(): Set<String> {
         return URIS
-            .map { queryPaths(it) }
-            .reduce { acc, paths -> acc.union(paths) }
-    }
-
-    private suspend fun queryPaths(uri: Uri): Set<String> {
-        val res = withContext(Dispatchers.IO) {
-            val projection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                arrayOf(
-                    MediaStore.Files.FileColumns.RELATIVE_PATH,
-                    MediaStore.Files.FileColumns.DATA,
-                    MediaStore.Files.FileColumns.DISPLAY_NAME,
-                )
-            } else {
-                arrayOf(
-                    MediaStore.Files.FileColumns.DATA,
-                    MediaStore.Files.FileColumns.DISPLAY_NAME,
-                )
-            }
-            context.contentResolver.query(
-                uri,
-                projection,
-                null,
-                null,
-                null
-            )?.use { cursor ->
-                val results = HashSet<String>(cursor.count)
-                while (cursor.moveToNext()) {
-                    val absolutePath =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA))
-                    val displayName =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME))
-                    val relativePath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.RELATIVE_PATH))
-                    } else {
-                        guessRelativePath(absolutePath, displayName)
-                    }
-                    results.add(relativePath)
-                }
-                return@withContext results
-            }
-        }
-        return res ?: setOf()
+            .flatMap { getByUri(it) }
+            .map { it.relativePath  }
+            .toSet()
     }
 
     suspend fun deleteFile(file: MediaStoreFile) {
