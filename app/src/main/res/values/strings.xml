@@ -20,6 +20,7 @@
     <string name="dav_settings_save_anyway">Save anyway</string>
     <string name="dav_settings_show_password">Show password</string>
     <string name="home_action_sync_now">Sync now</string>
+    <string name="home_action_sync_now_initial_start">Start sync</string>
     <string name="home_dav_status_connected">DAV Connected.</string>
     <string name="home_dav_status_loading">DAV loading.</string>
     <string name="home_dav_status_not_configured">DAV not configured.</string>

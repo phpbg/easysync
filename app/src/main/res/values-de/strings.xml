@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="advanced_sync_settings_activity_help">Wählen Sie aus, welche Ordner synchronisiert werden sollen</string>
+    <string name="advanced_sync_settings_activity_title">Erweiterte Synchronisierungseinstellungen</string>
     <string name="notification_missing_permissions_text">Bitte erteilen Sie Berechtigungen, um die Synchronisation zu ermöglichen</string>
     <string name="notification_missing_permissions_title">Synchronisation fehlgeschlagen</string>
     <string name="notification_sync_error_text">Einige Dateien konnten nicht ordnungsgemäß synchronisiert werden</string>
@@ -18,6 +20,7 @@
     <string name="dav_settings_save_anyway">Trotzdem speichern</string>
     <string name="dav_settings_show_password">Passwort anzeigen</string>
     <string name="home_action_sync_now">Jetzt synchronisieren</string>
+    <string name="home_action_sync_now_initial_start">Synchronisierung starten</string>
     <string name="home_dav_status_connected">DAV verbunden.</string>
     <string name="home_dav_status_loading">DAV wird geladen.</string>
     <string name="home_dav_status_not_configured">DAV nicht konfiguriert.</string>
@@ -52,6 +55,7 @@
     <string name="permissions_next">Weiter</string>
     <string name="sync_errors_activity_no_error">Kein Synchronisierungsfehler</string>
     <string name="sync_errors_activity_title">Synchronisierungsfehler</string>
+    <string name="sync_settings_advanced">Erweiterte Synchronisierungseinstellungen</string>
     <string name="sync_settings_title">Synchronisationseinstellungen</string>
     <string name="sync_settings_activity_title">Synchronisationseinstellungen</string>
     <string name="sync_settings_conflicts_title">Konfliktbehandlung</string>
