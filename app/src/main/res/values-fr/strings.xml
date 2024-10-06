@@ -61,6 +61,7 @@
     <string name="sync_settings_activity_title">Paramètres de synchronisation</string>
     <string name="sync_settings_conflicts_title">Conflits</string>
     <string name="sync_settings_conflicts_desc">Si un fichier est modifié des deux côtés:</string>
+    <string name="sync_settings_conflicts_not_recommended">Choisissez une stratégie de résolution des conflits pour accéder aux paramètres avancés</string>
     <string name="sync_settings_conflicts_strategy_keep_local">Garder la copie locale (écraser la distante)</string>
     <string name="sync_settings_conflicts_strategy_ignore">Ignorer</string>
     <string name="sync_settings_conflicts_strategy_keep_remote">Garder la copie distante (écraser la locale)</string>

@@ -61,6 +61,7 @@
     <string name="sync_settings_activity_title">Synchronization settings</string>
     <string name="sync_settings_conflicts_title">Conflicts handling</string>
     <string name="sync_settings_conflicts_desc">If a file is modified on both side:</string>
+    <string name="sync_settings_conflicts_not_recommended">Pick a conflict strategy to unlock advanced settings</string>
     <string name="sync_settings_conflicts_strategy_keep_local">Keep local copy (overwrite remote file)</string>
     <string name="sync_settings_conflicts_strategy_ignore">Ignore file</string>
     <string name="sync_settings_conflicts_strategy_keep_remote">Keep remote copy (overwrite local file)</string>

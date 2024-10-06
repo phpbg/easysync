@@ -61,6 +61,7 @@
     <string name="sync_settings_activity_title">Synchronisationseinstellungen</string>
     <string name="sync_settings_conflicts_title">Konfliktbehandlung</string>
     <string name="sync_settings_conflicts_desc">Wenn eine Datei auf beiden Seiten geändert wurde:</string>
+    <string name="sync_settings_conflicts_not_recommended">Wählen Sie eine Konfliktstrategie, um die erweiterten Einstellungen freizuschalten</string>
     <string name="sync_settings_conflicts_strategy_keep_local">Lokale Kopie behalten (Überschreibe die entfernte Kopie)</string>
     <string name="sync_settings_conflicts_strategy_ignore">Datei ignorieren</string>
     <string name="sync_settings_conflicts_strategy_keep_remote">Entfernte Kopie behalten (Überschreibe die lokale Kopie)</string>

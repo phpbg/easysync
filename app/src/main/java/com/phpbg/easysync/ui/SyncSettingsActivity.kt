@@ -130,17 +130,21 @@ private fun Main(
         RadioGroup(options, selected = conflictStrategy.name, onClick = conflictStrategyHandler)
         Spacer(modifier = Modifier.height(16.dp))
 
-        // TODO disable if no conflict strategy
-        StatusTitleClickable(
-            title = null,
-            actionTitle = stringResource(R.string.sync_settings_advanced),
-            statusColor = Color.Gray,
-            statusIcon = Icons.Default.Settings,
-            clickHandler = {
-                val myIntent = Intent(mContext, AdvancedSyncSettingsActivity::class.java)
-                mContext.startActivity(myIntent)
-            },
-        )
+        if (conflictStrategy.name == ConflictStrategy.IGNORE.name) {
+            StdText(stringResource(R.string.sync_settings_advanced))
+            Description(stringResource(R.string.sync_settings_conflicts_not_recommended))
+        } else {
+            StatusTitleClickable(
+                title = null,
+                actionTitle = stringResource(R.string.sync_settings_advanced),
+                statusColor = Color.Gray,
+                statusIcon = Icons.Default.Settings,
+                clickHandler = {
+                    val myIntent = Intent(mContext, AdvancedSyncSettingsActivity::class.java)
+                    mContext.startActivity(myIntent)
+                },
+            )
+        }
     }
 }
 

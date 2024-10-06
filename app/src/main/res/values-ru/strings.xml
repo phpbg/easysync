@@ -62,6 +62,7 @@
     <string name="sync_settings_activity_title">Настройки синхронизации</string>
     <string name="sync_settings_conflicts_title">Разрешение конфликтов</string>
     <string name="sync_settings_conflicts_desc">Если файл изменен на обеих сторонах:</string>
+    <string name="sync_settings_conflicts_not_recommended">Выберите стратегию разрешения конфликтов, чтобы разблокировать расширенные настройки</string>
     <string name="sync_settings_conflicts_strategy_keep_local">Сохранить локальную копию (перезаписать удаленную копию)</string>
     <string name="sync_settings_conflicts_strategy_ignore">Игнорировать файл</string>
     <string name="sync_settings_conflicts_strategy_keep_remote">Сохранить удаленную копию (перезаписать локальную копию)</string>
