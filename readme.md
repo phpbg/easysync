@@ -51,7 +51,7 @@ Everything not explicitly stated above is not synchronized. More specifically:
 * Android settings and phone customization
 
 ### Can I choose what is synchronized
-No
+All files are synced unless you explicitly exclude folders.
 
 ### Will it eat all my cellular data plan?
 No, you can choose if you allow sync on cellular or only on wifi.

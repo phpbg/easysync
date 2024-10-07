@@ -1,4 +1,6 @@
 <resources>
+    <string name="advanced_sync_settings_activity_help">Выберите, какие папки синхронизировать</string>
+    <string name="advanced_sync_settings_activity_title">Настройки расширенной синхронизации</string>
     <string name="notification_missing_permissions_text">Пожалуйста предоставьте разрешения для синхронизации.</string>
     <string name="notification_missing_permissions_title">Синхронизация неуспешна</string>
     <string name="notification_sync_error_text">Некоторые файлы не удалось синхронизировать должным образом</string>
@@ -17,6 +19,8 @@
     <string name="dav_settings_save_anyway">Сохранить всё равно</string>
     <string name="dav_settings_show_password">Отобразить пароль</string>
     <string name="home_action_sync_now">Синхронизировать сейчас</string>
+    <string name="home_action_sync_now_initial_start">Начать синхронизацию</string>
+    <string name="home_action_sync_now_initial_start_hint">Синхронизация еще не запущена. Запустить сейчас</string>
     <string name="home_dav_status_connected">DAV подключён.</string>
     <string name="home_dav_status_loading">DAV загружается.</string>
     <string name="home_dav_status_not_configured">DAV не настроен.</string>
@@ -53,10 +57,12 @@
     <string name="permissions_next">Далее</string>
     <string name="sync_errors_activity_no_error">Нет ошибки синхронизации</string>
     <string name="sync_errors_activity_title">Ошибки синхронизации</string>
+    <string name="sync_settings_advanced">Настройки расширенной синхронизации</string>
     <string name="sync_settings_title">Настройки синхронизации</string>
     <string name="sync_settings_activity_title">Настройки синхронизации</string>
     <string name="sync_settings_conflicts_title">Разрешение конфликтов</string>
     <string name="sync_settings_conflicts_desc">Если файл изменен на обеих сторонах:</string>
+    <string name="sync_settings_conflicts_not_recommended">Выберите стратегию разрешения конфликтов, чтобы разблокировать расширенные настройки</string>
     <string name="sync_settings_conflicts_strategy_keep_local">Сохранить локальную копию (перезаписать удаленную копию)</string>
     <string name="sync_settings_conflicts_strategy_ignore">Игнорировать файл</string>
     <string name="sync_settings_conflicts_strategy_keep_remote">Сохранить удаленную копию (перезаписать локальную копию)</string>

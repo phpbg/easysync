@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2023 Samuel CHEMLA
+ * Copyright (c) 2024 Samuel CHEMLA
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +22,8 @@
  * SOFTWARE.
  */
 
-package com.phpbg.easysync.settings
-import kotlinx.serialization.Serializable
+package com.phpbg.easysync.ui
 
-@Serializable
-data class Settings(
-    val url: String = "",
-    val davPath: String = "/",
-    val username: String = "",
-    val password: String = "",
-    val syncOnCellular: Boolean = false,
-    val syncOnBattery: Boolean = false,
-    val conflictStrategy: ConflictStrategy = ConflictStrategy.IGNORE,
-    val syncIntervalMinutes: Long = 360,
-    val pathExclusions: Set<String> = setOf()
-)
+data class SyncPath(val relativePath: String, val enabled: Boolean)
+
+data class AdvancedSyncSettingsUiState(val paths: List<SyncPath>)

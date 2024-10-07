@@ -162,6 +162,7 @@ private fun Main(
     syncronizationErrorCount: Int,
 ) {
     val mContext = LocalContext.current
+    val neverSynced = workerState == null
     val syncEnabled = workerState == null || workerState != WorkInfo.State.RUNNING
 
     val scope = rememberCoroutineScope()
@@ -245,6 +246,18 @@ private fun Main(
                 mContext.startActivity(myIntent)
             },
         )
+
+        if (neverSynced) {
+            StatusTitleClickable(
+                title = null,
+                actionTitle = stringResource(R.string.home_action_sync_now_initial_start_hint),
+                statusColor = Color.Yellow,
+                statusIcon = Icons.Default.Info,
+                clickHandler = {
+                    fullSyncNowHandler()
+                },
+            )
+        }
 
         StatusTitleClickable(
             title = null,
@@ -385,7 +398,13 @@ private fun Main(
                 fullSyncNowHandler()
             }, enabled = syncEnabled) {
                 Text(
-                    text = stringResource(R.string.home_action_sync_now),
+                    text = stringResource(
+                        if (neverSynced) {
+                            R.string.home_action_sync_now_initial_start
+                        } else {
+                            R.string.home_action_sync_now
+                        }
+                    ),
                     style = MaterialTheme.typography.labelLarge
                 )
             }

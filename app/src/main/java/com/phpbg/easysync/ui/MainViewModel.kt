@@ -114,11 +114,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun load() {
         viewModelScope.launch {
-            // Make sure workers are enqueued
             val settings = settingsDataStore.getSettings()
             if (settings.url.isNotEmpty()) {
-                FileDetectWorker.enqueue(getApplication())
-                FullSyncWorker.enqueueKeep(getApplication())
                 showDavStatus.value = true
             }
         }
@@ -136,7 +133,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private fun loadImages() {
         Log.i(TAG, "load images")
         viewModelScope.launch {
-            _localFilesCount.postValue(mediaStoreService.countAll())
+            _localFilesCount.postValue(mediaStoreService.countAll(settingsDataStore.getSettings().pathExclusions))
 
             if (contentObserver == null) {
                 contentObserver = getApplication<Application>().contentResolver.registerObserver(
@@ -168,6 +165,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun fullSyncNowHandler() {
         viewModelScope.launch {
+            FileDetectWorker.enqueue(getApplication())
             FullSyncWorker.enqueueImmediate(getApplication())
         }
     }

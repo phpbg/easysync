@@ -65,37 +65,29 @@ class MediaStoreService(private val context: Context) {
      * E.g. a donwloaded image will be present both in Downloads and Images
      * For this reasons we merge all IDs in a Set
      */
-    suspend fun getAllIds(): Set<Long> {
+    suspend fun getAllIds(pathExclusions: Set<String>): Set<Long> {
         return URIS
-            .map { queryIds(it) }
-            .reduce { acc, longs -> acc.union(longs) }
+            .flatMap { getByUri(it) }
+            .filter { !pathExclusions.contains(it.relativePath) }
+            .map { it.id  }
+            .toSet()
     }
 
     /**
      * Count all unique files to be synced
      */
-    suspend fun countAll(): Int {
-        return getAllIds().size
+    suspend fun countAll(pathExclusions: Set<String>): Int {
+        return getAllIds(pathExclusions).size
     }
 
-    private suspend fun queryIds(uri: Uri): Set<Long> {
-        val res = withContext(Dispatchers.IO) {
-            context.contentResolver.query(
-                uri,
-                arrayOf(MediaStore.Files.FileColumns._ID),
-                null,
-                null,
-                null
-            )?.use { cursor ->
-                val results = HashSet<Long>(cursor.count)
-                val idColumnIndex = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
-                while (cursor.moveToNext()) {
-                    results.add(cursor.getLong(idColumnIndex))
-                }
-                return@withContext results
-            }
-        }
-        return res ?: setOf()
+    /**
+     * Return all unique paths syncable in mediastore
+     */
+    suspend fun getAllPaths(): Set<String> {
+        return URIS
+            .flatMap { getByUri(it) }
+            .map { it.relativePath  }
+            .toSet()
     }
 
     suspend fun deleteFile(file: MediaStoreFile) {

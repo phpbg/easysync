@@ -1,4 +1,6 @@
 <resources>
+    <string name="advanced_sync_settings_activity_help">Select which folders are synced</string>
+    <string name="advanced_sync_settings_activity_title">Advanced Synchronization settings</string>
     <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">Please grant permissions to allow synchronization</string>
     <string name="notification_missing_permissions_title">Synchronization failed</string>
@@ -18,6 +20,8 @@
     <string name="dav_settings_save_anyway">Save anyway</string>
     <string name="dav_settings_show_password">Show password</string>
     <string name="home_action_sync_now">Sync now</string>
+    <string name="home_action_sync_now_initial_start">Start sync</string>
+    <string name="home_action_sync_now_initial_start_hint">Sync not yet started. Start now</string>
     <string name="home_dav_status_connected">DAV Connected.</string>
     <string name="home_dav_status_loading">DAV loading.</string>
     <string name="home_dav_status_not_configured">DAV not configured.</string>
@@ -52,10 +56,12 @@
     <string name="permissions_next">Next</string>
     <string name="sync_errors_activity_no_error">No synchronization error</string>
     <string name="sync_errors_activity_title">Synchronization errors</string>
+    <string name="sync_settings_advanced">Advanced synchronization settings</string>
     <string name="sync_settings_title">Synchronization settings</string>
     <string name="sync_settings_activity_title">Synchronization settings</string>
     <string name="sync_settings_conflicts_title">Conflicts handling</string>
     <string name="sync_settings_conflicts_desc">If a file is modified on both side:</string>
+    <string name="sync_settings_conflicts_not_recommended">Pick a conflict strategy to unlock advanced settings</string>
     <string name="sync_settings_conflicts_strategy_keep_local">Keep local copy (overwrite remote file)</string>
     <string name="sync_settings_conflicts_strategy_ignore">Ignore file</string>
     <string name="sync_settings_conflicts_strategy_keep_remote">Keep remote copy (overwrite local file)</string>

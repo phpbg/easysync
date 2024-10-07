@@ -69,4 +69,15 @@ class SettingsDataStore constructor(context: Context) {
             currentSettings.copy(conflictStrategy = conflictStrategy)
         }
     }
+
+    suspend fun updateExclusionPath(relativePath: String, isExcluded: Boolean) {
+        dataSource.updateData { currentSettings ->
+            currentSettings.copy(
+                pathExclusions = when {
+                    isExcluded -> currentSettings.pathExclusions + relativePath
+                    else -> currentSettings.pathExclusions - relativePath
+                }
+            )
+        }
+    }
 }
