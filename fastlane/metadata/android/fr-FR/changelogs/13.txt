@@ -1,0 +1,1 @@
+Correctif : les paramètres de l'application peuvent planter lorsque le serveur WebDAV est inaccessible

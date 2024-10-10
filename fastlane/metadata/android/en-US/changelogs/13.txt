@@ -1,0 +1,1 @@
+Fix: app settings may crash when webdav server is not reachable

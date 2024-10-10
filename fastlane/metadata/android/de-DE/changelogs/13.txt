@@ -1,0 +1,1 @@
+Fehlerbehebung: App-Einstellungen können abstürzen, wenn der WebDAV-Server nicht erreichbar ist
