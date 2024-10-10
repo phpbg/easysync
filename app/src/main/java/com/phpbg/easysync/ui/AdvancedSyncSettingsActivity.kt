@@ -36,16 +36,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.phpbg.easysync.R
+import com.phpbg.easysync.ui.components.StatusTitle
 import com.phpbg.easysync.ui.components.StdText
 import com.phpbg.easysync.ui.components.SwitchSetting
 import com.phpbg.easysync.ui.components.Title
@@ -70,7 +74,7 @@ class AdvancedSyncSettingsActivity : ComponentActivity() {
                 ) {
                     val uiState = viewModel.advancedSyncSettingsUiState.observeAsState()
                     Main(
-                        uiState = uiState.value ?: AdvancedSyncSettingsUiState(paths = listOf()),
+                        uiState = uiState.value ?: AdvancedSyncSettingsUiState(paths = listOf(), errorMsg = null),
                         toggleExclusionHandler = viewModel::toggleExclusion
                     )
                 }
@@ -94,6 +98,14 @@ private fun Main(
         Spacer(modifier = Modifier.height(16.dp))
         StdText(text = stringResource(R.string.advanced_sync_settings_activity_help))
         Spacer(modifier = Modifier.height(16.dp))
+
+        if (!uiState.errorMsg.isNullOrEmpty()) {
+            StatusTitle(
+                title = uiState.errorMsg,
+                statusColor = Color.Red,
+                statusIcon = Icons.Default.Warning
+            )
+        }
 
         if (uiState.paths.isEmpty()) {
             CircularProgressIndicator(color = MaterialTheme.colorScheme.outline)
@@ -125,6 +137,28 @@ private fun MainPreview() {
                     SyncPath(relativePath = "/bar/baz", enabled = false),
                     SyncPath(relativePath = "/quuux", enabled = true)
                 ),
+                errorMsg = null
+            ),
+            toggleExclusionHandler = { _, _ -> }
+        )
+    }
+}
+
+@Preview(name = "Light Mode", showBackground = true)
+@Composable
+private fun MainPreviewError() {
+    EasySyncTheme {
+        Main(
+            uiState = AdvancedSyncSettingsUiState(
+                paths = listOf(
+                    SyncPath(
+                        relativePath = "/foo",
+                        enabled = true
+                    ),
+                    SyncPath(relativePath = "/bar/baz", enabled = false),
+                    SyncPath(relativePath = "/quuux", enabled = true)
+                ),
+                errorMsg = "WebDav error: unable to resolve host"
             ),
             toggleExclusionHandler = { _, _ -> }
         )

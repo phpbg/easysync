@@ -32,7 +32,6 @@ import androidx.lifecycle.viewModelScope
 import com.phpbg.easysync.dav.CollectionPath
 import com.phpbg.easysync.dav.WebDavService
 import com.phpbg.easysync.mediastore.MediaStoreService
-import com.phpbg.easysync.settings.Settings
 import com.phpbg.easysync.settings.SettingsDataStore
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -47,24 +46,32 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
 
     fun load() {
         viewModelScope.launch {
-            val (_paths, _settings, _davPaths) = awaitAll(
+            var error: String? = null
+            val settings = settingsDataStore.getSettings()
+            val (paths, davPaths) = awaitAll(
                 async { mediaStoreService.getAllPaths() },
-                async { settingsDataStore.getSettings() },
                 async {
-                    val webDavService = WebDavService.create(settingsDataStore.getSettings())
-                    webDavService.getAllCollections(CollectionPath("/"))
+                    try {
+                        val webDavService = WebDavService.create(settingsDataStore.getSettings())
+                        webDavService.getAllCollections(CollectionPath("/"))
+                    } catch (e: Exception) {
+                        error = "WebDav error: ${e.message ?: "unknown webdav error"}"
+                        setOf()
+                    }
                 }
             )
-            val paths = _paths as Set<String>
-            val davPaths = _davPaths as Set<String>
-            val settings = _settings as Settings
             val syncPaths = (paths + davPaths).toSortedSet().map {
                 SyncPath(
                     relativePath = it,
                     enabled = !settings.pathExclusions.contains(it)
                 )
             }
-            _advancedSyncSettingsUiState.postValue(AdvancedSyncSettingsUiState(paths = syncPaths))
+            _advancedSyncSettingsUiState.postValue(
+                AdvancedSyncSettingsUiState(
+                    paths = syncPaths,
+                    errorMsg = error
+                )
+            )
         }
     }
 
@@ -75,7 +82,7 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
                     it.takeIf { it.relativePath != relativePath }
                         ?: SyncPath(relativePath = it.relativePath, enabled = activated)
                 }
-                _advancedSyncSettingsUiState.postValue(AdvancedSyncSettingsUiState(paths = updatedList))
+                _advancedSyncSettingsUiState.postValue(uiState.copy(paths = updatedList))
                 settingsDataStore.updateExclusionPath(relativePath, !activated)
             }
         }
