@@ -154,7 +154,6 @@ by [these terms and conditions and legal disclaimer.](./LICENSE)
 * Fix: handle permissions rejected that cannot be asked anymore (the permission activity doesn't
   start)
 * Feature: check for low free space on dav or on device
-* Feature: show a notification if too many sync jobs fail (e.g. when remote dav is not reacheable)
 * Optimization: when new remote files are locally added during FullSync, a FileSync is trigged which
   is useless. See if we can avoid this
 
