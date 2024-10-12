@@ -125,6 +125,7 @@ It should work with any DAV compliant server.
 | [Lighttpd](https://redmine.lighttpd.net/projects/lighttpd/wiki/Mod_webdav) | ❌ No                               | no etag support.                                                                                                                                |
 | [Mailbox](https://mailbox.org/)                                            | ❌ No                               | no etag support. Use https://office.mailbox.org/servlet/webdav.infostore as URL and /Userstore/<firstname lastname>/Documents as remote folder. |
 | [nginx](http://nginx.org/en/docs/http/ngx_http_dav_module.html)            | ❌ No                               | no etag support.                                                                                                                                |
+| [Photoprism](https://docs.photoprism.app/user-guide/sync/webdav/)          | ❓ Unknown                          | reported to work, but no information on file creation timestamp support                                                                         |
 
 ## Sync is slow on Nextcloud
 
