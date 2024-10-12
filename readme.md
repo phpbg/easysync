@@ -115,15 +115,16 @@ You can add your own trusted certificate in android `Settings` > `Encryption and
 
 It should work with any DAV compliant server.
 
-| WebDAV Server                                                       | Preserves file creation timestamps | Notes                                                                                                                                           |
-|---------------------------------------------------------------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Nextcloud](https://nextcloud.com/files/)                           | ✅ Yes                              |                                                                                                                                                 |
-| [owncloud](https://owncloud.com/)                                   | ✅ Yes                              |                                                                                                                                                 |
-| [SFTPGo](https://github.com/drakkan/sftpgo)                         | ✅ Yes                              |                                                                                                                                                 |
-| [Apache](https://httpd.apache.org/docs/current/fr/mod/mod_dav.html) | ❌ No                               |                                                                                                                                                 |
-| [nginx](http://nginx.org/en/docs/http/ngx_http_dav_module.html)     | ❌ No                               | no etag support.                                                                                                                                | 
-| [Mailbox](https://mailbox.org/)                                     | ❌ No                               | no etag support. Use https://office.mailbox.org/servlet/webdav.infostore as URL and /Userstore/<firstname lastname>/Documents as remote folder. |
-| [Hacdias Webdav](https://github.com/hacdias/webdav)                 | ❌ No                               |                                                                                                                                                 |
+| WebDAV Server                                                              | Preserves file creation timestamps | Notes                                                                                                                                           |
+|----------------------------------------------------------------------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Nextcloud](https://nextcloud.com/files/)                                  | ✅ Yes                              |                                                                                                                                                 |
+| [owncloud](https://owncloud.com/)                                          | ✅ Yes                              |                                                                                                                                                 |
+| [SFTPGo](https://github.com/drakkan/sftpgo)                                | ✅ Yes                              |                                                                                                                                                 |
+| [Apache](https://httpd.apache.org/docs/current/fr/mod/mod_dav.html)        | ❌ No                               |                                                                                                                                                 | 
+| [Hacdias Webdav](https://github.com/hacdias/webdav)                        | ❌ No                               |                                                                                                                                                 |
+| [Lighttpd](https://redmine.lighttpd.net/projects/lighttpd/wiki/Mod_webdav) | ❌ No                               | no etag support.                                                                                                                                |
+| [Mailbox](https://mailbox.org/)                                            | ❌ No                               | no etag support. Use https://office.mailbox.org/servlet/webdav.infostore as URL and /Userstore/<firstname lastname>/Documents as remote folder. |
+| [nginx](http://nginx.org/en/docs/http/ngx_http_dav_module.html)            | ❌ No                               | no etag support.                                                                                                                                |
 
 ## Sync is slow on Nextcloud
 
