@@ -16,9 +16,9 @@ Synchronize your phone with your WebDAV server, the easy way.
 
 ### On Google Play
 
-<a href='https://play.google.com/store/apps/details?id=com.phpbg.easysync&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' style="display:flex;align-items:center">
-    <img width='240' alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
-    <img width='128' alt='Get it on Google Play' src='./qr-playstore.png'/>
+<a href='https://play.google.com/store/apps/details?id=com.phpbg.easysync&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+    <img align='center' width='240' alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+    <img align='center' width='128' alt='Get it on Google Play' src='./qr-playstore.png'/>
 </a>
 
 A free trial version (30 days) is
@@ -26,9 +26,9 @@ also [available here](https://play.google.com/store/apps/details?id=com.phpbg.ea
 
 ### On F-Droid
 
-<a href='https://f-droid.org/packages/com.phpbg.easysync' style="display:flex;align-items:center">
-    <img width='240' alt="Get it on F-Droid" src='https://fdroid.gitlab.io/artwork/badge/get-it-on.png'>
-    <img width='128' alt='Get it on F-Droid' src='./qr-fdroid.png'/>
+<a href='https://f-droid.org/packages/com.phpbg.easysync'>
+    <img align='center' width='240' alt="Get it on F-Droid" src='https://fdroid.gitlab.io/artwork/badge/get-it-on.png'>
+    <img align='center' width='128' alt='Get it on F-Droid' src='./qr-fdroid.png'/>
 </a>
 
 ## FAQ
