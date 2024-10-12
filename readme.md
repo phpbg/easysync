@@ -115,10 +115,18 @@ You can add your own trusted certificate in android `Settings` > `Encryption and
 
 It should work with any DAV compliant server.
 
-* Nextcloud / owncloud (full support: preserves file creation timestamps)
-* nginx (basic support: does not preserve file creation timestamps, no etag support)
-* apache (basic support: does not preserve file creation timestamps)
-* mailbox.org (basic support: does not preserve file creation timestamps, no etag support, use
+* [Nextcloud](https://nextcloud.com/files/) (full support: preserves file creation timestamps)
+* [owncloud](https://owncloud.com/) (full support: preserves file creation timestamps)
+* [SFTPGo](https://github.com/drakkan/sftpgo) Full-featured and highly configurable SFTP, HTTP/S,
+  FTP/S and WebDAV server - S3, Google Cloud Storage, Azure Blob (full support: preserves file
+  creation timestamps)
+* [apache](https://httpd.apache.org/docs/current/fr/mod/mod_dav.html) (basic support: does not
+  preserve file creation timestamps)
+* [nginx](http://nginx.org/en/docs/http/ngx_http_dav_module.html) (basic support: does not preserve
+  file creation timestamps, no etag support)
+* [Mailbox](https://mailbox.org/) (basic support: does not preserve file creation timestamps, no
+  etag
+  support, use
   `https://office.mailbox.org/servlet/webdav.infostore` as url and
   `/Userstore/<firstname lastname>/Documents` as remote folder)
 * [Hacdias Webdav](https://github.com/hacdias/webdav) A simple and standalone WebDAV server. (basic
