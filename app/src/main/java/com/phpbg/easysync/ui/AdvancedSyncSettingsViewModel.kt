@@ -79,11 +79,22 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
         viewModelScope.launch {
             _advancedSyncSettingsUiState.value?.let { uiState ->
                 val updatedList = uiState.paths.map {
-                    it.takeIf { it.relativePath != relativePath }
-                        ?: SyncPath(relativePath = it.relativePath, enabled = activated)
+                    // Update enabled status for path and sub-paths
+                    if (it.relativePath.startsWith(relativePath)) {
+                        it.copy(enabled = activated)
+                    } else {
+                        it
+                    }
                 }
                 _advancedSyncSettingsUiState.postValue(uiState.copy(paths = updatedList))
-                settingsDataStore.updateExclusionPath(relativePath, !activated)
+
+                // Update settings.exclusionPath
+                uiState.paths.filter { it.relativePath.startsWith(relativePath) }
+                    .forEach { subPath ->
+                        settingsDataStore.updateExclusionPath(
+                            subPath.relativePath, !activated
+                        )
+                    }
             }
         }
     }
