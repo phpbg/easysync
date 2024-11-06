@@ -111,7 +111,7 @@ You can add your own trusted certificate in android `Settings` > `Encryption and
     * https://consumer.huawei.com/eg-en/support/article-list/article-detail/en-gb15792041/
     * https://dontkillmyapp.com/huawei
 
-## Supported DAV servers
+## Supported WebDAV servers
 
 It should work with any DAV compliant server.
 
@@ -123,9 +123,15 @@ It should work with any DAV compliant server.
 | [Apache](https://httpd.apache.org/docs/current/fr/mod/mod_dav.html)        | ❌ No                               |                                                                                                                                                 | 
 | [Hacdias Webdav](https://github.com/hacdias/webdav)                        | ❌ No                               |                                                                                                                                                 |
 | [Lighttpd](https://redmine.lighttpd.net/projects/lighttpd/wiki/Mod_webdav) | ❌ No                               | no etag support.                                                                                                                                |
-| [Mailbox](https://mailbox.org/)                                            | ❌ No                               | no etag support. Use https://office.mailbox.org/servlet/webdav.infostore as URL and /Userstore/<firstname lastname>/Documents as remote folder. |
 | [nginx](http://nginx.org/en/docs/http/ngx_http_dav_module.html)            | ❌ No                               | no etag support.                                                                                                                                |
 | [Photoprism](https://docs.photoprism.app/user-guide/sync/webdav/)          | ❓ Unknown                          | Photoprism reads photos creation timestamps from exif data, so it will display correct timestamps                                               |
+
+## Supported WebDAV providers
+
+| WebDAV Provider                      | Preserves file creation timestamps | Notes                                                                                                                                           |
+|--------------------------------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Mailbox](https://mailbox.org/)      | ❌ No                               | no etag support. Use https://office.mailbox.org/servlet/webdav.infostore as URL and /Userstore/<firstname lastname>/Documents as remote folder. |
+| [kDrive](https://www.infomaniak.com) | ❓ Unknown                          |                                                                                                                                                 |
 
 ## Sync is slow on Nextcloud
 
