@@ -18,8 +18,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
-        versionCode 13
-        versionName "1.12"
+        versionCode 14
+        versionName "1.13"
     }
 
     ksp {
