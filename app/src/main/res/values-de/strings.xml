@@ -45,6 +45,7 @@
     <string name="permissions_hibernation_text_11">Da wir im Hintergrund laufen, müssen wir Android mitteilen, Berechtigungen nicht zu entfernen. Gehen Sie zu Einstellungen > Berechtigungen und deaktivieren Sie "Berechtigungen entfernen, wenn die App nicht verwendet wird"</string>
     <string name="permissions_hibernation_text_12">Da wir im Hintergrund laufen, müssen wir Android mitteilen, Berechtigungen nicht zu entfernen. Gehen Sie zu den Einstellungen und deaktivieren Sie "Berechtigungen löschen und Speicherplatz freigeben"</string>
     <string name="permissions_hibernation_text_13">Da wir im Hintergrund laufen, müssen wir Android mitteilen, Berechtigungen nicht zu entfernen. Gehen Sie zu den Einstellungen und deaktivieren Sie "App-Aktivität bei Nichtnutzung stoppen"</string>
+    <string name="permissions_hibernation_text_15">Da wir im Hintergrund laufen, müssen wir Android mitteilen, Berechtigungen nicht zu entfernen. Gehen Sie zu den Einstellungen und deaktivieren Sie "App bei Nichtnutzung pausieren"</string>
     <string name="permissions_hibernation_button">Ruhezustandeinstellungen</string>
     <string name="permissions_doze_text">Um schneller zu synchronisieren, müssen wir die Batterieoptimierung deaktivieren. Wenn Sie diese Berechtigung verweigern, erfolgt die Synchronisation nur beim Laden und weniger als einmal am Tag. Drücken Sie "Weiter", um fortzufahren</string>
     <string name="permissions_doze_button">Weiter</string>

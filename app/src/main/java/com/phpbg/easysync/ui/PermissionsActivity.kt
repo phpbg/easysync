@@ -119,7 +119,8 @@ class PermissionsActivity : ComponentActivity() {
                             buttonText = stringResource(R.string.permissions_files_button),
                             nextHandler = {
                                 //noinspection InlinedApi
-                                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                                val intent =
+                                    Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                                 intent.data = Uri.fromParts("package", packageName, null)
                                 activityLauncher.launch(intent)
                             }
@@ -172,10 +173,12 @@ class PermissionsActivity : ComponentActivity() {
                         // Detailed messages are here: https://developer.android.com/topic/performance/app-hibernation
                         val text = if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
                             R.string.permissions_hibernation_text_11
-                        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                            R.string.permissions_hibernation_text_12
+                        } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                             R.string.permissions_hibernation_text_13
                         } else {
-                            R.string.permissions_hibernation_text_12
+                            R.string.permissions_hibernation_text_15
                         }
                         IconTextButtonScreen(
                             icon = Icons.Outlined.AppSettingsAlt,
