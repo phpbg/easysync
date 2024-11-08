@@ -122,7 +122,10 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
                 .build()
 
             val workRequest =
-                PeriodicWorkRequestBuilder<FullSyncWorker>(settings.syncIntervalMinutes, TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<FullSyncWorker>(
+                    settings.syncIntervalMinutes,
+                    TimeUnit.MINUTES
+                )
                     .setInputData(data)
                     .build()
 
@@ -133,11 +136,11 @@ class FullSyncWorker(context: Context, parameters: WorkerParameters) :
                 )
         }
 
-        fun getLiveData(context: Context): LiveData<MutableList<WorkInfo>> {
+        fun getLiveData(context: Context): LiveData<List<WorkInfo>> {
             return WorkManager.getInstance(context).getWorkInfosForUniqueWorkLiveData(TAG)
         }
 
-        fun getAllLiveData(context: Context): LiveData<MutableList<WorkInfo>> {
+        fun getAllLiveData(context: Context): LiveData<List<WorkInfo>> {
             return WorkManager.getInstance(context).getWorkInfosByTagLiveData(WorkersConstants.TAG)
         }
     }

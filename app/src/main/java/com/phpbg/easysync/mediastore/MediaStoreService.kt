@@ -34,7 +34,6 @@ import android.os.Environment
 import android.os.storage.StorageManager
 import android.provider.MediaStore
 import android.util.Log
-import androidx.activity.ComponentActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.time.Instant
@@ -69,7 +68,7 @@ class MediaStoreService(private val context: Context) {
         return URIS
             .flatMap { getByUri(it) }
             .filter { !pathExclusions.contains(it.relativePath) }
-            .map { it.id  }
+            .map { it.id }
             .toSet()
     }
 
@@ -86,7 +85,7 @@ class MediaStoreService(private val context: Context) {
     suspend fun getAllPaths(): Set<String> {
         return URIS
             .flatMap { getByUri(it) }
-            .map { it.relativePath  }
+            .map { it.relativePath }
             .toSet()
     }
 
@@ -169,7 +168,7 @@ class MediaStoreService(private val context: Context) {
 
     private fun getVolumesPath(): Set<String> {
         val storageManager =
-            context.getSystemService(ComponentActivity.STORAGE_SERVICE) as StorageManager
+            context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
         val volumes = storageManager.javaClass
             .getMethod("getVolumePaths", *arrayOfNulls(0))
             .invoke(storageManager, *arrayOfNulls(0)) as Array<String>

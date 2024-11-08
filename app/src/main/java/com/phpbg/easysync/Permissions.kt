@@ -35,7 +35,8 @@ import androidx.core.content.PackageManagerCompat
 import androidx.core.content.UnusedAppRestrictionsConstants.API_30
 import androidx.core.content.UnusedAppRestrictionsConstants.API_30_BACKPORT
 import androidx.core.content.UnusedAppRestrictionsConstants.API_31
-import androidx.work.await
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 object Permissions {
@@ -69,7 +70,9 @@ object Permissions {
     suspend fun needHibernationExclusion(context: Context): Boolean {
         // https://developer.android.com/topic/performance/app-hibernation
         // https://source.android.com/docs/core/perf/hiber?hl=en
-        return when (PackageManagerCompat.getUnusedAppRestrictionsStatus(context).await()) {
+        return when (withContext(Dispatchers.IO) {
+            PackageManagerCompat.getUnusedAppRestrictionsStatus(context).get()
+        }) {
             API_30_BACKPORT, API_30, API_31 -> true
             else -> false
         }
@@ -94,7 +97,9 @@ object Permissions {
     }
 
     suspend fun areOthersGranted(context: Context): Boolean {
-        return ! needNotificationPermission(context) && ! needHibernationExclusion(context) && ! needIgnoringBatteryOptimizations(context)
+        return !needNotificationPermission(context) && !needHibernationExclusion(context) && !needIgnoringBatteryOptimizations(
+            context
+        )
     }
 
     fun getMissingOldStoragePermissions(context: Context): List<String> {
