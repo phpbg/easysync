@@ -54,7 +54,7 @@ fun showNotification(
     notificationManager.createNotificationChannel(channel)
 
     val notification = Notification.Builder(context, id).setContentTitle(title).setContentText(text)
-        .setTicker(title).setSmallIcon(R.drawable.ic_launcher_background).setOnlyAlertOnce(true)
+        .setTicker(title).setSmallIcon(R.drawable.ic_launcher_foreground).setOnlyAlertOnce(true)
         .setAutoCancel(true).setContentIntent(pendingIntent).build()
 
     notificationManager.notify(notificationId.id, notification)
