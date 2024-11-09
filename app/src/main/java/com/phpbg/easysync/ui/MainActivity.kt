@@ -45,7 +45,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Help
+import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
@@ -57,7 +57,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.IntState
@@ -84,7 +83,7 @@ import com.phpbg.easysync.ui.components.StatusTitle
 import com.phpbg.easysync.ui.components.StatusTitleClickable
 import com.phpbg.easysync.ui.components.StdText
 import com.phpbg.easysync.ui.components.Title
-import com.phpbg.easysync.ui.theme.EasySyncTheme
+import com.phpbg.easysync.ui.theme.ThemeSurface
 import kotlinx.coroutines.launch
 import kotlin.math.round
 
@@ -111,32 +110,27 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            EasySyncTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    val workerState = viewModel.workInfosList.observeAsState()
-                    val syncedCount = viewModel.syncedFileCount.observeAsState()
-                    val localCount = viewModel.localFilesCount.observeAsState()
-                    val jobCount = viewModel.jobCount.observeAsState()
-                    val syncronizationErrorCount = viewModel.synchronizationErrorCount.observeAsState()
-                    Main(
-                        workerState = workerState.value,
-                        fullSyncNowHandler = viewModel::fullSyncNowHandler,
-                        syncedCount = syncedCount.value ?: -1,
-                        localCount = localCount.value ?: -1,
-                        jobCount = jobCount.value ?: -1,
-                        showDavStatus = viewModel.showDavStatus,
-                        isDavLoading = viewModel.isDavLoading,
-                        isDavConnected = viewModel.isDavConnected,
-                        isTrial = viewModel.isTrial,
-                        hasOptionalPermissions = hasOptionalPermissions,
-                        trialRemainingDays = viewModel.trialRemainingDays,
-                        syncronizationErrorCount = syncronizationErrorCount.value ?: -1,
-                    )
-                }
+            ThemeSurface {
+                val workerState = viewModel.workInfosList.observeAsState()
+                val syncedCount = viewModel.syncedFileCount.observeAsState()
+                val localCount = viewModel.localFilesCount.observeAsState()
+                val jobCount = viewModel.jobCount.observeAsState()
+                val syncronizationErrorCount =
+                    viewModel.synchronizationErrorCount.observeAsState()
+                Main(
+                    workerState = workerState.value,
+                    fullSyncNowHandler = viewModel::fullSyncNowHandler,
+                    syncedCount = syncedCount.value ?: -1,
+                    localCount = localCount.value ?: -1,
+                    jobCount = jobCount.value ?: -1,
+                    showDavStatus = viewModel.showDavStatus,
+                    isDavLoading = viewModel.isDavLoading,
+                    isDavConnected = viewModel.isDavConnected,
+                    isTrial = viewModel.isTrial,
+                    hasOptionalPermissions = hasOptionalPermissions,
+                    trialRemainingDays = viewModel.trialRemainingDays,
+                    syncronizationErrorCount = syncronizationErrorCount.value ?: -1,
+                )
             }
         }
     }
@@ -263,7 +257,7 @@ private fun Main(
             title = null,
             actionTitle = stringResource(R.string.about),
             statusColor = Color.Gray,
-            statusIcon = Icons.Default.Help,
+            statusIcon = Icons.AutoMirrored.Filled.Help,
             clickHandler = {
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse("https://github.com/phpbg/easysync#easysync")
@@ -426,7 +420,7 @@ private fun Main(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun MainPreview() {
-    EasySyncTheme {
+    ThemeSurface {
         Main(
             fullSyncNowHandler = {},
             workerState = WorkInfo.State.RUNNING,
@@ -447,7 +441,7 @@ private fun MainPreview() {
 @Preview(name = "Trial Mode", showBackground = false)
 @Composable
 private fun MainPreviewTrial() {
-    EasySyncTheme {
+    ThemeSurface {
         Main(
             fullSyncNowHandler = {},
             workerState = WorkInfo.State.RUNNING,

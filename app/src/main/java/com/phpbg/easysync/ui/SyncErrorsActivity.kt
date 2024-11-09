@@ -35,8 +35,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -47,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import com.phpbg.easysync.R
 import com.phpbg.easysync.db.Error
 import com.phpbg.easysync.ui.components.Title
-import com.phpbg.easysync.ui.theme.EasySyncTheme
+import com.phpbg.easysync.ui.theme.ThemeSurface
 import java.time.Instant
 
 
@@ -57,14 +55,9 @@ class SyncErrorsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            EasySyncTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
-                ) {
-                    val errors = viewModel.errors.observeAsState()
-                    SynchronizationErrors(errors.value)
-                }
+            ThemeSurface {
+                val errors = viewModel.errors.observeAsState()
+                SynchronizationErrors(errors.value)
             }
         }
     }
@@ -104,7 +97,7 @@ fun SynchronizationErrors(errors: List<Error>?, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun SynchronizationErrorsEmptyPreview() {
-    EasySyncTheme {
+    ThemeSurface {
         SynchronizationErrors(errors = null)
     }
 }
@@ -112,7 +105,7 @@ fun SynchronizationErrorsEmptyPreview() {
 @Preview(showBackground = true)
 @Composable
 fun SynchronizationErrorsPreview() {
-    EasySyncTheme {
+    ThemeSurface {
         SynchronizationErrors(
             errors = listOf(
                 Error(

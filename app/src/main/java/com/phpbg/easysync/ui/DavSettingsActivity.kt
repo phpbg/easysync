@@ -47,15 +47,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -67,7 +66,7 @@ import androidx.compose.ui.unit.dp
 import com.phpbg.easysync.R
 import com.phpbg.easysync.settings.Settings
 import com.phpbg.easysync.ui.components.Title
-import com.phpbg.easysync.ui.theme.EasySyncTheme
+import com.phpbg.easysync.ui.theme.ThemeSurface
 
 class DavSettingsActivity : ComponentActivity() {
 
@@ -78,23 +77,18 @@ class DavSettingsActivity : ComponentActivity() {
         viewModel.load()
 
         setContent {
-            EasySyncTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
-                ) {
-                    val uiState = viewModel.uiState.collectAsState()
+            ThemeSurface {
+                val uiState = viewModel.uiState.collectAsState()
 
-                    if (uiState.value.davConnected == true) {
-                        finish()
-                    }
-
-                    Preferences(
-                        uiState = uiState.value,
-                        stateChangeHandler = viewModel::stateChangeHandler,
-                        saveHandler = viewModel::save
-                    )
+                if (uiState.value.davConnected == true) {
+                    finish()
                 }
+
+                Preferences(
+                    uiState = uiState.value,
+                    stateChangeHandler = viewModel::stateChangeHandler,
+                    saveHandler = viewModel::save
+                )
             }
         }
     }
@@ -117,7 +111,10 @@ private fun Preferences(
         Title(text = stringResource(R.string.dav_settings_title))
         Spacer(modifier = Modifier.height(8.dp))
         if (uiState.hasFilesSynced == true) {
-            Text(text = "Synchronization already started. Changing URL or path is highly discouraged and will lead to data loss. You should only change login/password", color = MaterialTheme.colorScheme.error)
+            Text(
+                text = "Synchronization already started. Changing URL or path is highly discouraged and will lead to data loss. You should only change login/password",
+                color = MaterialTheme.colorScheme.error
+            )
             Spacer(modifier = Modifier.height(8.dp))
         }
         TextField(
@@ -135,7 +132,10 @@ private fun Preferences(
         )
         Spacer(modifier = Modifier.height(8.dp))
         if (uiState.settings.url.startsWith("http://", true)) {
-            Text(text = stringResource(R.string.dav_settings_url_insecure), color = MaterialTheme.colorScheme.error)
+            Text(
+                text = stringResource(R.string.dav_settings_url_insecure),
+                color = MaterialTheme.colorScheme.error
+            )
             Spacer(modifier = Modifier.height(8.dp))
         }
         TextField(value = uiState.settings.username,
@@ -179,14 +179,21 @@ private fun Preferences(
         )
         Spacer(modifier = Modifier.height(8.dp))
         if (uiState.showRemoteNotEmpty) {
-            Text(text = stringResource(R.string.dav_settings_remote_not_empty), color = MaterialTheme.colorScheme.error)
+            Text(
+                text = stringResource(R.string.dav_settings_remote_not_empty),
+                color = MaterialTheme.colorScheme.error
+            )
             Spacer(modifier = Modifier.height(8.dp))
         }
         Button(onClick = saveHandler, enabled = !uiState.ongoingIO) {
             if (uiState.ongoingIO) {
                 CircularProgressIndicator(color = MaterialTheme.colorScheme.outline)
             } else {
-                val text = if (uiState.showRemoteNotEmpty) {R.string.dav_settings_save_anyway} else {R.string.dav_settings_save}
+                val text = if (uiState.showRemoteNotEmpty) {
+                    R.string.dav_settings_save_anyway
+                } else {
+                    R.string.dav_settings_save
+                }
                 Text(text = stringResource(text))
             }
         }
@@ -203,7 +210,7 @@ private fun Preferences(
 @Preview(name = "FR", showBackground = true, locale = "fr")
 @Composable
 private fun PreferencesPreview() {
-    EasySyncTheme {
+    ThemeSurface {
         Preferences(uiState = DavSettingsUiState(), stateChangeHandler = { }, saveHandler = { })
     }
 }
@@ -211,7 +218,10 @@ private fun PreferencesPreview() {
 @Preview(name = "Light Mode", showBackground = true)
 @Composable
 private fun PreferencesPreviewWithCircularIndicator() {
-    EasySyncTheme {
-        Preferences(uiState = DavSettingsUiState(ongoingIO = true), stateChangeHandler = { }, saveHandler = { })
+    ThemeSurface {
+        Preferences(
+            uiState = DavSettingsUiState(ongoingIO = true),
+            stateChangeHandler = { },
+            saveHandler = { })
     }
 }

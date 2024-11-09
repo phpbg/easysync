@@ -28,29 +28,35 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".ui.AdvancedSyncSettingsActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".ui.SyncErrorsActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false"
             android:label="@string/sync_errors_activity_title"
             android:launchMode="singleTop" />
         <activity
             android:name=".ui.PermissionsActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false"
             android:label="@string/permissions_activity_title"
             android:launchMode="singleTop" />
         <activity
             android:name=".ui.DavSettingsActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false"
             android:label="@string/dav_settings_activity_title"
             android:launchMode="singleTop" />
         <activity
             android:name=".ui.SyncSettingsActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false"
             android:label="@string/sync_settings_activity_title"
             android:launchMode="singleTop" />
         <activity
             android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>

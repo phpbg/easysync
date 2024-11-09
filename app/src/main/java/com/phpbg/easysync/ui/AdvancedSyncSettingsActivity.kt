@@ -40,7 +40,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -53,7 +52,7 @@ import com.phpbg.easysync.ui.components.StatusTitle
 import com.phpbg.easysync.ui.components.StdText
 import com.phpbg.easysync.ui.components.SwitchSetting
 import com.phpbg.easysync.ui.components.Title
-import com.phpbg.easysync.ui.theme.EasySyncTheme
+import com.phpbg.easysync.ui.theme.ThemeSurface
 
 class AdvancedSyncSettingsActivity : ComponentActivity() {
 
@@ -67,18 +66,17 @@ class AdvancedSyncSettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            EasySyncTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    val uiState = viewModel.advancedSyncSettingsUiState.observeAsState()
-                    Main(
-                        uiState = uiState.value ?: AdvancedSyncSettingsUiState(paths = listOf(), errorMsg = null),
-                        toggleExclusionHandler = viewModel::toggleExclusion
-                    )
-                }
+            ThemeSurface {
+                val uiState = viewModel.advancedSyncSettingsUiState.observeAsState()
+                Main(
+                    uiState = uiState.value ?: AdvancedSyncSettingsUiState(
+                        paths = listOf(),
+                        errorMsg = null
+                    ),
+                    toggleExclusionHandler = viewModel::toggleExclusion
+                )
             }
+
         }
     }
 }
@@ -126,7 +124,7 @@ private fun Main(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Composable
 private fun MainPreview() {
-    EasySyncTheme {
+    ThemeSurface {
         Main(
             uiState = AdvancedSyncSettingsUiState(
                 paths = listOf(
@@ -147,7 +145,7 @@ private fun MainPreview() {
 @Preview(name = "Light Mode", showBackground = true)
 @Composable
 private fun MainPreviewError() {
-    EasySyncTheme {
+    ThemeSurface {
         Main(
             uiState = AdvancedSyncSettingsUiState(
                 paths = listOf(
