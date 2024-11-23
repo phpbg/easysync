@@ -1,0 +1,1 @@
+Correctif : plantage de l'application sur certains appareils Android <= 9

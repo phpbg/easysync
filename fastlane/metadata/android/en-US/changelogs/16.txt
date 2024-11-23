@@ -1,0 +1,1 @@
+Fix app crash on some Android devices <=9
