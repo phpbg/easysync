@@ -36,6 +36,7 @@ import android.provider.MediaStore
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.time.Instant
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -150,9 +151,10 @@ class MediaStoreService(private val context: Context) {
             )?.use { cursor ->
                 val columnIndexes = ColumnIndexes.fromCursor(cursor)
                 while (cursor.moveToNext()) {
-                    val image = getFromCursor(cursor, columnIndexes)
-                    Log.d(TAG, "$image")
-                    images += image
+                    getFromCursor(cursor, columnIndexes)?.let {
+                        Log.d(TAG, "$it")
+                        images += it
+                    }
                 }
             }
         }
@@ -175,12 +177,13 @@ class MediaStoreService(private val context: Context) {
         return setOf<String>(Environment.getExternalStorageDirectory().canonicalPath).plus(volumes)
     }
 
-    private fun guessRelativePath(absolutePath: String, displayName: String): String {
+    private fun guessRelativePath(absolutePath: String): String {
         val rootPath = getVolumesPath().find { absolutePath.startsWith(it) }
             ?: throw Exception("Unable to determine relative path for file $absolutePath")
+        val displayName = (File(absolutePath)).name
         // Compute relative path on sdk where relative path is not supported
         if (!absolutePath.endsWith(displayName)) {
-            throw Exception("Unable to determine relative path for file $absolutePath - $displayName")
+            throw Exception("Unable to determine relative path for file: $absolutePath display name: $displayName root path: $rootPath")
         }
         // Relative path should looks like DCIM/ (no leading /, no filename)
         return absolutePath.substringAfter(rootPath).substringBefore(displayName).trimStart('/')
@@ -189,7 +192,7 @@ class MediaStoreService(private val context: Context) {
     private fun getFromCursor(
         cursor: Cursor,
         columnIndexes: ColumnIndexes,
-    ): MediaStoreFile {
+    ): MediaStoreFile? {
         val id = cursor.getLong(columnIndexes.idColumn)
         val dateModified = Instant.ofEpochSecond(cursor.getLong(columnIndexes.dateModifiedColumn))
         val displayName = cursor.getString(columnIndexes.displayNameColumn)
@@ -197,20 +200,24 @@ class MediaStoreService(private val context: Context) {
         val isTrashed =
             if (columnIndexes.isTrashed == null) false else cursor.getInt(columnIndexes.isTrashed) == 1
 
-        val relativePath = if (columnIndexes.relativePathColumn == null) {
-            guessRelativePath(absolutePath, displayName)
-        } else {
-            cursor.getString(columnIndexes.relativePathColumn)
+        try {
+            val relativePath = if (columnIndexes.relativePathColumn == null) {
+                guessRelativePath(absolutePath)
+            } else {
+                cursor.getString(columnIndexes.relativePathColumn)
+            }
+            return MediaStoreFile(
+                id,
+                displayName,
+                dateModified,
+                absolutePath,
+                relativePath,
+                isTrashed
+            )
+        } catch (e: Exception) {
+            Log.w(TAG, e.toString())
+            return null
         }
-
-        return MediaStoreFile(
-            id,
-            displayName,
-            dateModified,
-            absolutePath,
-            relativePath,
-            isTrashed
-        )
     }
 
     companion object {
