@@ -62,6 +62,8 @@ Everything not explicitly stated above is not synchronized. More specifically:
 * Wifi or network parameters
 * Android settings and phone customization
 
+Files on **SD Card** are **NOT** synced (https://github.com/phpbg/easysync/issues/44)
+
 ### Can I choose what is synchronized
 
 All files are synced unless you explicitly exclude folders.
@@ -115,16 +117,16 @@ You can add your own trusted certificate in android `Settings` > `Encryption and
 
 It should work with any DAV compliant server.
 
-| WebDAV Server                                                              | Preserves file creation timestamps | Notes                                                                                                                                           |
-|----------------------------------------------------------------------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Nextcloud](https://nextcloud.com/files/)                                  | ✅ Yes                              |                                                                                                                                                 |
-| [owncloud](https://owncloud.com/)                                          | ✅ Yes                              |                                                                                                                                                 |
-| [SFTPGo](https://github.com/drakkan/sftpgo)                                | ✅ Yes                              |                                                                                                                                                 |
-| [Apache](https://httpd.apache.org/docs/current/fr/mod/mod_dav.html)        | ❌ No                               |                                                                                                                                                 | 
-| [Hacdias Webdav](https://github.com/hacdias/webdav)                        | ❌ No                               |                                                                                                                                                 |
-| [Lighttpd](https://redmine.lighttpd.net/projects/lighttpd/wiki/Mod_webdav) | ❌ No                               | no etag support.                                                                                                                                |
-| [nginx](http://nginx.org/en/docs/http/ngx_http_dav_module.html)            | ❌ No                               | no etag support.                                                                                                                                |
-| [Photoprism](https://docs.photoprism.app/user-guide/sync/webdav/)          | ❓ Unknown                          | Photoprism reads photos creation timestamps from exif data, so it will display correct timestamps                                               |
+| WebDAV Server                                                              | Preserves file creation timestamps | Notes                                                                                             |
+|----------------------------------------------------------------------------|------------------------------------|---------------------------------------------------------------------------------------------------|
+| [Nextcloud](https://nextcloud.com/files/)                                  | ✅ Yes                              |                                                                                                   |
+| [owncloud](https://owncloud.com/)                                          | ✅ Yes                              |                                                                                                   |
+| [SFTPGo](https://github.com/drakkan/sftpgo)                                | ✅ Yes                              |                                                                                                   |
+| [Apache](https://httpd.apache.org/docs/current/fr/mod/mod_dav.html)        | ❌ No                               |                                                                                                   | 
+| [Hacdias Webdav](https://github.com/hacdias/webdav)                        | ❌ No                               |                                                                                                   |
+| [Lighttpd](https://redmine.lighttpd.net/projects/lighttpd/wiki/Mod_webdav) | ❌ No                               | no etag support.                                                                                  |
+| [nginx](http://nginx.org/en/docs/http/ngx_http_dav_module.html)            | ❌ No                               | no etag support.                                                                                  |
+| [Photoprism](https://docs.photoprism.app/user-guide/sync/webdav/)          | ❓ Unknown                          | Photoprism reads photos creation timestamps from exif data, so it will display correct timestamps |
 
 ## Supported WebDAV providers
 

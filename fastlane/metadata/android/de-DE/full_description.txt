@@ -20,3 +20,5 @@ Alles, was oben nicht explizit erwähnt wurde, ist nicht synchronisiert. Genauer
 * Spielfortschritt
 * WLAN- oder Netzwerkparameter
 * Android-Einstellungen und Telefonanpassung
+
+Dateien auf der SD-Karte werden **NICHT** synchronisiert.

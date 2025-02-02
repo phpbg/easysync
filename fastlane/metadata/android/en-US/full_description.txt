@@ -19,3 +19,5 @@ Everything not explicitly stated above is not synchronized. More specifically:
 * Games progress
 * Wifi or network parameters
 * Android settings and phone customization
+
+Files on **SD Card** are **NOT** synced

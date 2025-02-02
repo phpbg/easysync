@@ -19,3 +19,5 @@ Tout ce qui n'est pas explicitement mentionné ci-dessus ne sera pas synchronis�
 * Sauvegardes de progression dans les jeux
 * Paramètres Wifi et réseau
 * Paramètres Android
+
+Les fichiers sur **carte SD** **ne sont pas** synchronisés
