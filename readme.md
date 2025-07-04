@@ -97,10 +97,16 @@ fully synced with your phone.
 2. You may also enable `Sync on cellular` and/or `Sync on battery` in `Synchronization settings` (
    available from home screen).
 
-### Changes on DAV side are not immediately reflected
+We suggest keeping `Sync on battery` enabled for immediate photo syncing.
+Disabling it means syncs will only happen while charging on AC power, at Android's discretion (
+usually at night), making the timing unreliable.
+Even with `Sync on battery` enabled, EasySync should use very little battery.
 
-In order to preserve battery we cannot detect quickly DAV changes. If you need immediate sync use "
-Sync now" button on home screen.
+### Changes on DAV server side are not immediately reflected
+
+To preserve battery, updates from your DAV server are checked periodically.
+If you require an immediate synchronization, please use the `Sync now` button located on the home
+screen.
 
 ### Use a self-signed or a custom certificate
 

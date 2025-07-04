@@ -23,6 +23,7 @@
  */
 
 package com.phpbg.easysync.settings
+
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -32,7 +33,7 @@ data class Settings(
     val username: String = "",
     val password: String = "",
     val syncOnCellular: Boolean = false,
-    val syncOnBattery: Boolean = false,
+    val syncOnBattery: Boolean = true,
     val conflictStrategy: ConflictStrategy = ConflictStrategy.IGNORE,
     val syncIntervalMinutes: Long = 360,
     val pathExclusions: Set<String> = setOf()
