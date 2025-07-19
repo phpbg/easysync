@@ -11,13 +11,13 @@ kotlin {
 }
 android {
     namespace 'com.phpbg.easysync'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.phpbg.easysync"
         minSdk 26
         resourceConfigurations += ["en", "fr", "de", "ru"]
-        targetSdk 35
+        targetSdk 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
