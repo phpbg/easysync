@@ -126,7 +126,7 @@ private fun Preferences(
             label = { Text(text = "Url") },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.None,
-                autoCorrect = false,
+                autoCorrectEnabled = false,
                 keyboardType = KeyboardType.Uri
             )
         )
@@ -173,7 +173,7 @@ private fun Preferences(
             label = { Text(text = stringResource(R.string.dav_settings_remote_path)) },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.None,
-                autoCorrect = false,
+                autoCorrectEnabled = false,
                 keyboardType = KeyboardType.Uri
             )
         )
