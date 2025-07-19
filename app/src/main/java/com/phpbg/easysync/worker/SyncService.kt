@@ -102,20 +102,24 @@ class SyncService(
             // Remove previous errors
             errorDao.deleteAll()
 
+            // Just make sure webdav server is properly responding before starting
+            webDavService.getProperties(CollectionPath("/"))
+
             // Resync already synced files
             fileDao.getAllPathnames().forEach {
                 DbFileSyncWorker.enqueue(context, it, immediate)
             }
 
             // Sync only new files from local
-            mediaStoreService.getAllIds(getPathExclusions()).subtract(fileDao.getAllids().toSet()).forEach {
-                MediastoreIdSyncWorker.enqueue(
-                    context,
-                    it,
-                    immediate = immediate,
-                    skipIfInDb = true
-                )
-            }
+            mediaStoreService.getAllIds(getPathExclusions()).subtract(fileDao.getAllids().toSet())
+                .forEach {
+                    MediastoreIdSyncWorker.enqueue(
+                        context,
+                        it,
+                        immediate = immediate,
+                        skipIfInDb = true
+                    )
+                }
 
             // Sync new files from distant
             DavSyncWorker.enqueue(context, "/", immediate = immediate, isCollection = true)
@@ -201,7 +205,8 @@ class SyncService(
                 webDavService.mkcolRecursive(CollectionPath(mediaStoreFile.relativePath))
                 webDavService.move(davFilePath, mediaStoreDavFilePath)
                 val newDavFileProperties = webDavService.getProperties(mediaStoreDavFilePath)
-                val newDbFile = createDbFile(mediaStoreFile, newDavFileProperties, isCollection = false)
+                val newDbFile =
+                    createDbFile(mediaStoreFile, newDavFileProperties, isCollection = false)
                 fileDao.insertAll(newDbFile)
             } else {
                 uploadFile(mediaStoreFile, mediaStoreDavFilePath, null)
