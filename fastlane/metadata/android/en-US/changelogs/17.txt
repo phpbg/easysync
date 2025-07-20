@@ -1,0 +1,3 @@
+* Android 16 support
+* Dependencies updated
+* Prevent synchronization when the DAV server is misbehaving

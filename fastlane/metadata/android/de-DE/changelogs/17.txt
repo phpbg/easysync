@@ -1,0 +1,3 @@
+* Unterstützung für Android 16
+* Abhängigkeiten aktualisiert
+* Synchronisierung verhindern, wenn der DAV-Server fehlerhaft funktioniert

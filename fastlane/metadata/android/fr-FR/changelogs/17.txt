@@ -1,0 +1,3 @@
+* Support d'Android 16
+* Dépendances mises à jour
+* Empêche la synchronisation lorsque le serveur DAV a un comportement anormal
