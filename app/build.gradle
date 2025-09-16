@@ -16,14 +16,14 @@ android {
     defaultConfig {
         applicationId "com.phpbg.easysync"
         minSdk 26
-        resourceConfigurations += ["en", "fr", "de", "ru"]
+        resourceConfigurations += ["en", "fr", "de", "ru", "es"]
         targetSdk 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
-        versionCode 17
-        versionName "1.16"
+        versionCode 18
+        versionName "1.17"
     }
 
     ksp {

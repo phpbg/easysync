@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advanced_sync_settings_activity_help">Seleccionar qué carpetas se sincronizan</string>
+    <string name="advanced_sync_settings_activity_title">Configuración avanzada de sincronización</string>
+    <string name="notification_channel_id" translatable="false">1001</string>
+    <string name="notification_missing_permissions_text">Por favor, concede permisos para permitir la sincronización</string>
+    <string name="notification_missing_permissions_title">Error de sincronización</string>
+    <string name="notification_sync_error_text">Algunos archivos no se sincronizaron correctamente</string>
+    <string name="notification_sync_error_title">Error de sincronización</string>
+    <string name="notification_trial_over_title">Sincronización detenida</string>
+    <string name="notification_trial_over_text">Por favor, compra la versión completa para permitir la sincronización</string>
+    <string name="dav_settings_activity_title">Configuración</string>
+    <string name="dav_settings_hide_password">Ocultar contraseña</string>
+    <string name="dav_settings_password">Contraseña</string>
+    <string name="dav_settings_remote_path">Ruta DAV remota para sincronizar</string>
+    <string name="dav_settings_title">Configuración de DAV</string>
+    <string name="dav_settings_url_insecure">Esta URL no es segura. Todos tus datos serán legibles por cualquiera. Considera cambiar a HTTPS.</string>
+    <string name="dav_settings_username">Nombre de usuario</string>
+    <string name="dav_settings_remote_not_empty">La carpeta remota no está vacía. Todos los archivos se descargarán y sincronizarán con tu dispositivo. ¿Guardar de todos modos?</string>
+    <string name="dav_settings_save">Guardar</string>
+    <string name="dav_settings_save_anyway">Guardar de todos modos</string>
+    <string name="dav_settings_show_password">Mostrar contraseña</string>
+    <string name="home_action_sync_now">Sincronizar ahora</string>
+    <string name="home_action_sync_now_initial_start">Iniciar sincronización</string>
+    <string name="home_action_sync_now_initial_start_hint">Sincronización aún no iniciada. Iniciar ahora</string>
+    <string name="home_dav_status_connected">DAV conectado.</string>
+    <string name="home_dav_status_loading">Cargando DAV.</string>
+    <string name="home_dav_status_not_configured">DAV no configurado.</string>
+    <string name="home_dav_status_not_connected">DAV no conectado.</string>
+    <string name="home_files_local">archivos locales</string>
+    <string name="home_files_not_running_prefix">No</string>
+    <string name="home_files_synced">sincronizado</string>
+    <string name="home_permissions_granted">Permisos concedidos</string>
+    <string name="home_permissions_missing">Faltan permisos opcionales.</string>
+    <string name="home_permissions_action_fix">Corregir…</string>
+    <string name="home_sync_running">en ejecución</string>
+    <string name="home_sync_syncing">sincronizando</string>
+    <string name="home_trial_over">La prueba ha terminado, por favor compra la versión completa</string>
+    <plurals name="home_trial_days_left">
+        <item quantity="one">Prueba: queda %d día</item>
+        <item quantity="other">Prueba: quedan %d días</item>
+    </plurals>
+    <string name="permissions_activity_title">Permisos</string>
+    <string name="permissions_files_text">Para sincronizar tus archivos necesitamos acceso completo a tus archivos. Ve a configuración para habilitar el permiso</string>
+    <string name="permissions_files_button">Configuración de archivos</string>
+    <string name="permissions_hibernation_text_11">Como se ejecuta en segundo plano, necesitamos decirle a Android que no elimine los permisos. Ve a Configuración > Permisos y deshabilita \"Eliminar permisos si la aplicación no se usa\"</string>
+    <string name="permissions_hibernation_text_12">Como se ejecuta en segundo plano, necesitamos decirle a Android que no elimine los permisos. Ve a configuración y deshabilita \"Eliminar permisos y liberar espacio\"</string>
+    <string name="permissions_hibernation_text_13">Como se ejecuta en segundo plano, necesitamos decirle a Android que no elimine los permisos. Ve a configuración y deshabilita \"Pausar actividad de la aplicación si no se usa\"</string>
+    <string name="permissions_hibernation_text_15">Como se ejecuta en segundo plano, necesitamos decirle a Android que no elimine los permisos. Ve a configuración y deshabilita \"Gestionar aplicación si no se usa\"</string>
+    <string name="permissions_hibernation_button">Configuración de suspensión</string>
+    <string name="permissions_doze_text">Para sincronizar más rápido necesitamos deshabilitar la optimización de la batería. Si niegas este permiso, la sincronización seguirá ocurriendo pero solo cuando se esté cargando, menos de una vez al día. Presiona \"Siguiente\" para continuar</string>
+    <string name="permissions_doze_button">Siguiente</string>
+    <string name="permissions_notifications_text">Te enviaremos notificaciones si algo sale mal (como que el servidor DAV no esté accesible). Presiona \"Siguiente\" para continuar</string>
+    <string name="permissions_notifications_button">Siguiente</string>
+    <string name="permissions_old_files_text">Para sincronizar tus archivos necesitamos acceso completo a tus archivos. Presiona \"Siguiente\" para continuar</string>
+    <string name="permissions_old_files_button">Siguiente</string>
+    <string name="permissions_welcome">Easy sync mantendrá tus archivos sincronizados con tu servidor DAV</string>
+    <string name="permissions_next">Siguiente</string>
+    <string name="sync_errors_activity_no_error">Sin errores de sincronización</string>
+    <string name="sync_errors_activity_title">Errores de sincronización</string>
+    <string name="sync_settings_advanced">Configuración avanzada de sincronización</string>
+    <string name="sync_settings_title">Configuración de sincronización</string>
+    <string name="sync_settings_activity_title">Configuración de sincronización</string>
+    <string name="sync_settings_conflicts_title">Manejo de conflictos</string>
+    <string name="sync_settings_conflicts_desc">Si un archivo se modifica en ambos lados:</string>
+    <string name="sync_settings_conflicts_not_recommended">Elige una estrategia de conflicto para desbloquear la configuración avanzada</string>
+    <string name="sync_settings_conflicts_strategy_keep_local">Mantener copia local (sobrescribir archivo remoto)</string>
+    <string name="sync_settings_conflicts_strategy_ignore">Ignorar archivo</string>
+    <string name="sync_settings_conflicts_strategy_keep_remote">Mantener copia remota (sobrescribir archivo local)</string>
+    <string name="sync_settings_on_battery_title">Sincronizar con batería</string>
+    <string name="sync_settings_on_battery_desc">Permitir sincronización programada con batería</string>
+    <string name="sync_settings_on_cellular_title">Sincronizar con datos móviles</string>
+    <string name="sync_settings_on_cellular_desc">Permitir sincronización programada en red celular</string>
+    <string name="about">Ayuda</string>
+
+</resources>

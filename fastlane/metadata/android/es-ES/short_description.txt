@@ -1,0 +1,1 @@
+Sincroniza tu teléfono con tu servidor WebDAV de forma sencilla.
