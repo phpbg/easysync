@@ -25,10 +25,12 @@
 package com.phpbg.easysync.ui.theme
 
 import android.os.Build
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -71,17 +73,27 @@ fun EasySyncTheme(
         else -> LightColorScheme
     }
     MaterialTheme(
-        colorScheme = colorScheme, typography = Typography, content = content
+        colorScheme = colorScheme,
+        typography = Typography,
+        content = content
     )
 }
 
 @Composable
 fun ThemeSurface(content: @Composable () -> Unit) {
     EasySyncTheme {
-        Surface(
-            color = MaterialTheme.colorScheme.background,
-            modifier = Modifier.safeDrawingPadding(),
-            content = content
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background) // Background covers the entire screen
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .safeDrawingPadding(), // Content is padded away from edges
+            ) {
+                content()
+            }
+        }
     }
 }

@@ -1,0 +1,1 @@
+Corrections interface utilisateur pour Android 15+
