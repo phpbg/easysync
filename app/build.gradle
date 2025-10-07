@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "com.phpbg.easysync"
         minSdk 26
-        resourceConfigurations += ["en", "fr", "de", "ru", "es"]
+        resourceConfigurations += ["en", "fr", "de", "ru", "es", "zh"]
         targetSdk 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
