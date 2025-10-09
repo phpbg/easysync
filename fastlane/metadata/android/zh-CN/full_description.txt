@@ -1,0 +1,23 @@
+Synchronize images, videos, audio and downloads with your WebDAV server.
+Synchronize in both directions.
+Secure and open source.
+
+What is synchronized:
+* Images, video, screenshots that are displayed in your gallery will be synchronized. This includes images and videos in `DCIM/`, `Pictures/`, `Movies/` and `Download/`
+* If they are only available in a specific app but not in gallery, they won't be synchronized
+* Please note that messaging apps (messages, whatsapp, signal, etc.) generally offer you the choice between saving files in your gallery (in such case they will be synchronized) or not
+* All audio and music files that are visible in `Alarms/`, `Audiobooks/`, `Music/`, `Notifications/`, `Podcasts/`, `Ringtones/` and `Recordings/` will be synchronized
+* Beware that google's own voice recorder stores its files privately and offer its own cloud synchronization. They won't be synchronized by EasySync
+* All downloaded files in `Download/` will be synchronized, whether they are pdf, epubs, documents, images, etc.
+
+What is not synchronized:
+Everything not explicitly stated above is not synchronized. More specifically:
+* Applications
+* Applications data/state
+* Messages
+* Contacts
+* Games progress
+* Wifi or network parameters
+* Android settings and phone customization
+
+Files on **SD Card** are **NOT** synced
