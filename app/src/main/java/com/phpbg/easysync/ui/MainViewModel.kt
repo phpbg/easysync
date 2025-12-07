@@ -118,7 +118,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         viewModelScope.launch {
-            loadImages()
+            updateLocalFileCount()
         }
         viewModelScope.launch {
             loadDav()
@@ -128,8 +128,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         trialRemainingDays.intValue = MyApp.getTrialRemainingDays(getApplication())
     }
 
-    private fun loadImages() {
-        Log.i(TAG, "load images")
+    private fun updateLocalFileCount() {
+        Log.i(TAG, "updateLocalFileCount")
         viewModelScope.launch {
             _localFilesCount.postValue(mediaStoreService.countAll(settingsDataStore.getSettings().pathExclusions))
 
@@ -139,7 +139,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         getApplication<Application>().contentResolver.registerObserver(
                             it
                         ) {
-                            loadImages()
+                            updateLocalFileCount()
                         }
                 }
             }
