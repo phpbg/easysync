@@ -30,7 +30,6 @@ import android.database.ContentObserver
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
-import android.provider.MediaStore
 import android.util.Log
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -46,12 +45,12 @@ import com.phpbg.easysync.dav.MisconfigurationException
 import com.phpbg.easysync.dav.WebDavService
 import com.phpbg.easysync.db.AppDatabaseFactory
 import com.phpbg.easysync.mediastore.MediaStoreService
+import com.phpbg.easysync.mediastore.URIS
 import com.phpbg.easysync.settings.SettingsDataStore
 import com.phpbg.easysync.worker.FileDetectWorker
 import com.phpbg.easysync.worker.FullSyncWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 private const val TAG = "MainActivityViewModel"
 
@@ -136,10 +135,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _localFilesCount.postValue(mediaStoreService.countAll(settingsDataStore.getSettings().pathExclusions))
 
             if (contentObserver == null) {
-                contentObserver = getApplication<Application>().contentResolver.registerObserver(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                ) {
-                    loadImages()
+                URIS.forEach {
+                    contentObserver =
+                        getApplication<Application>().contentResolver.registerObserver(
+                            it
+                        ) {
+                            loadImages()
+                        }
                 }
             }
         }
@@ -153,7 +155,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val webDavService = WebDavService.getInstance(settingsDataStore.getSettingsAsFlow())
                 webDavService.getProperties(CollectionPath("/"))
                 isDavConnected.value = true
-            } catch (e:MisconfigurationException) {
+            } catch (_: MisconfigurationException) {
                 Log.d(TAG, "Cannot create DAV client")
             } catch (e: Exception) {
                 Log.e(TAG, e.stackTraceToString())
