@@ -27,7 +27,6 @@ package com.phpbg.easysync.ui
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -75,6 +74,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.work.WorkInfo
 import com.phpbg.easysync.Permissions
@@ -262,7 +262,7 @@ private fun Main(
             statusIcon = Icons.AutoMirrored.Filled.Help,
             clickHandler = {
                 val i = Intent(Intent.ACTION_VIEW)
-                i.data = Uri.parse("https://github.com/phpbg/easysync#easysync")
+                i.data = "https://github.com/phpbg/easysync#easysync".toUri()
                 mContext.startActivity(i)
             },
         )
@@ -297,14 +297,14 @@ private fun Main(
                         mContext.startActivity(
                             Intent(
                                 Intent.ACTION_VIEW,
-                                Uri.parse("market://details?id=com.phpbg.easysync")
+                                "market://details?id=com.phpbg.easysync".toUri()
                             )
                         )
-                    } catch (e: ActivityNotFoundException) {
+                    } catch (_: ActivityNotFoundException) {
                         mContext.startActivity(
                             Intent(
                                 Intent.ACTION_VIEW,
-                                Uri.parse("https://play.google.com/store/apps/details?id=com.phpbg.easysync")
+                                "https://play.google.com/store/apps/details?id=com.phpbg.easysync".toUri()
                             )
                         )
                     }
@@ -412,7 +412,7 @@ private fun Main(
         Modifier.fillMaxHeight(),
         verticalArrangement = Arrangement.Bottom
     ) {
-        Row() {
+        Row {
             SnackbarHost(hostState = snackbarHostState)
         }
     }
