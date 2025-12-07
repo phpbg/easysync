@@ -1,0 +1,1 @@
+* Die Genauigkeit der Prozentanzeige für synchronisierte Dateien wurde verbessert.
