@@ -101,14 +101,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     val jobCount = FullSyncWorker.getAllLiveData(this.getApplication()).map { x ->
-        return@map x.filter {
+        return@map x.count {
             it.state in arrayOf(
                 WorkInfo.State.RUNNING,
                 WorkInfo.State.ENQUEUED,
                 WorkInfo.State.BLOCKED
             )
         }
-            .count()
     }
 
     fun load() {
