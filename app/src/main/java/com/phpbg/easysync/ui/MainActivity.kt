@@ -315,7 +315,9 @@ private fun Main(
         Spacer(modifier = Modifier.height(16.dp))
 
         val syncedPercent = if (localCount > 0 && syncedCount >= 0) {
-            round(100.0 * syncedCount / localCount).toInt()
+            // localCount represents local files eligible for sync
+            // syncedCount represents files already synced, which includes local files and dav files that are synced outside of regular URIs (e.g. you sync a `/Foo` folder on your dav server)
+            round(100.0 * syncedCount / maxOf(localCount, syncedCount)).toInt()
         } else if (syncedCount == 0) {
             0
         } else {
