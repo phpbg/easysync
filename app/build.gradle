@@ -10,7 +10,7 @@ kotlin {
     jvmToolchain(17)
 }
 android {
-    namespace 'com.phpbg.easysync'
+    namespace = 'com.phpbg.easysync'
     compileSdk 36
 
     defaultConfig {
@@ -20,7 +20,7 @@ android {
         targetSdk 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
-            useSupportLibrary true
+            useSupportLibrary = true
         }
         versionCode 21
         versionName "1.21"
@@ -33,7 +33,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -55,11 +55,11 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
-        compose true
-        buildConfig true
+        compose = true
+        buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.5.3'
+        kotlinCompilerExtensionVersion = '1.5.3'
     }
     packagingOptions {
         resources {
