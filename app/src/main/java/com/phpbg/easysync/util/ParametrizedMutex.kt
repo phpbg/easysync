@@ -30,7 +30,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.util.concurrent.TimeUnit
 
-class ParametrizedMutex<T> {
+class ParametrizedMutex<T : Any> {
 
     private val mutexes: Cache<T, Mutex> = CacheBuilder.newBuilder()
         .maximumSize(1000)
