@@ -1,7 +1,6 @@
 <resources>
     <string name="advanced_sync_settings_activity_help">选择要同步哪些文件夹</string>
     <string name="advanced_sync_settings_activity_title">高级同步设置</string>
-    <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">请授予权限以允许同步</string>
     <string name="notification_missing_permissions_title">同步失败</string>
     <string name="notification_sync_error_text">一些文件未能正确同步</string>
@@ -19,6 +18,7 @@
     <string name="dav_settings_save">保存</string>
     <string name="dav_settings_save_anyway">仍要保存</string>
     <string name="dav_settings_show_password">显示密码</string>
+    <string name="dav_settings_username_must_start_with">远程路径必须以 %1$s 开头</string>
     <string name="home_action_sync_now">立即同步</string>
     <string name="home_action_sync_now_initial_start">开始同步</string>
     <string name="home_action_sync_now_initial_start_hint">尚未开始同步。立即开始。</string>

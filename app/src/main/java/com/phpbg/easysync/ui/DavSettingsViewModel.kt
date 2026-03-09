@@ -28,6 +28,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import com.phpbg.easysync.R
 import com.phpbg.easysync.dav.CollectionPath
 import com.phpbg.easysync.dav.IOException
 import com.phpbg.easysync.dav.MisconfigurationException
@@ -83,6 +84,24 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
                 davError = null
             )
         }
+        if (listOf(
+                "https://webdav.inbox.eu",
+                "https://webdav.inbox.lv"
+            ).contains(uiState.value.settings.url.trim('/')) && !uiState.value.settings.davPath.startsWith(
+                "/" + uiState.value.settings.username
+            )
+        ) {
+            _uiState.update { uiState ->
+                uiState.copy(
+                    davError = getApplication<Application>().getString(
+                        R.string.dav_settings_username_must_start_with,
+                        "/${uiState.settings.username}"
+                    ),
+                    ongoingIO = false,
+                )
+            }
+            return
+        }
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 // Try settings first
@@ -100,13 +119,13 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
                 // At this point settings are valid and we can connect
                 settingsDataStore.setSettings(uiState.value.settings)
                 _uiState.update { uiState -> uiState.copy(davConnected = true, ongoingIO = false) }
-            } catch (e: MisconfigurationException) {
+            } catch (_: MisconfigurationException) {
                 _uiState.update { uiState ->
                     uiState.copy(
                         davError = "Invalid DAV settings",
                     )
                 }
-            } catch (e: UnauthorizedExeption) {
+            } catch (_: UnauthorizedExeption) {
                 _uiState.update { uiState ->
                     uiState.copy(
                         davError = "Unauthorized (wrong login/password?)",
@@ -139,7 +158,6 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
                     )
                 }
             }
-
         }
     }
 }

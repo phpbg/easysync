@@ -2,7 +2,6 @@
 <resources>
     <string name="advanced_sync_settings_activity_help">Seleccionar qué carpetas se sincronizan</string>
     <string name="advanced_sync_settings_activity_title">Configuración avanzada de sincronización</string>
-    <string name="notification_channel_id" translatable="false">1001</string>
     <string name="notification_missing_permissions_text">Por favor, concede permisos para permitir la sincronización</string>
     <string name="notification_missing_permissions_title">Error de sincronización</string>
     <string name="notification_sync_error_text">Algunos archivos no se sincronizaron correctamente</string>
@@ -20,6 +19,7 @@
     <string name="dav_settings_save">Guardar</string>
     <string name="dav_settings_save_anyway">Guardar de todos modos</string>
     <string name="dav_settings_show_password">Mostrar contraseña</string>
+    <string name="dav_settings_username_must_start_with">La ruta remota debe comenzar con %1$s</string>
     <string name="home_action_sync_now">Sincronizar ahora</string>
     <string name="home_action_sync_now_initial_start">Iniciar sincronización</string>
     <string name="home_action_sync_now_initial_start_hint">Sincronización aún no iniciada. Iniciar ahora</string>

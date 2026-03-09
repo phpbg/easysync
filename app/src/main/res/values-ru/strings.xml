@@ -18,6 +18,7 @@
     <string name="dav_settings_save">Сохранить</string>
     <string name="dav_settings_save_anyway">Сохранить всё равно</string>
     <string name="dav_settings_show_password">Отобразить пароль</string>
+    <string name="dav_settings_username_must_start_with">Удаленный путь должен начинаться с %1$s</string>
     <string name="home_action_sync_now">Синхронизировать сейчас</string>
     <string name="home_action_sync_now_initial_start">Начать синхронизацию</string>
     <string name="home_action_sync_now_initial_start_hint">Синхронизация еще не запущена. Запустить сейчас</string>

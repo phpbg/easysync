@@ -17,6 +17,7 @@
     <string name="dav_settings_hide_password">Masquer le mot de passe</string>
     <string name="dav_settings_save_anyway">Sauvegarder quand même ?</string>
     <string name="dav_settings_show_password">Afficher le mot de passe</string>
+    <string name="dav_settings_username_must_start_with">Le répertoire DAV doit commencer par %1$s</string>
     <string name="home_action_sync_now">Synchroniser</string>
     <string name="home_action_sync_now_initial_start">Démarrer la synchronisation</string>
     <string name="home_action_sync_now_initial_start_hint">La synchronisation n\'est pas encore démarrée. Démarrer…</string>
@@ -42,10 +43,10 @@
     <string name="permissions_activity_title">Permissions</string>
     <string name="permissions_files_text">Pour fonctionner l\'application doit accéder à tous vos fichiers. Cliquez sur \"Suivant\" pour autoriser l\'accès.</string>
     <string name="permissions_files_button">Suivant</string>
-    <string name="permissions_hibernation_text_11">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations.  Dans paramètres>Autorisations, décochez \"Supprimer les autorisations si l\'application n\'est pas utilisée\"</string>
-    <string name="permissions_hibernation_text_12">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations.  Dans les paramètres, décochez \"Supprimer autorisations et libérer espace\"</string>
-    <string name="permissions_hibernation_text_13">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations.  Dans les paramètres, décochez \"Suspendre l\'activité si inutilisée\"</string>
-    <string name="permissions_hibernation_text_15">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations.  Dans les paramètres, décochez \"Gérer l\'appli si inutilisée\"</string>
+    <string name="permissions_hibernation_text_11">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations. Dans paramètres>Autorisations, décochez \"Supprimer les autorisations si l\'application n\'est pas utilisée\"</string>
+    <string name="permissions_hibernation_text_12">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations. Dans les paramètres, décochez \"Supprimer autorisations et libérer espace\"</string>
+    <string name="permissions_hibernation_text_13">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations. Dans les paramètres, décochez \"Suspendre l\'activité si inutilisée\"</string>
+    <string name="permissions_hibernation_text_15">Cette application fonctionnera en arrière plan. Pour cela, il faut indiquer à Android de ne pas révoquer les autorisations. Dans les paramètres, décochez \"Gérer l\'appli si inutilisée\"</string>
     <string name="permissions_hibernation_button">Paramètres</string>
     <string name="permissions_doze_text">Pour permettre une sychronisation rapide et efficace, il faut autoriser l\'application à fonctionner en arrière plan. Vous pouvez refuser, dans ce cas la synchronisation ne s\'effectuera qu\'en charge, et moins d\'une fois par jour.</string>
     <string name="permissions_doze_button">Suivant</string>

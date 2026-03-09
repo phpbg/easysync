@@ -19,6 +19,7 @@
     <string name="dav_settings_save">Save</string>
     <string name="dav_settings_save_anyway">Save anyway</string>
     <string name="dav_settings_show_password">Show password</string>
+    <string name="dav_settings_username_must_start_with">Remote path must start with %1$s</string>
     <string name="home_action_sync_now">Sync now</string>
     <string name="home_action_sync_now_initial_start">Start sync</string>
     <string name="home_action_sync_now_initial_start_hint">Sync not yet started. Start now</string>

@@ -138,6 +138,7 @@ It should work with any DAV compliant server.
 
 | WebDAV Provider                      | Preserves file creation timestamps | Notes                                                                                                                                           |
 |--------------------------------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Inbox](https://www.inbox.eu)        | ❌ No                               | the remote folder must start with the username                                                                                                  |
 | [Mailbox](https://mailbox.org/)      | ❌ No                               | no etag support. Use https://office.mailbox.org/servlet/webdav.infostore as URL and /Userstore/<firstname lastname>/Documents as remote folder. |
 | [kDrive](https://www.infomaniak.com) | ❓ Unknown                          |                                                                                                                                                 |
 
