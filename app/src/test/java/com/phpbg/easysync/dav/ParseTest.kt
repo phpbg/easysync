@@ -168,4 +168,24 @@ class ParseTest {
         )
         assert(expected == res.first())
     }
+
+    @Test
+    fun propfind_directory_inbox_eu_works() {
+        // This test is for https://www.inbox.eu that uses non standard timestamps
+        val stream = this.javaClass.classLoader!!.getResourceAsStream("directory_date_parse.xml")
+        val rootPath = RootPath("https://foo")
+        val res = WebDavService.parsePropfind(stream.reader(), rootPath)
+        val expected = Resource(
+            rootPath = rootPath,
+            href = "/remote.php/dav/files/foouser/Documents/",
+            creationdate = null,
+            getlastmodified = ZonedDateTime.parse(
+                "Wed, 04 Mar 2026 11:19:33 GMT",
+                DateTimeFormatter.RFC_1123_DATE_TIME
+            ).toInstant(),
+            isCollection = true,
+            getetag = "\"647853ef0e5ec\"",
+        )
+        assert(expected == res.first())
+    }
 }

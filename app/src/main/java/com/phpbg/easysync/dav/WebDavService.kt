@@ -337,11 +337,22 @@ class WebDavService(
                     ISO_DATE_TIME
                 )
             } catch (e: DateTimeParseException) {
-                ZonedDateTime.parse(
-                    dateTimeString,
+                parse1123DateTime(dateTimeString) ?: throw e
+            }
+        }
+
+        fun parse1123DateTime(dateTimeString: String?): ZonedDateTime? {
+            // https://www.inbox.eu returns non standard datetimes ending with UTC zone instead of GMT
+            if (dateTimeString?.endsWith("UTC") == true) {
+                return ZonedDateTime.parse(
+                    dateTimeString.replace("UTC", "GMT"),
                     RFC_1123_DATE_TIME
                 )
             }
+            return ZonedDateTime.parse(
+                dateTimeString,
+                RFC_1123_DATE_TIME
+            )
         }
 
         fun parsePropfind(reader: Reader, rootPath: RootPath): ArrayList<Resource> {
@@ -381,10 +392,7 @@ class WebDavService(
                         }
 
                         "getlastmodified" -> resource = resource.copy(
-                            getlastmodified = ZonedDateTime.parse(
-                                text,
-                                RFC_1123_DATE_TIME
-                            ).toInstant()
+                            getlastmodified = parse1123DateTime(text)?.toInstant()
                         )
 
                         "resourcetype" -> resourceTypeTag = false
@@ -433,7 +441,12 @@ class WebDavService(
             dispatcher.maxRequestsPerHost = 6
             val okHttpClientBuilder = OkHttpClient.Builder()
                 .authenticator(CachingAuthenticatorDecorator(authenticator, authCache))
-                .addInterceptor(AuthenticationCacheInterceptor(authCache, DefaultRequestCacheKeyProvider()))
+                .addInterceptor(
+                    AuthenticationCacheInterceptor(
+                        authCache,
+                        DefaultRequestCacheKeyProvider()
+                    )
+                )
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
