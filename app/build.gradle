@@ -22,8 +22,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        versionCode = 22
-        versionName = "1.22"
+        versionCode = 23
+        versionName = "1.23"
     }
 
     ksp {
