@@ -73,7 +73,7 @@ private fun ContentResolver.registerObserver(
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _localFilesCount = MutableLiveData<Int>()
     val localFilesCount: LiveData<Int> get() = _localFilesCount
-    private var contentObserver: ContentObserver? = null
+    private val contentObservers = mutableListOf<ContentObserver>()
     private val mediaStoreService = MediaStoreService(getApplication())
 
     private val settingsDataStore = SettingsDataStore(getApplication())
@@ -133,14 +133,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             _localFilesCount.postValue(mediaStoreService.countAll(settingsDataStore.getSettings().pathExclusions))
 
-            if (contentObserver == null) {
+            if (contentObservers.isEmpty()) {
                 URIS.forEach {
-                    contentObserver =
-                        getApplication<Application>().contentResolver.registerObserver(
-                            it
-                        ) {
+                    val observer =
+                        getApplication<Application>().contentResolver.registerObserver(it) {
                             updateLocalFileCount()
                         }
+                    contentObservers.add(observer)
                 }
             }
         }
@@ -169,5 +168,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             FileDetectWorker.enqueue(getApplication())
             FullSyncWorker.enqueueImmediate(getApplication())
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        contentObservers.forEach {
+            getApplication<Application>().contentResolver.unregisterContentObserver(it)
+        }
+        contentObservers.clear()
     }
 }
