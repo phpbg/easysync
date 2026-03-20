@@ -24,23 +24,24 @@
 
 package com.phpbg.easysync.util
 
-import java.util.Timer
-import java.util.TimerTask
+import com.google.common.cache.Cache
+import com.google.common.cache.CacheBuilder
+import java.util.concurrent.TimeUnit
 
-class TTLHashSet<E>(private val ttlMs: Long) : HashSet<E>() {
+class TTLHashSet<E : Any>(ttlMs: Long) {
+    private val cache: Cache<E, Boolean> = CacheBuilder.newBuilder()
+        .expireAfterWrite(ttlMs, TimeUnit.MILLISECONDS)
+        .build()
 
-    override fun add(element: E): Boolean {
-        val added = super.add(element)
-        if (added) {
-            val set = this
-            val remover = object : TimerTask() {
-                override fun run() {
-                    set.remove(element)
-                }
-            }
-            val timer = Timer()
-            timer.schedule(remover, ttlMs)
-        }
-        return added
+    fun add(element: E) {
+        cache.put(element, true)
+    }
+
+    fun contains(element: E): Boolean {
+        return cache.getIfPresent(element) != null
+    }
+
+    fun remove(element: E) {
+        cache.invalidate(element)
     }
 }

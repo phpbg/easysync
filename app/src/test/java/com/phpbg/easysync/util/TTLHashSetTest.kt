@@ -31,9 +31,29 @@ class TTLHashSetTest {
     @Test
     fun add_works() {
         val set = TTLHashSet<String>(100)
+        Assert.assertFalse(set.contains("foo"))
         set.add("foo")
         Assert.assertTrue(set.contains("foo"))
         Thread.sleep(150)
+        Assert.assertFalse(set.contains("foo"))
+    }
+
+    @Test
+    fun add_twice_works() {
+        val set = TTLHashSet<String>(100)
+        set.add("foo")
+        set.add("foo")
+        Assert.assertTrue(set.contains("foo"))
+        Thread.sleep(150)
+        Assert.assertFalse(set.contains("foo"))
+    }
+
+    @Test
+    fun remove_works() {
+        val set = TTLHashSet<String>(1000)
+        set.add("foo")
+        Assert.assertTrue(set.contains("foo"))
+        set.remove("foo")
         Assert.assertFalse(set.contains("foo"))
     }
 }
