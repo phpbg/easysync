@@ -4,6 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization'
     id 'com.google.devtools.ksp'
     id 'org.jetbrains.kotlin.plugin.compose'
+    id 'jacoco'
 }
 
 kotlin {
@@ -35,6 +36,9 @@ android {
             minifyEnabled true
             shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            enableUnitTestCoverage = true
         }
     }
     flavorDimensions += "version"
@@ -100,4 +104,24 @@ dependencies {
     implementation 'com.google.guava:guava:33.5.0-android'
     implementation 'ru.gildor.coroutines:kotlin-coroutines-okhttp:1.0'
     implementation 'io.github.rburgst:okhttp-digest:3.1.1'
+}
+
+tasks.register('jacocoTestReport', JacocoReport) {
+    dependsOn 'testFreeVersionDebugUnitTest'
+
+    reports {
+        xml.required = true
+        html.required = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "${project.layout.buildDirectory.get().asFile}/intermediates/javac/freeVersionDebug/classes", excludes: fileFilter)
+    def kotlinDebugTree = fileTree(dir: "${project.layout.buildDirectory.get().asFile}/tmp/kotlin-classes/freeVersionDebug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(files([debugTree, kotlinDebugTree]))
+    executionData.setFrom(fileTree(dir: project.layout.buildDirectory.get().asFile, includes: [
+            "outputs/unit_test_code_coverage/freeVersionDebugUnitTest/testFreeVersionDebugUnitTest.exec"
+    ]))
 }
