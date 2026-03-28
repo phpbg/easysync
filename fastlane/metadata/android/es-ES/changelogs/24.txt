@@ -1,0 +1,2 @@
+* Eliminado el soporte para Android 8-9
+* Optimizaciones de rendimiento
