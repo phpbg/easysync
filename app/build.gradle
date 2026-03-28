@@ -122,6 +122,6 @@ tasks.register('jacocoTestReport', JacocoReport) {
     sourceDirectories.setFrom(files([mainSrc]))
     classDirectories.setFrom(files([debugTree, kotlinDebugTree]))
     executionData.setFrom(fileTree(dir: project.layout.buildDirectory.get().asFile, includes: [
-            "jacoco/testFreeVersionDebugUnitTest.exec"
+            "outputs/unit_test_code_coverage/freeVersionDebugUnitTest/testFreeVersionDebugUnitTest.exec"
     ]))
 }

@@ -22,10 +22,18 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run Unit Tests and Generate Coverage
-        run: ./gradlew testFreeVersionDebugUnitTest jacocoTestReport
+        run: ./gradlew testFreeVersionDebugUnitTest jacocoTestReport --continue
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: coverage-report
           path: app/build/reports/jacoco/jacocoTestReport/html/
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: app/build/reports/tests/
