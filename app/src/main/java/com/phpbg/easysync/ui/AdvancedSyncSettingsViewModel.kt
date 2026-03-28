@@ -55,7 +55,14 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
                         val webDavService = WebDavService.create(settingsDataStore.getSettings())
                         webDavService.getAllCollections(CollectionPath("/"))
                     } catch (e: Exception) {
-                        error = "WebDav error: ${e.message ?: "unknown webdav error"}"
+                        val message = if (e.message != null) {
+                            e.message
+                        } else {
+                            e.javaClass.simpleName + " " + (e.stackTrace.firstOrNull()
+                                ?.let { " at ${it.className}.${it.methodName}(${it.fileName}:${it.lineNumber})" }
+                                ?: "")
+                        }
+                        error = "WebDav error: $message"
                         setOf()
                     }
                 }
