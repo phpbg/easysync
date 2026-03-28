@@ -29,34 +29,22 @@ import android.content.Context
 import android.database.Cursor
 import android.media.MediaScannerConnection
 import android.net.Uri
-import android.os.Build
-import android.os.Environment
-import android.os.storage.StorageManager
 import android.provider.MediaStore
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.File
 import java.time.Instant
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 private const val TAG = "MediaStoreService"
 
-val URIS = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-    arrayOf(
-        MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
-        MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
-        MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
-        MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-    )
-} else {
-    arrayOf(
-        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-        MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-    )
-})
+val URIS = (arrayOf(
+    MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
+    MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
+    MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
+    MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+))
 
 class MediaStoreService(private val context: Context) {
     /**
@@ -168,27 +156,6 @@ class MediaStoreService(private val context: Context) {
         return getOneByUri(idToUri(id))
     }
 
-    private fun getVolumesPath(): Set<String> {
-        val storageManager =
-            context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
-        val volumes = storageManager.javaClass
-            .getMethod("getVolumePaths", *arrayOfNulls(0))
-            .invoke(storageManager, *arrayOfNulls(0)) as Array<String>
-        return setOf<String>(Environment.getExternalStorageDirectory().canonicalPath).plus(volumes)
-    }
-
-    private fun guessRelativePath(absolutePath: String): String {
-        val rootPath = getVolumesPath().find { absolutePath.startsWith(it) }
-            ?: throw Exception("Unable to determine relative path for file $absolutePath")
-        val displayName = (File(absolutePath)).name
-        // Compute relative path on sdk where relative path is not supported
-        if (!absolutePath.endsWith(displayName)) {
-            throw Exception("Unable to determine relative path for file: $absolutePath display name: $displayName root path: $rootPath")
-        }
-        // Relative path should looks like DCIM/ (no leading /, no filename)
-        return absolutePath.substringAfter(rootPath).substringBefore(displayName).trimStart('/')
-    }
-
     private fun getFromCursor(
         cursor: Cursor,
         columnIndexes: ColumnIndexes,
@@ -201,11 +168,7 @@ class MediaStoreService(private val context: Context) {
             if (columnIndexes.isTrashed == null) false else cursor.getInt(columnIndexes.isTrashed) == 1
 
         try {
-            val relativePath = if (columnIndexes.relativePathColumn == null) {
-                guessRelativePath(absolutePath)
-            } else {
-                cursor.getString(columnIndexes.relativePathColumn)
-            }
+            val relativePath = cursor.getString(columnIndexes.relativePathColumn)
             return MediaStoreFile(
                 id,
                 displayName,

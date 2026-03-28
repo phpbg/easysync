@@ -33,7 +33,7 @@ data class ColumnIndexes(
     val dateModifiedColumn: Int,
     val displayNameColumn: Int,
     val dataColumn: Int,
-    val relativePathColumn: Int?,
+    val relativePathColumn: Int,
     val isTrashed: Int?
 ) {
     companion object {
@@ -49,9 +49,7 @@ data class ColumnIndexes(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 tmpProjection.add(MediaStore.Files.FileColumns.IS_TRASHED)
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                tmpProjection.add(MediaStore.Files.FileColumns.RELATIVE_PATH)
-            }
+            tmpProjection.add(MediaStore.Files.FileColumns.RELATIVE_PATH)
             projection = tmpProjection.toTypedArray()
         }
 
@@ -60,41 +58,30 @@ data class ColumnIndexes(
                 return ColumnIndexes(
                     idColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID),
                     dateModifiedColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_MODIFIED),
+                        cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_MODIFIED),
                     displayNameColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME),
+                        cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME),
                     dataColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA),
+                        cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA),
                     relativePathColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.RELATIVE_PATH),
+                        cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.RELATIVE_PATH),
                     isTrashed = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.IS_TRASHED),
                 )
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                return ColumnIndexes(
-                    idColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID),
-                    dateModifiedColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_MODIFIED),
-                    displayNameColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME),
-                    dataColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA),
-                    relativePathColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.RELATIVE_PATH),
-                    isTrashed = null
-                )
-            }
+
             return ColumnIndexes(
                 idColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID),
                 dateModifiedColumn =
-                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_MODIFIED),
+                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_MODIFIED),
                 displayNameColumn =
-                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME),
+                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME),
                 dataColumn =
-                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA),
-                relativePathColumn = null,
+                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA),
+                relativePathColumn =
+                    cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.RELATIVE_PATH),
                 isTrashed = null
             )
+
         }
     }
 }
