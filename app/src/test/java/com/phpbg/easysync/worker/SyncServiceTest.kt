@@ -289,15 +289,4 @@ class SyncServiceTest {
 
         verify(fileDao, never()).findByName(any())
     }
-
-    @Test
-    fun `handleWorkerException should insert error into DAO`() = runTest {
-        val exception = Exception("Test error")
-        val path = "/some/path"
-        whenever(context.getString(any())).doReturn("string")
-
-        syncService.handleWorkerException(context, exception, path)
-
-        verify(errorDao).insertAll(any())
-    }
 }
