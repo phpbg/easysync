@@ -42,6 +42,7 @@ import org.junit.Test
 import org.mockito.MockedStatic
 import org.mockito.Mockito.mockStatic
 import org.mockito.kotlin.any
+import org.mockito.kotlin.doAnswer
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.never
@@ -157,7 +158,11 @@ class SyncServiceTest {
         )
         val settings = Settings(pathExclusions = emptySet())
         whenever(settingsDatastore.getSettings()).doReturn(settings)
-        whenever(webDavService.getPropertiesFromParentCache(any())).thenThrow(NotFoundExeption(""))
+        whenever(webDavService.getPropertiesFromParentCache(any())).doAnswer {
+            throw NotFoundExeption(
+                ""
+            )
+        }
         whenever(mediaStoreService.getById(1L)).doReturn(mediaStoreFile)
         whenever(fileDao.findByName(dbFile.pathname)).doReturn(dbFile)
 
