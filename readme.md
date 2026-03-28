@@ -114,7 +114,7 @@ You can add your own trusted certificate in android `Settings` > `Encryption and
 
 ## Supported Android phones
 
-* From Android 8 to latest releases
+* From Android 10 to latest releases
 * Huawei phones may kill the app in background, be warned. These tips will help you:
     * https://consumer.huawei.com/eg-en/support/article-list/article-detail/en-gb15792041/
     * https://dontkillmyapp.com/huawei
