@@ -441,4 +441,46 @@ class SyncServiceTest {
 
         verify(fileDao, never()).findByName(any())
     }
+
+    @Test
+    fun `resyncFile should delete from DB if file is excluded`() = runTest {
+        val dbFile = com.phpbg.easysync.db.File(
+            pathname = "/ExcludedDir/photo.jpg",
+            localPathname = "/storage/emulated/0/ExcludedDir/photo.jpg",
+            id = 1L,
+            etag = "etag",
+            localDateChanged = null,
+            remoteDateChanged = null,
+            isCollection = false
+        )
+        val settings = Settings(pathExclusions = setOf("ExcludedDir/"))
+        whenever(settingsDatastore.getSettings()).doReturn(settings)
+        whenever(fileDao.findByName(dbFile.pathname)).doReturn(dbFile)
+
+        syncService.resyncFile(dbFile.pathname)
+
+        verify(fileDao).delete(dbFile)
+        verify(webDavService, never()).getPropertiesFromParentCache(any())
+    }
+
+    @Test
+    fun `resyncFile should delete from DB if collection is excluded`() = runTest {
+        val dbFile = com.phpbg.easysync.db.File(
+            pathname = "/ExcludedDir/",
+            localPathname = "/storage/emulated/0/ExcludedDir/",
+            id = 1L,
+            etag = "etag",
+            localDateChanged = null,
+            remoteDateChanged = null,
+            isCollection = true
+        )
+        val settings = Settings(pathExclusions = setOf("ExcludedDir/"))
+        whenever(settingsDatastore.getSettings()).doReturn(settings)
+        whenever(fileDao.findByName(dbFile.pathname)).doReturn(dbFile)
+
+        syncService.resyncFile(dbFile.pathname)
+
+        verify(fileDao).delete(dbFile)
+        verify(webDavService, never()).getPropertiesFromParentCache(any())
+    }
 }
