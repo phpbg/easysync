@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -24,14 +24,14 @@ jobs:
         run: ./gradlew testFreeVersionDebugUnitTest jacocoTestReport --continue
 
       - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage-report
           path: app/build/reports/jacoco/jacocoTestReport/html/
 
       - name: Upload Test Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: test-results
