@@ -1,0 +1,1 @@
+Correction d'un bug dans l'écran des paramètres avancés

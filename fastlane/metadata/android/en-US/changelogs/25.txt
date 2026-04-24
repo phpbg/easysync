@@ -1,0 +1,1 @@
+Fixed a bug within advanced settings screen
