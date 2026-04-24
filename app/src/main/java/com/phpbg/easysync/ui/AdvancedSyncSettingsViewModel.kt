@@ -33,6 +33,7 @@ import com.phpbg.easysync.dav.CollectionPath
 import com.phpbg.easysync.dav.WebDavService
 import com.phpbg.easysync.mediastore.MediaStoreService
 import com.phpbg.easysync.settings.SettingsDataStore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
@@ -49,8 +50,8 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
             var error: String? = null
             val settings = settingsDataStore.getSettings()
             val (paths, davPaths) = awaitAll(
-                async { mediaStoreService.getAllPaths() },
-                async {
+                async(Dispatchers.IO) { mediaStoreService.getAllPaths() },
+                async(Dispatchers.IO) {
                     try {
                         val webDavService = WebDavService.create(settingsDataStore.getSettings())
                         webDavService.getAllCollections(CollectionPath("/"))
