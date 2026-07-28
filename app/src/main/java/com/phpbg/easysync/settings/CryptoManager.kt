@@ -41,9 +41,11 @@ import javax.crypto.spec.IvParameterSpec
  */
 class CryptoManager {
 
-    private val keyStore = KeyStore.getInstance("AndroidKeyStore").apply {
+private val keyStore = KeyStore.getInstance("AndroidKeyStore").apply {
+    if (!isLoaded) {
         load(null)
     }
+}
 
     private val encryptCipher
         get() = Cipher.getInstance(TRANSFORMATION).apply {
