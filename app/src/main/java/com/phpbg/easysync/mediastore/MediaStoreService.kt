@@ -48,17 +48,26 @@ val URIS = (arrayOf(
 
 class MediaStoreService(private val context: Context) {
     /**
-     * Return all unique files to be synced
+     * Return all unique files id to be synced
      * Note that a file may be present multiple collections at once.
      * E.g. a donwloaded image will be present both in Downloads and Images
      * For this reasons we merge all IDs in a Set
      */
     suspend fun getAllIds(pathExclusions: Set<String>): Set<Long> {
+        return getAllFiles(pathExclusions)
+            .map { it.id }
+            .toSet()
+    }
+
+    /**
+     * Return all unique files to be synced
+     * Files present in multiple collections are de-duplicated by id (see getAllIds())
+     */
+    suspend fun getAllFiles(pathExclusions: Set<String>): List<MediaStoreFile> {
         return URIS
             .flatMap { getByUri(it) }
             .filter { !pathExclusions.contains(it.relativePath) }
-            .map { it.id }
-            .toSet()
+            .distinctBy { it.id }
     }
 
     /**

@@ -43,6 +43,7 @@ import com.phpbg.easysync.mediastore.MediaStoreService
 import com.phpbg.easysync.settings.ConflictStrategy
 import com.phpbg.easysync.settings.SettingsDataStore
 import com.phpbg.easysync.showNotification
+import com.phpbg.easysync.util.toDavFile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -193,7 +194,7 @@ class SyncService(
         val remoteIdentical =
             (dbFile.etag != null && dbFile.etag == remoteFile.getetag) || (dbFile.remoteDateChanged != null && dbFile.remoteDateChanged == remoteFile.getlastmodified)
 
-        val mediaStoreDavFilePath = getDavFileFromMediastoreFile(mediaStoreFile)
+        val mediaStoreDavFilePath = mediaStoreFile.toDavFile()
         if (dbFile.pathname != mediaStoreDavFilePath.getPath()) {
             Log.d(
                 TAG,
@@ -269,7 +270,7 @@ class SyncService(
         davResource: Resource,
         isCollection: Boolean
     ): File {
-        val filePath = getDavFileFromMediastoreFile(mediaStoreFile)
+        val filePath = mediaStoreFile.toDavFile()
         return File(
             pathname = filePath.getPath(),
             localPathname = mediaStoreFile.absolutePath,
@@ -345,18 +346,11 @@ class SyncService(
         fileDao.insertAll(newDbFile)
     }
 
-    private fun getDavFileFromMediastoreFile(mediaStoreFile: MediaStoreFile): com.phpbg.easysync.dav.File {
-        return com.phpbg.easysync.dav.File(
-            CollectionPath(mediaStoreFile.relativePath),
-            mediaStoreFile.displayName
-        )
-    }
-
     private suspend fun handleInitialMediastoreFileSync(
         mediaStoreFile: MediaStoreFile
     ) {
         Log.d(TAG, "Initial mediastore sync: ${mediaStoreFile.relativePath}")
-        val davFilePath = getDavFileFromMediastoreFile(mediaStoreFile)
+        val davFilePath = mediaStoreFile.toDavFile()
         val dbFile = fileDao.findByName(davFilePath.getPath())
         if (dbFile != null) {
             // Files already synchronized are already taken care of

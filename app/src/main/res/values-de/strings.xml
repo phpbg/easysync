@@ -58,6 +58,11 @@
     <string name="permissions_next">Weiter</string>
     <string name="sync_errors_activity_no_error">Kein Synchronisierungsfehler</string>
     <string name="sync_errors_activity_title">Synchronisierungsfehler</string>
+    <string name="local_files_activity_title">Lokale Dateien</string>
+    <string name="local_files_activity_no_file">Keine lokale Datei für die Synchronisierung berechtigt</string>
+    <string name="local_files_status_synced">Synchronisiert</string>
+    <string name="local_files_status_not_synced">Noch nicht synchronisiert</string>
+    <string name="local_files_status_error">Fehler</string>
     <string name="sync_settings_advanced">Erweiterte Synchronisierungseinstellungen</string>
     <string name="sync_settings_title">Synchronisationseinstellungen</string>
     <string name="sync_settings_activity_title">Synchronisationseinstellungen</string>

@@ -37,6 +37,12 @@
             android:label="@string/sync_errors_activity_title"
             android:launchMode="singleTop" />
         <activity
+            android:name=".ui.LocalFilesActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"
+            android:label="@string/local_files_activity_title"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".ui.PermissionsActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"

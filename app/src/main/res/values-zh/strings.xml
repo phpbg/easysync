@@ -57,6 +57,11 @@
     <string name="permissions_next">下一步</string>
     <string name="sync_errors_activity_no_error">没有同步错误</string>
     <string name="sync_errors_activity_title">同步错误</string>
+    <string name="local_files_activity_title">本地文件</string>
+    <string name="local_files_activity_no_file">没有符合同步条件的本地文件</string>
+    <string name="local_files_status_synced">已同步</string>
+    <string name="local_files_status_not_synced">尚未同步</string>
+    <string name="local_files_status_error">错误</string>
     <string name="sync_settings_advanced">高级同步设置</string>
     <string name="sync_settings_title">同步设置</string>
     <string name="sync_settings_activity_title">同步设置</string>

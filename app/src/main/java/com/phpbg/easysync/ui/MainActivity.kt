@@ -33,6 +33,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,6 +43,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -53,6 +55,7 @@ import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -364,6 +367,19 @@ private fun Main(
             ) {
                 Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
                     StdText(text = stringResource(R.string.home_files_local))
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = stringResource(R.string.local_files_activity_title),
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier
+                            .padding(start = 4.dp)
+                            .size(20.dp)
+                            .clickable {
+                                mContext.startActivity(
+                                    Intent(mContext, LocalFilesActivity::class.java)
+                                )
+                            }
+                    )
                 }
                 Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
                     StdText(text = stringResource(R.string.home_files_synced))

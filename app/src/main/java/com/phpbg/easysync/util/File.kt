@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2024 Samuel CHEMLA
+ * Copyright (c) 2023 Samuel CHEMLA
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,27 +22,15 @@
  * SOFTWARE.
  */
 
-package com.phpbg.easysync.db
+package com.phpbg.easysync.util
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import com.phpbg.easysync.dav.CollectionPath
+import com.phpbg.easysync.dav.File
+import com.phpbg.easysync.mediastore.MediaStoreFile
 
-@Dao
-interface ErrorDao {
-    @Query("SELECT * FROM error")
-    fun getAll(): LiveData<List<Error>>
-
-    @Query("SELECT * FROM error")
-    suspend fun getAllList(): List<Error>
-
-    @Query("SELECT COUNT(id) FROM error")
-    fun count(): LiveData<Int>
-
-    @Query("DELETE FROM error")
-    suspend fun deleteAll(): Int
-
-    @Insert
-    suspend fun insertAll(vararg errors: Error)
+fun MediaStoreFile.toDavFile(): File {
+    return File(
+        CollectionPath(this.relativePath),
+        this.displayName
+    )
 }
