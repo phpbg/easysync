@@ -33,6 +33,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.phpbg.easysync.mediastore.MediaStoreService
+import com.phpbg.easysync.util.toDavFile
 
 private const val TAG = "MediastoreIdSyncWorker"
 private const val DATA_ID_KEY = "id"
@@ -57,7 +58,7 @@ class MediastoreIdSyncWorker(appContext: Context, workerParams: WorkerParameters
         val syncService = SyncService.getInstance(this.applicationContext)
         val mediaStoreService = MediaStoreService(this.applicationContext)
         val file = mediaStoreService.getById(id)
-        if (file== null) {
+        if (file == null) {
             Log.d(TAG, "No entry in mediastore for $id")
             return Result.success()
         }
@@ -74,7 +75,7 @@ class MediastoreIdSyncWorker(appContext: Context, workerParams: WorkerParameters
                 // We don't mind too many errors: file will be synced anyway with periodic full sync worker
                 Result.retry()
             } else {
-                syncService.handleWorkerException(applicationContext, e, file.relativePath)
+                syncService.handleWorkerException(applicationContext, e, file.toDavFile().getPath())
                 Result.failure()
             }
         }
