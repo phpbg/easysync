@@ -1,5 +1,6 @@
 <resources>
     <string name="advanced_sync_settings_activity_help">选择要同步哪些文件夹</string>
+    <string name="advanced_sync_settings_activity_empty">（暂时）没有可同步的文件</string>
     <string name="advanced_sync_settings_activity_title">高级同步设置</string>
     <string name="notification_missing_permissions_text">请授予权限以允许同步</string>
     <string name="notification_missing_permissions_title">同步失败</string>

@@ -74,7 +74,8 @@ class AdvancedSyncSettingsActivity : ComponentActivity() {
                 Main(
                     uiState = uiState.value ?: AdvancedSyncSettingsUiState(
                         paths = listOf(),
-                        errorMsg = null
+                        errorMsg = null,
+                        loading = true
                     ),
                     toggleExclusionHandler = viewModel::toggleExclusion
                 )
@@ -108,8 +109,10 @@ private fun Main(
             )
         }
 
-        if (uiState.paths.isEmpty()) {
+        if (uiState.loading) {
             CircularProgressIndicator(color = MaterialTheme.colorScheme.outline)
+        } else if (uiState.paths.isEmpty()) {
+            StdText(text = stringResource(R.string.advanced_sync_settings_activity_empty))
         } else {
             uiState.paths.forEach { syncPath ->
                 SwitchSetting(

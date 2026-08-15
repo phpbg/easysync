@@ -77,7 +77,8 @@ class AdvancedSyncSettingsViewModel(application: Application) : AndroidViewModel
             _advancedSyncSettingsUiState.postValue(
                 AdvancedSyncSettingsUiState(
                     paths = syncPaths,
-                    errorMsg = error
+                    errorMsg = error,
+                    loading = false
                 )
             )
         }

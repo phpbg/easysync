@@ -26,4 +26,8 @@ package com.phpbg.easysync.ui
 
 data class SyncPath(val relativePath: String, val enabled: Boolean)
 
-data class AdvancedSyncSettingsUiState(val paths: List<SyncPath>, val errorMsg: String?)
+data class AdvancedSyncSettingsUiState(
+    val paths: List<SyncPath>,
+    val errorMsg: String?,
+    val loading: Boolean = false
+)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="advanced_sync_settings_activity_help">Wählen Sie aus, welche Ordner synchronisiert werden sollen</string>
+    <string name="advanced_sync_settings_activity_empty">Es gibt (noch) keine Datei zum Synchronisieren</string>
     <string name="advanced_sync_settings_activity_title">Erweiterte Synchronisierungseinstellungen</string>
     <string name="notification_missing_permissions_text">Bitte erteilen Sie Berechtigungen, um die Synchronisation zu ermöglichen</string>
     <string name="notification_missing_permissions_title">Synchronisation fehlgeschlagen</string>

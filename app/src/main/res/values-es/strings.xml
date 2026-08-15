@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="advanced_sync_settings_activity_help">Seleccionar qué carpetas se sincronizan</string>
+    <string name="advanced_sync_settings_activity_empty">(Todavía) no hay ningún archivo para sincronizar</string>
     <string name="advanced_sync_settings_activity_title">Configuración avanzada de sincronización</string>
     <string name="notification_missing_permissions_text">Por favor, concede permisos para permitir la sincronización</string>
     <string name="notification_missing_permissions_title">Error de sincronización</string>
