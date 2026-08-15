@@ -40,7 +40,9 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Icon
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -88,7 +90,11 @@ fun LocalFiles(files: List<LocalFileItem>?, modifier: Modifier = Modifier) {
             Title(text = stringResource(R.string.local_files_activity_title))
             Spacer(modifier = Modifier.height(8.dp))
         }
-        if (files.isNullOrEmpty()) {
+        if (files == null) {
+            item {
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.outline)
+            }
+        } else if (files.isEmpty()) {
             item {
                 Text(
                     text = stringResource(R.string.local_files_activity_no_file),
