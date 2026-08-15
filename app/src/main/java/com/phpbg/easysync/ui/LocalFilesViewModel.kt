@@ -85,5 +85,6 @@ class LocalFilesViewModel(application: Application) : AndroidViewModel(applicati
                 }
                 LocalFileItem(pathname, status, errorMessage)
             }
+            .sortedBy { it.errorMessage == null }
     }
 }
