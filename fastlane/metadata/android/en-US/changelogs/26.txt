@@ -1,0 +1,3 @@
+* Improve error handling when WebDav server is running out of space
+* Add a list of all syncable local files
+* Small bug fixes, improvements and updates

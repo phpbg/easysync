@@ -1,0 +1,3 @@
+* Verbesserung der Fehlerbehandlung, wenn der WebDav-Server keinen Speicherplatz mehr hat
+* Hinzufügen einer Liste aller synchronisierbaren lokalen Dateien
+* Kleine Fehlerbehebungen, Verbesserungen und Aktualisierungen

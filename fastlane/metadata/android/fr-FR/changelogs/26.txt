@@ -1,0 +1,3 @@
+* Amélioration de la gestion des erreurs lorsque le serveur WebDav manque d'espace
+* Ajout d'une liste de tous les fichiers locaux synchronisables
+* Petites corrections de bugs, améliorations et mises à jour
