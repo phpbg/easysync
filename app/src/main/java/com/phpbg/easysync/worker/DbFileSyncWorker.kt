@@ -32,6 +32,7 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import com.phpbg.easysync.dav.InsufficientStorageException
 import com.phpbg.easysync.worker.WorkersConstants.MAX_RUN_ATTEMPTS
 import java.util.concurrent.CancellationException
 
@@ -64,6 +65,14 @@ class DbFileSyncWorker(appContext: Context, workerParams: WorkerParameters) :
             Result.success()
         } catch (e: CancellationException) {
             throw e
+        } catch (e: InsufficientStorageException) {
+            Log.i(
+                TAG,
+                "Error while syncing with remote path: $path: no space left on remote server"
+            )
+            // Fail immediately, don't retry later
+            syncService.handleWorkerException(applicationContext, e, path)
+            Result.failure()
         } catch (e: Exception) {
             Log.e(TAG, "Error while syncing with remote path: $path attempt: $runAttemptCount")
             Log.e(TAG, e.toString())
