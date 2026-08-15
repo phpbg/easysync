@@ -32,6 +32,7 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import com.phpbg.easysync.dav.InsufficientStorageException
 import com.phpbg.easysync.mediastore.MediaStoreService
 import com.phpbg.easysync.util.toDavFile
 
@@ -67,6 +68,11 @@ class MediastoreIdSyncWorker(appContext: Context, workerParams: WorkerParameters
         return try {
             syncService.syncOne(file, skipIfInDb)
             Result.success()
+        } catch (e: InsufficientStorageException) {
+            Log.i(TAG, "Error while syncing: $file: no space left on remote server")
+            // Fail immediately, don't retry later
+            syncService.handleWorkerException(applicationContext, e, file.toDavFile().getPath())
+            Result.failure()
         } catch (e: Exception) {
             Log.i(TAG, "Error while syncing: $file attempt:$runAttemptCount")
             Log.e(TAG, e.toString())

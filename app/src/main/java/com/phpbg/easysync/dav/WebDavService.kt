@@ -173,7 +173,7 @@ class WebDavService(
             val path = rootUrl.canonicalUrl + percentEncodePath(pathNoLeading)
             propfind(path, 0)
             true
-        } catch (err: NotFoundExeption) {
+        } catch (_: NotFoundExeption) {
             false
         }
     }
@@ -217,7 +217,10 @@ class WebDavService(
             .build()
 
         val response = httpClient.newCall(request).await()
-        if (!response.isSuccessful) throw IOException("Unexpected code $response", response)
+        if (!response.isSuccessful) {
+            if (response.code == 507) throw InsufficientStorageException()
+            throw IOException("Unexpected code $response", response)
+        }
     }
 
     /**
@@ -257,7 +260,10 @@ class WebDavService(
             .build()
 
         val response = httpClient.newCall(request).await()
-        if (!response.isSuccessful) throw IOException("Unexpected code $response", response)
+        if (!response.isSuccessful) {
+            if (response.code == 507) throw InsufficientStorageException()
+            throw IOException("Unexpected code $response", response)
+        }
     }
 
     /**
@@ -292,7 +298,10 @@ class WebDavService(
 
         val request = requestBuilder.build()
         val response = httpClient.newCall(request).await()
-        if (!response.isSuccessful) throw IOException("Unexpected code $response", response)
+        if (!response.isSuccessful) {
+            if (response.code == 507) throw InsufficientStorageException()
+            throw IOException("Unexpected code $response", response)
+        }
         return response.headers["etag"]
     }
 
