@@ -145,7 +145,10 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
                 setPickerError(getApplication<Application>().getString(R.string.dav_settings_error_unauthorized))
             } catch (e: IOException) {
                 val message =
-                    if (e.isNextcloudWrongUrl()) "Method Not Allowed. If using nextcloud, use full URL, generally ending with: /remote.php/dav/files/${uiState.value.settings.username}" else e.message
+                    if (e.isNextcloudWrongUrl()) getApplication<Application>().getString(
+                        R.string.dav_settings_error_nextcloud_wrong_url,
+                        uiState.value.settings.username
+                    ) else e.message
                 setPickerError(message)
             } catch (e: Exception) {
                 setPickerError(e.message)
@@ -226,7 +229,10 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
                 }
             } catch (e: IOException) {
                 val message =
-                    if (e.isNextcloudWrongUrl()) "Method Not Allowed. If using nextcloud, use full URL, generally ending with: /remote.php/dav/files/${uiState.value.settings.username}" else e.message
+                    if (e.isNextcloudWrongUrl()) getApplication<Application>().getString(
+                        R.string.dav_settings_error_nextcloud_wrong_url,
+                        uiState.value.settings.username
+                    ) else e.message
                 _uiState.update { uiState ->
                     uiState.copy(
                         davError = message,

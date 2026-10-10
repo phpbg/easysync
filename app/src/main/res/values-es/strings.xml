@@ -29,6 +29,7 @@
     <string name="dav_settings_username_must_start_with">La ruta remota debe comenzar con %1$s</string>
     <string name="dav_settings_error_unauthorized">No autorizado (¿usuario/contraseña incorrectos?)</string>
     <string name="dav_settings_error_invalid">Configuración de DAV no válida</string>
+    <string name="dav_settings_error_nextcloud_wrong_url">Método no permitido. Si usas Nextcloud, usa la URL completa, que generalmente termina en: /remote.php/dav/files/%1$s</string>
     <string name="home_action_sync_now">Sincronizar ahora</string>
     <string name="home_action_sync_now_initial_start">Iniciar sincronización</string>
     <string name="home_action_sync_now_initial_start_hint">Sincronización aún no iniciada. Iniciar ahora</string>

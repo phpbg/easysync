@@ -28,6 +28,7 @@
     <string name="dav_settings_username_must_start_with">远程路径必须以 %1$s 开头</string>
     <string name="dav_settings_error_unauthorized">未授权（用户名/密码错误？）</string>
     <string name="dav_settings_error_invalid">无效的 DAV 设置</string>
+    <string name="dav_settings_error_nextcloud_wrong_url">方法不被允许。如果使用 Nextcloud，请使用完整的 URL，通常以：/remote.php/dav/files/%1$s 结尾</string>
     <string name="home_action_sync_now">立即同步</string>
     <string name="home_action_sync_now_initial_start">开始同步</string>
     <string name="home_action_sync_now_initial_start_hint">尚未开始同步。立即开始。</string>
