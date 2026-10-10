@@ -13,6 +13,12 @@
     <string name="dav_settings_hide_password">Passwort ausblenden</string>
     <string name="dav_settings_password">Passwort</string>
     <string name="dav_settings_remote_path">Entfernter DAV-Pfad zum Synchronisieren</string>
+    <string name="dav_settings_browse_remote_path">Remote-Ordner durchsuchen</string>
+    <string name="dav_settings_picker_title">Remote-Ordner auswählen</string>
+    <string name="dav_settings_picker_select">Auswählen</string>
+    <string name="dav_settings_picker_cancel">Abbrechen</string>
+    <string name="dav_settings_picker_parent">Übergeordneter Ordner</string>
+    <string name="dav_settings_picker_empty">Keine Unterordner</string>
     <string name="dav_settings_title">DAV Einstellungen</string>
     <string name="dav_settings_url_insecure">Diese URL ist unsicher. Alle Ihre Daten werden von jedem lesbar sein. Erwägen Sie einen Wechsel zu HTTPS.</string>
     <string name="dav_settings_username">Benutzername</string>
@@ -21,6 +27,10 @@
     <string name="dav_settings_save_anyway">Trotzdem speichern</string>
     <string name="dav_settings_show_password">Passwort anzeigen</string>
     <string name="dav_settings_username_must_start_with">Der Remote-Pfad muss mit %1$s beginnen</string>
+    <string name="dav_settings_error">Fehler: %1$s</string>
+    <string name="dav_settings_error_unauthorized">Nicht autorisiert (falscher Benutzername/Passwort?)</string>
+    <string name="dav_settings_error_invalid">Ungültige DAV-Einstellungen</string>
+    <string name="dav_settings_error_nextcloud_wrong_url">Methode nicht erlaubt. Wenn Sie Nextcloud verwenden, nutzen Sie die vollständige URL, die normalerweise wie folgt endet: /remote.php/dav/files/%1$s</string>
     <string name="home_action_sync_now">Jetzt synchronisieren</string>
     <string name="home_action_sync_now_initial_start">Synchronisierung starten</string>
     <string name="home_action_sync_now_initial_start_hint">Synchronisierung noch nicht gestartet. Jetzt starten</string>

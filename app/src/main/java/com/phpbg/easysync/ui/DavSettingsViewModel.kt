@@ -76,6 +76,96 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
         _uiState.update { uiState -> uiState.copy(settings = settings, showRemoteNotEmpty = false) }
     }
 
+    fun openPathPicker() {
+        val startPath = uiState.value.settings.davPath.ifBlank { "/" }
+        _uiState.update { uiState ->
+            uiState.copy(
+                pickerVisible = true,
+                pickerPath = CollectionPath(startPath).getPath(),
+                pickerFolders = emptyList(),
+                pickerError = null,
+            )
+        }
+        browsePickerPath(startPath, fallbackToRoot = true)
+    }
+
+    fun closePathPicker() {
+        _uiState.update { uiState ->
+            uiState.copy(
+                pickerVisible = false,
+                pickerFolders = emptyList(),
+                pickerLoading = false,
+                pickerError = null,
+            )
+        }
+    }
+
+    fun selectPickerPath() {
+        val path = uiState.value.pickerPath
+        stateChangeHandler(uiState.value.settings.copy(davPath = path))
+        closePathPicker()
+    }
+
+    fun pickerNavigateUp() {
+        val current = uiState.value.pickerPath
+        if (current == "/") return
+        val parent = current.trimEnd('/').substringBeforeLast('/') + "/"
+        browsePickerPath(parent)
+    }
+
+    fun browsePickerPath(path: String, fallbackToRoot: Boolean = false) {
+        val collection = CollectionPath(path)
+        _uiState.update { uiState ->
+            uiState.copy(
+                pickerPath = collection.getPath(),
+                pickerLoading = true,
+                pickerError = null,
+            )
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                // Browse relative to the bare URL so any path can be listed
+                val service = WebDavService.create(uiState.value.settings.copy(davPath = "/"))
+                val folders = service.getChildren(collection)
+                    .filter { it.isCollection }
+                    .map { it.relativeHref.getPath() }
+                    .sortedBy { it.lowercase() }
+                _uiState.update { uiState ->
+                    uiState.copy(pickerFolders = folders, pickerLoading = false)
+                }
+            } catch (e: NotFoundExeption) {
+                if (fallbackToRoot && collection.getPath() != "/") {
+                    browsePickerPath("/")
+                } else {
+                    setPickerError("Not found: ${e.message}")
+                }
+            } catch (_: MisconfigurationException) {
+                setPickerError(getApplication<Application>().getString(R.string.dav_settings_error_invalid))
+            } catch (_: UnauthorizedExeption) {
+                setPickerError(getApplication<Application>().getString(R.string.dav_settings_error_unauthorized))
+            } catch (e: IOException) {
+                val message =
+                    if (e.isNextcloudWrongUrl()) getApplication<Application>().getString(
+                        R.string.dav_settings_error_nextcloud_wrong_url,
+                        uiState.value.settings.username
+                    ) else e.message
+                setPickerError(message)
+            } catch (e: Exception) {
+                setPickerError(e.message)
+            }
+        }
+    }
+
+    private fun setPickerError(message: String?) {
+        _uiState.update { uiState ->
+            uiState.copy(
+                pickerFolders = emptyList(),
+                pickerLoading = false,
+                pickerError = message ?: "Unknown error",
+            )
+        }
+    }
+
     fun save() {
         _uiState.update { uiState ->
             uiState.copy(
@@ -122,13 +212,13 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
             } catch (_: MisconfigurationException) {
                 _uiState.update { uiState ->
                     uiState.copy(
-                        davError = "Invalid DAV settings",
+                        davError = getApplication<Application>().getString(R.string.dav_settings_error_invalid),
                     )
                 }
             } catch (_: UnauthorizedExeption) {
                 _uiState.update { uiState ->
                     uiState.copy(
-                        davError = "Unauthorized (wrong login/password?)",
+                        davError = getApplication<Application>().getString(R.string.dav_settings_error_unauthorized),
                     )
                 }
             } catch (e: NotFoundExeption) {
@@ -139,7 +229,10 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
                 }
             } catch (e: IOException) {
                 val message =
-                    if (e.isNextcloudWrongUrl()) "Method Not Allowed. If using nextcloud, use full URL, generally ending with: /remote.php/dav/files/${uiState.value.settings.username}" else e.message
+                    if (e.isNextcloudWrongUrl()) getApplication<Application>().getString(
+                        R.string.dav_settings_error_nextcloud_wrong_url,
+                        uiState.value.settings.username
+                    ) else e.message
                 _uiState.update { uiState ->
                     uiState.copy(
                         davError = message,

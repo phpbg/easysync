@@ -12,6 +12,12 @@
     <string name="dav_settings_hide_password">Скрыть пароль</string>
     <string name="dav_settings_password">Пароль</string>
     <string name="dav_settings_remote_path">Удаленный путь DAV для синхронизации</string>
+    <string name="dav_settings_browse_remote_path">Просмотр удаленных папок</string>
+    <string name="dav_settings_picker_title">Выберите удаленную папку</string>
+    <string name="dav_settings_picker_select">Выбрать</string>
+    <string name="dav_settings_picker_cancel">Отмена</string>
+    <string name="dav_settings_picker_parent">Родительская папка</string>
+    <string name="dav_settings_picker_empty">Нет подпапок</string>
     <string name="dav_settings_title">Настройки DAV</string>
     <string name="dav_settings_url_insecure">Этот URL-адрес небезопасен. Все ваши данные будут доступны для чтения кем либо. Подумайте о переходе на HTTPS.</string>
     <string name="dav_settings_username">Имя пользователя</string>
@@ -20,6 +26,10 @@
     <string name="dav_settings_save_anyway">Сохранить всё равно</string>
     <string name="dav_settings_show_password">Отобразить пароль</string>
     <string name="dav_settings_username_must_start_with">Удаленный путь должен начинаться с %1$s</string>
+    <string name="dav_settings_error">Ошибка: %1$s</string>
+    <string name="dav_settings_error_unauthorized">Не авторизован (неверный логин/пароль?)</string>
+    <string name="dav_settings_error_invalid">Недействительные настройки DAV</string>
+    <string name="dav_settings_error_nextcloud_wrong_url">Метод не разрешен. Если используется Nextcloud, используйте полный URL-адрес, обычно заканчивающийся на: /remote.php/dav/files/%1$s</string>
     <string name="home_action_sync_now">Синхронизировать сейчас</string>
     <string name="home_action_sync_now_initial_start">Начать синхронизацию</string>
     <string name="home_action_sync_now_initial_start_hint">Синхронизация еще не запущена. Запустить сейчас</string>
