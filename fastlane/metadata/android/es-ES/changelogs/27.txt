@@ -1,0 +1,1 @@
+Añadido un selector de carpetas para facilitar la configuración.

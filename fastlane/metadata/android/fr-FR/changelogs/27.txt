@@ -1,0 +1,1 @@
+Ajout d'un sélecteur de dossier pour faciliter la configuration.
