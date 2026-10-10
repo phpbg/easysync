@@ -27,6 +27,7 @@
     <string name="dav_settings_save_anyway">Save anyway</string>
     <string name="dav_settings_show_password">Show password</string>
     <string name="dav_settings_username_must_start_with">Remote path must start with %1$s</string>
+    <string name="dav_settings_error">Error: %1$s</string>
     <string name="dav_settings_error_unauthorized">Unauthorized (wrong login/password?)</string>
     <string name="dav_settings_error_invalid">Invalid DAV settings</string>
     <string name="dav_settings_error_nextcloud_wrong_url">Method Not Allowed. If using nextcloud, use full URL, generally ending with: /remote.php/dav/files/%1$s</string>

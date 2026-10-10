@@ -168,13 +168,15 @@ private fun Preferences(
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
-        TextField(value = uiState.settings.username,
+        TextField(
+            value = uiState.settings.username,
             onValueChange = { stateChangeHandler(uiState.settings.copy(username = it)) },
             modifier = Modifier.fillMaxWidth(),
             placeholder = { Text(text = stringResource(R.string.dav_settings_username)) },
             label = { Text(text = stringResource(R.string.dav_settings_username)) })
         Spacer(modifier = Modifier.height(8.dp))
-        TextField(value = uiState.settings.password,
+        TextField(
+            value = uiState.settings.password,
             onValueChange = { stateChangeHandler(uiState.settings.copy(password = it)) },
             modifier = Modifier.fillMaxWidth(),
             placeholder = { Text(text = stringResource(R.string.dav_settings_password)) },
@@ -240,7 +242,10 @@ private fun Preferences(
         }
         Spacer(modifier = Modifier.height(8.dp))
         if (uiState.davError != null) {
-            Text(text = "Error: ${uiState.davError}", color = MaterialTheme.colorScheme.error)
+            Text(
+                text = stringResource(R.string.dav_settings_error, uiState.davError),
+                color = MaterialTheme.colorScheme.error
+            )
         }
     }
 }
@@ -295,7 +300,7 @@ private fun DavPathPickerDialog(
                 } else if (uiState.pickerError != null) {
                     item {
                         Text(
-                            text = "Error: ${uiState.pickerError}",
+                            text = stringResource(R.string.dav_settings_error, uiState.pickerError),
                             color = MaterialTheme.colorScheme.error,
                             modifier = Modifier.padding(vertical = 8.dp)
                         )

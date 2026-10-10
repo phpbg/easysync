@@ -26,6 +26,7 @@
     <string name="dav_settings_save_anyway">Сохранить всё равно</string>
     <string name="dav_settings_show_password">Отобразить пароль</string>
     <string name="dav_settings_username_must_start_with">Удаленный путь должен начинаться с %1$s</string>
+    <string name="dav_settings_error">Ошибка: %1$s</string>
     <string name="dav_settings_error_unauthorized">Не авторизован (неверный логин/пароль?)</string>
     <string name="dav_settings_error_invalid">Недействительные настройки DAV</string>
     <string name="dav_settings_error_nextcloud_wrong_url">Метод не разрешен. Если используется Nextcloud, используйте полный URL-адрес, обычно заканчивающийся на: /remote.php/dav/files/%1$s</string>

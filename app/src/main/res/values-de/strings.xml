@@ -27,6 +27,7 @@
     <string name="dav_settings_save_anyway">Trotzdem speichern</string>
     <string name="dav_settings_show_password">Passwort anzeigen</string>
     <string name="dav_settings_username_must_start_with">Der Remote-Pfad muss mit %1$s beginnen</string>
+    <string name="dav_settings_error">Fehler: %1$s</string>
     <string name="dav_settings_error_unauthorized">Nicht autorisiert (falscher Benutzername/Passwort?)</string>
     <string name="dav_settings_error_invalid">Ungültige DAV-Einstellungen</string>
     <string name="dav_settings_error_nextcloud_wrong_url">Methode nicht erlaubt. Wenn Sie Nextcloud verwenden, nutzen Sie die vollständige URL, die normalerweise wie folgt endet: /remote.php/dav/files/%1$s</string>
