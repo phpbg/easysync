@@ -25,6 +25,8 @@
     <string name="dav_settings_save_anyway">Sauvegarder quand même ?</string>
     <string name="dav_settings_show_password">Afficher le mot de passe</string>
     <string name="dav_settings_username_must_start_with">Le répertoire DAV doit commencer par %1$s</string>
+    <string name="dav_settings_error_unauthorized">Non autorisé (identifiant/mot de passe incorrect ?)</string>
+    <string name="dav_settings_error_invalid">Paramètres DAV invalides</string>
     <string name="home_action_sync_now">Synchroniser</string>
     <string name="home_action_sync_now_initial_start">Démarrer la synchronisation</string>
     <string name="home_action_sync_now_initial_start_hint">La synchronisation n\'est pas encore démarrée. Démarrer…</string>

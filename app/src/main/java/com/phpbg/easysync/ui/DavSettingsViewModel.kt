@@ -140,9 +140,9 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
                     setPickerError("Not found: ${e.message}")
                 }
             } catch (_: MisconfigurationException) {
-                setPickerError("Invalid DAV settings")
+                setPickerError(getApplication<Application>().getString(R.string.dav_settings_error_invalid))
             } catch (_: UnauthorizedExeption) {
-                setPickerError("Unauthorized (wrong login/password?)")
+                setPickerError(getApplication<Application>().getString(R.string.dav_settings_error_unauthorized))
             } catch (e: IOException) {
                 val message =
                     if (e.isNextcloudWrongUrl()) "Method Not Allowed. If using nextcloud, use full URL, generally ending with: /remote.php/dav/files/${uiState.value.settings.username}" else e.message
@@ -209,13 +209,13 @@ class DavSettingsViewModel(application: Application) : AndroidViewModel(applicat
             } catch (_: MisconfigurationException) {
                 _uiState.update { uiState ->
                     uiState.copy(
-                        davError = "Invalid DAV settings",
+                        davError = getApplication<Application>().getString(R.string.dav_settings_error_invalid),
                     )
                 }
             } catch (_: UnauthorizedExeption) {
                 _uiState.update { uiState ->
                     uiState.copy(
-                        davError = "Unauthorized (wrong login/password?)",
+                        davError = getApplication<Application>().getString(R.string.dav_settings_error_unauthorized),
                     )
                 }
             } catch (e: NotFoundExeption) {

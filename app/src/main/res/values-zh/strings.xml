@@ -26,6 +26,8 @@
     <string name="dav_settings_save_anyway">仍要保存</string>
     <string name="dav_settings_show_password">显示密码</string>
     <string name="dav_settings_username_must_start_with">远程路径必须以 %1$s 开头</string>
+    <string name="dav_settings_error_unauthorized">未授权（用户名/密码错误？）</string>
+    <string name="dav_settings_error_invalid">无效的 DAV 设置</string>
     <string name="home_action_sync_now">立即同步</string>
     <string name="home_action_sync_now_initial_start">开始同步</string>
     <string name="home_action_sync_now_initial_start_hint">尚未开始同步。立即开始。</string>

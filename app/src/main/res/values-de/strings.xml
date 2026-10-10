@@ -27,6 +27,8 @@
     <string name="dav_settings_save_anyway">Trotzdem speichern</string>
     <string name="dav_settings_show_password">Passwort anzeigen</string>
     <string name="dav_settings_username_must_start_with">Der Remote-Pfad muss mit %1$s beginnen</string>
+    <string name="dav_settings_error_unauthorized">Nicht autorisiert (falscher Benutzername/Passwort?)</string>
+    <string name="dav_settings_error_invalid">Ungültige DAV-Einstellungen</string>
     <string name="home_action_sync_now">Jetzt synchronisieren</string>
     <string name="home_action_sync_now_initial_start">Synchronisierung starten</string>
     <string name="home_action_sync_now_initial_start_hint">Synchronisierung noch nicht gestartet. Jetzt starten</string>
