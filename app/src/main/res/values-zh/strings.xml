@@ -12,6 +12,12 @@
     <string name="dav_settings_hide_password">隐藏密码</string>
     <string name="dav_settings_password">描摹</string>
     <string name="dav_settings_remote_path">远程 DAV 同步路径</string>
+    <string name="dav_settings_browse_remote_path">浏览远程文件夹</string>
+    <string name="dav_settings_picker_title">选择远程文件夹</string>
+    <string name="dav_settings_picker_select">选择</string>
+    <string name="dav_settings_picker_cancel">取消</string>
+    <string name="dav_settings_picker_parent">上级文件夹</string>
+    <string name="dav_settings_picker_empty">无子文件夹</string>
     <string name="dav_settings_title">DAV 设置</string>
     <string name="dav_settings_url_insecure">此 URL 不安全。任何人都可以读取全部数据。 考虑切换到 HTTPS。</string>
     <string name="dav_settings_username">用户名</string>

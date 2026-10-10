@@ -12,7 +12,13 @@
     <string name="dav_settings_activity_title">Paramètres</string>
     <string name="dav_settings_username">Nom d\'utilisateur</string>
     <string name="dav_settings_password">Mot de passe</string>
-    <string name="dav_settings_remote_path">Répertoire DAV distant à synchroniser</string>
+    <string name="dav_settings_remote_path">Répertoire distant à synchroniser</string>
+    <string name="dav_settings_browse_remote_path">Parcourir les répertoires distants</string>
+    <string name="dav_settings_picker_title">Sélectionner un répertoire distant</string>
+    <string name="dav_settings_picker_select">Sélectionner</string>
+    <string name="dav_settings_picker_cancel">Annuler</string>
+    <string name="dav_settings_picker_parent">Répertoire parent</string>
+    <string name="dav_settings_picker_empty">Aucun sous-répertoire</string>
     <string name="dav_settings_remote_not_empty">Le répertoire choisi n\'est pas vide. Tous les fichiers seront téléchargés et synchronisés. Sauvegarder quand même ?</string>
     <string name="dav_settings_save">Sauvegarder</string>
     <string name="dav_settings_hide_password">Masquer le mot de passe</string>

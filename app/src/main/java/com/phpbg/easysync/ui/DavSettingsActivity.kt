@@ -30,18 +30,30 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -49,6 +61,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -56,12 +69,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.phpbg.easysync.R
@@ -89,8 +105,19 @@ class DavSettingsActivity : ComponentActivity() {
                 Preferences(
                     uiState = uiState.value,
                     stateChangeHandler = viewModel::stateChangeHandler,
-                    saveHandler = viewModel::save
+                    saveHandler = viewModel::save,
+                    openPickerHandler = viewModel::openPathPicker,
                 )
+
+                if (uiState.value.pickerVisible) {
+                    DavPathPickerDialog(
+                        uiState = uiState.value,
+                        onBrowse = viewModel::browsePickerPath,
+                        onNavigateUp = viewModel::pickerNavigateUp,
+                        onSelect = viewModel::selectPickerPath,
+                        onDismiss = viewModel::closePathPicker,
+                    )
+                }
             }
         }
     }
@@ -101,7 +128,8 @@ class DavSettingsActivity : ComponentActivity() {
 private fun Preferences(
     uiState: DavSettingsUiState,
     stateChangeHandler: (settings: Settings) -> Unit,
-    saveHandler: () -> Unit
+    saveHandler: () -> Unit,
+    openPickerHandler: () -> Unit,
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
     Column(
@@ -177,7 +205,18 @@ private fun Preferences(
                 capitalization = KeyboardCapitalization.None,
                 autoCorrectEnabled = false,
                 keyboardType = KeyboardType.Uri
-            )
+            ),
+            trailingIcon = {
+                IconButton(
+                    onClick = openPickerHandler,
+                    enabled = uiState.settings.url.isNotBlank() && !uiState.ongoingIO
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Search,
+                        contentDescription = stringResource(R.string.dav_settings_browse_remote_path)
+                    )
+                }
+            }
         )
         Spacer(modifier = Modifier.height(8.dp))
         if (uiState.showRemoteNotEmpty) {
@@ -207,13 +246,134 @@ private fun Preferences(
 }
 
 
+@Composable
+private fun DavPathPickerDialog(
+    uiState: DavSettingsUiState,
+    onBrowse: (path: String) -> Unit,
+    onNavigateUp: () -> Unit,
+    onSelect: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Column {
+                Text(text = stringResource(R.string.dav_settings_picker_title))
+                Text(
+                    text = uiState.pickerPath,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+        },
+        text = {
+            LazyColumn(modifier = Modifier.heightIn(max = 400.dp)) {
+                if (uiState.pickerPath != "/") {
+                    item {
+                        PickerRow(
+                            icon = Icons.AutoMirrored.Filled.ArrowBack,
+                            label = "..",
+                            contentDescription = stringResource(R.string.dav_settings_picker_parent),
+                            enabled = !uiState.pickerLoading,
+                            onClick = onNavigateUp,
+                        )
+                    }
+                }
+                if (uiState.pickerLoading) {
+                    item {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    }
+                } else if (uiState.pickerError != null) {
+                    item {
+                        Text(
+                            text = "Error: ${uiState.pickerError}",
+                            color = MaterialTheme.colorScheme.error,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                    }
+                } else if (uiState.pickerFolders.isEmpty()) {
+                    item {
+                        Text(
+                            text = stringResource(R.string.dav_settings_picker_empty),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                    }
+                } else {
+                    items(uiState.pickerFolders) { folder ->
+                        PickerRow(
+                            icon = Icons.Filled.Folder,
+                            label = folder.trimEnd('/').substringAfterLast('/'),
+                            contentDescription = null,
+                            enabled = true,
+                            onClick = { onBrowse(folder) },
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = onSelect,
+                enabled = !uiState.pickerLoading && uiState.pickerError == null
+            ) {
+                Text(text = stringResource(R.string.dav_settings_picker_select))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(text = stringResource(R.string.dav_settings_picker_cancel))
+            }
+        },
+    )
+}
+
+@Composable
+private fun PickerRow(
+    icon: ImageVector,
+    label: String,
+    contentDescription: String?,
+    enabled: Boolean,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(enabled = enabled, onClick = onClick)
+            .padding(vertical = 12.dp, horizontal = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = contentDescription,
+            modifier = Modifier.size(24.dp)
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Text(text = label, maxLines = 1, overflow = TextOverflow.Ellipsis)
+    }
+}
+
+
 @Preview(name = "Light Mode", showBackground = true)
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = false)
 @Preview(name = "FR", showBackground = true, locale = "fr")
 @Composable
 private fun PreferencesPreview() {
     ThemeSurface {
-        Preferences(uiState = DavSettingsUiState(), stateChangeHandler = { }, saveHandler = { })
+        Preferences(
+            uiState = DavSettingsUiState(),
+            stateChangeHandler = { },
+            saveHandler = { },
+            openPickerHandler = { })
     }
 }
 
@@ -224,6 +384,24 @@ private fun PreferencesPreviewWithCircularIndicator() {
         Preferences(
             uiState = DavSettingsUiState(ongoingIO = true),
             stateChangeHandler = { },
-            saveHandler = { })
+            saveHandler = { },
+            openPickerHandler = { })
+    }
+}
+
+@Preview(name = "Picker", showBackground = true)
+@Composable
+private fun DavPathPickerDialogPreview() {
+    ThemeSurface {
+        DavPathPickerDialog(
+            uiState = DavSettingsUiState(
+                pickerVisible = true,
+                pickerPath = "/Photos/",
+                pickerFolders = listOf("/Photos/2023/", "/Photos/2024/", "/Photos/Camera/")
+            ),
+            onBrowse = { },
+            onNavigateUp = { },
+            onSelect = { },
+            onDismiss = { })
     }
 }

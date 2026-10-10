@@ -13,6 +13,12 @@
     <string name="dav_settings_hide_password">Ocultar contraseña</string>
     <string name="dav_settings_password">Contraseña</string>
     <string name="dav_settings_remote_path">Ruta DAV remota para sincronizar</string>
+    <string name="dav_settings_browse_remote_path">Examinar carpetas remotas</string>
+    <string name="dav_settings_picker_title">Seleccionar carpeta remota</string>
+    <string name="dav_settings_picker_select">Seleccionar</string>
+    <string name="dav_settings_picker_cancel">Cancelar</string>
+    <string name="dav_settings_picker_parent">Carpeta superior</string>
+    <string name="dav_settings_picker_empty">Sin subcarpetas</string>
     <string name="dav_settings_title">Configuración de DAV</string>
     <string name="dav_settings_url_insecure">Esta URL no es segura. Todos tus datos serán legibles por cualquiera. Considera cambiar a HTTPS.</string>
     <string name="dav_settings_username">Nombre de usuario</string>

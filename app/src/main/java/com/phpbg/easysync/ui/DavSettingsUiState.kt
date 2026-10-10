@@ -33,4 +33,9 @@ data class DavSettingsUiState(
     val ongoingIO: Boolean = false,
     val hasFilesSynced: Boolean? = null,
     val showRemoteNotEmpty: Boolean = false,
+    val pickerVisible: Boolean = false,
+    val pickerPath: String = "/",
+    val pickerFolders: List<String> = emptyList(),
+    val pickerLoading: Boolean = false,
+    val pickerError: String? = null,
 )

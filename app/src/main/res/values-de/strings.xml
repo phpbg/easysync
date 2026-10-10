@@ -13,6 +13,12 @@
     <string name="dav_settings_hide_password">Passwort ausblenden</string>
     <string name="dav_settings_password">Passwort</string>
     <string name="dav_settings_remote_path">Entfernter DAV-Pfad zum Synchronisieren</string>
+    <string name="dav_settings_browse_remote_path">Remote-Ordner durchsuchen</string>
+    <string name="dav_settings_picker_title">Remote-Ordner auswählen</string>
+    <string name="dav_settings_picker_select">Auswählen</string>
+    <string name="dav_settings_picker_cancel">Abbrechen</string>
+    <string name="dav_settings_picker_parent">Übergeordneter Ordner</string>
+    <string name="dav_settings_picker_empty">Keine Unterordner</string>
     <string name="dav_settings_title">DAV Einstellungen</string>
     <string name="dav_settings_url_insecure">Diese URL ist unsicher. Alle Ihre Daten werden von jedem lesbar sein. Erwägen Sie einen Wechsel zu HTTPS.</string>
     <string name="dav_settings_username">Benutzername</string>
